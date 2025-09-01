@@ -17,6 +17,7 @@ interface AppLayoutProps {
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string | number>("dashboard");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   // 資料版本，當我們更新資料結構時增加這個版本號
   const DATA_VERSION = "2.0.0";
@@ -55,9 +56,10 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           topicProgress={topicProgress}
           activeTab={activeTab}
           onTabChange={setActiveTab}
+          onCollapseChange={setSidebarCollapsed}
         />
         
-        <main className="main-content">
+        <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           {children({ activeTab, topicProgress, setTopicProgress })}
         </main>
       </div>

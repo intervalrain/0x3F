@@ -102,6 +102,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* 桌機版側邊欄切換按鈕 */
 .sidebar-toggle-icon {
   font-size: 16px;
   color: #374151;
@@ -111,6 +112,11 @@ body {
 
 .sidebar.collapsed .sidebar-toggle-icon {
   transform: rotate(180deg);
+}
+
+/* 桌機版始終隱藏 mobile tabbar */
+.mobile-tab-bar {
+  display: none;
 }
 
 .sidebar-section {
@@ -661,42 +667,229 @@ body {
 
 @media (max-width: 768px) {
   .app-layout {
-    padding: 10px;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
   }
 
   .app-header {
-    margin: 10px;
+    margin: 0;
+    padding: 15px;
+  }
+
+  .app-header h1 {
+    font-size: 20px;
   }
 
   .app-container {
     flex-direction: column;
-    gap: 15px;
-    margin: 10px;
+    gap: 0;
+    margin: 0;
+    height: calc(100vh - 70px);
   }
 
+  /* 手機版側邊欄：重新設計為 tab bar 模式 */
   .sidebar {
     width: 100%;
+    max-height: 300px;
     position: static;
     order: -1;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out;
+    overflow-y: auto;
+    background: #f8fafc;
+  }
+
+  /* 收合狀態：變成水平的 tab bar */
+  .sidebar.collapsed {
+    max-height: 50px;
+    padding: 0;
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out;
+  }
+
+  /* 收合時隱藏垂直排列的內容 */
+  .sidebar.collapsed .sidebar-section {
+    display: none;
+  }
+
+  /* 收合時顯示水平 tab bar */
+  .sidebar.collapsed::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 50px;
+    position: relative;
+  }
+
+  /* 桌面版的寬度收合在手機版不適用 */
+  .sidebar.collapsed {
+    width: 100% !important;
+  }
+
+  /* 手機版：覆蓋桌機版的隱藏規則 */
+  .mobile-tab-bar {
+    display: none;
+  }
+
+  /* 手機版：收合狀態下顯示水平選項卡 */
+  .sidebar.collapsed .mobile-tab-bar {
+    display: flex !important;
+    width: 100%;
+    height: 50px;
+    overflow-x: auto;
+    padding: 5px;
+    gap: 5px;
+    align-items: center;
+  }
+
+  /* 手機版水平選項卡樣式 */
+  .mobile-tab {
+    min-width: 45px;
+    height: 40px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .mobile-tab:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+
+  .mobile-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+  }
+
+  .mobile-tab-number {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .mobile-tab-progress {
+    font-size: 9px;
+    margin-top: 1px;
+    opacity: 0.8;
+  }
+
+  .mobile-tab.active .mobile-tab-progress {
+    opacity: 1;
+  }
+
+  /* 手機版側邊欄切換按鈕優化 */
+  .sidebar-toggle {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    left: auto;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-toggle:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 手機版切換按鈕：覆蓋桌機版樣式 */
+  .sidebar-toggle-icon {
+    font-size: 0; /* 隱藏原本的左右箭頭 */
+    position: relative;
+    transition: transform 0.3s ease;
+    color: #374151;
+  }
+
+  /* 手機版使用上下箭頭 */
+  .sidebar-toggle-icon::before {
+    content: "▲";
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    color: #374151;
+  }
+
+  .sidebar.collapsed .sidebar-toggle-icon::before {
+    content: "▼";
+  }
+
+  /* 手機版不使用旋轉，直接切換箭頭 */
+  .sidebar.collapsed .sidebar-toggle-icon {
+    transform: rotate(0deg);
+  }
+
+  /* 收合狀態下的切換按鈕 */
+  .sidebar.collapsed .sidebar-toggle {
+    top: 8px;
+    right: 15px;
+    background: rgba(102, 126, 234, 0.9);
+    border-color: #667eea;
+  }
+
+  .sidebar.collapsed .sidebar-toggle-icon {
+    color: white;
   }
 
   .sidebar-section {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+  }
+
+  .sidebar-section:first-child {
+    padding-top: 45px;
+  }
+
+  .sidebar-section:first-child .sidebar-section-title {
+    margin-top: 0;
+    padding-top: 5px;
   }
 
   .sidebar-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 6px;
+    padding: 10px;
   }
 
   .sidebar-item {
-    padding: 10px;
-    font-size: 13px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 6px;
   }
 
   .sidebar-content {
-    gap: 1px;
+    gap: 2px;
+  }
+
+  .sidebar-label {
+    font-size: 11px;
+  }
+
+  .sidebar-progress {
+    font-size: 10px;
+    padding: 1px 4px;
   }
 
   .topic-header {
@@ -707,18 +900,37 @@ body {
 
   .topic-link {
     text-align: center;
+    padding: 12px 16px;
+    font-size: 14px;
   }
 
   .add-problem-form {
     flex-direction: column;
+    padding: 15px;
+    margin-bottom: 20px;
   }
 
   .main-content {
-    padding: 20px;
+    padding: 15px 15px 0 15px; /* 移除下方padding */
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 250px);
+    border-radius: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  /* 當側邊欄收起時，主內容獲得更多空間 */
+  .main-content.sidebar-collapsed {
+    max-height: calc(100vh - 115px); /* 更充分利用空間 */
   }
 
   .problems-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .problems-list {
+    gap: 8px;
   }
 
   .form-row {
@@ -732,6 +944,85 @@ body {
 
   .form-mode-selector {
     flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .mode-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* 確保題目在手機版正確顯示 */
+  .problem-item {
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  .problem-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .problem-content {
+    flex: 1;
+  }
+
+  .problem-link {
+    font-size: 14px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .completion-date {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+
+  /* 章節檢視優化 */
+  .chapter-view {
+    margin-bottom: 20px;
+  }
+
+  .chapter-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .subsection-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-left: 8px;
+  }
+
+  .problem-card {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .problem-number {
+    font-size: 12px;
+    min-width: 35px;
+  }
+
+  .problem-title-link {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .difficulty-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+
+  .checkbox-label {
+    font-size: 11px;
+  }
+
+  .completion-info {
+    font-size: 10px;
+    padding: 2px 6px;
   }
 }
 

@@ -9,15 +9,23 @@ interface SidebarProps {
   topicProgress: TopicProgress[];
   activeTab: string | number;
   onTabChange: (tab: string | number) => void;
+  onCollapseChange?: (isCollapsed: boolean) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ 
   topics, 
   topicProgress, 
   activeTab, 
-  onTabChange 
+  onTabChange,
+  onCollapseChange 
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleToggle = () => {
+    const newCollapsed = !isCollapsed;
+    setIsCollapsed(newCollapsed);
+    onCollapseChange?.(newCollapsed);
+  };
   const getTabProgress = (topicId: number) => {
     const topicData = topicProgress.find((tp) => tp.topicId === topicId);
     if (!topicData) return { completed: 0, total: 0 };
@@ -60,11 +68,43 @@ const Sidebar: React.FC<SidebarProps> = ({
     <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <button 
         className="sidebar-toggle"
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={handleToggle}
         title={isCollapsed ? "展開側邊欄" : "收合側邊欄"}
       >
         <span className="sidebar-toggle-icon">◀</span>
       </button>
+      
+      {/* 手機版收合時的水平 tab bar */}
+      <div className="mobile-tab-bar">
+        <button
+          className={`mobile-tab ${activeTab === "dashboard" ? "active" : ""}`}
+          onClick={() => onTabChange("dashboard")}
+        >
+          📊
+        </button>
+        <button
+          className={`mobile-tab ${activeTab === "analytics" ? "active" : ""}`}
+          onClick={() => onTabChange("analytics")}
+        >
+          📈
+        </button>
+        {topics.map((topic) => {
+          const { completed, total } = getTabProgress(topic.id);
+          return (
+            <button
+              key={topic.id}
+              className={`mobile-tab ${activeTab === topic.id ? "active" : ""}`}
+              onClick={() => onTabChange(topic.id)}
+              title={topic.title}
+            >
+              <span className="mobile-tab-number">{topic.id}</span>
+              {total > 0 && (
+                <span className="mobile-tab-progress">{completed}/{total}</span>
+              )}
+            </button>
+          );
+        })}
+      </div>
       
       <div className="sidebar-section">
         <h3 className="sidebar-section-title">主要功能</h3>
