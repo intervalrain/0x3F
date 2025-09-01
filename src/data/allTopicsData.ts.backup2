@@ -1,0 +1,538 @@
+import { Chapter } from '../types';
+
+// Topic 1: 滑動視窗與雙指針 (Sliding Window and Two Pointers)
+export const slidingWindowChapters: Chapter[] = [
+  {
+    id: 'fixed-length',
+    title: '一、定長滑動視窗 (Fixed-Length Sliding Window)',
+    subsections: [
+      {
+        id: 'fixed-basic',
+        title: '§1.1 基礎 (Basic)',
+        problems: [
+          {
+            id: 'lc1456',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1456',
+            title: '定长子串中元音的最大數目',
+            url: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+            difficulty: 1263,
+            completed: false
+          },
+          {
+            id: 'lc643',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '643',
+            title: '子陣列最大平均數 I',
+            url: 'https://leetcode.com/problems/maximum-average-subarray-i/',
+            completed: false
+          },
+          {
+            id: 'lc1343',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1343',
+            title: '大小为 K 且平均值大于等于阈值的子陣列數目',
+            url: 'https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/',
+            difficulty: 1317,
+            completed: false
+          },
+          {
+            id: 'lc2090',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '2090',
+            title: '半径为 k 的子陣列平均值',
+            url: 'https://leetcode.com/problems/k-radius-subarray-averages/',
+            difficulty: 1358,
+            completed: false
+          },
+          {
+            id: 'lc2379',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '2379',
+            title: '得到 K 個黑块的最少涂色次數',
+            url: 'https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/',
+            difficulty: 1360,
+            completed: false
+          },
+          {
+            id: 'lc2841',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '2841',
+            title: '几乎唯一子陣列的最大和',
+            url: 'https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/',
+            difficulty: 1546,
+            completed: false
+          },
+          {
+            id: 'lc2461',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '2461',
+            title: '長度为 K 子陣列中的最大和',
+            url: 'https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/',
+            difficulty: 1553,
+            completed: false
+          },
+          {
+            id: 'lc1423',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1423',
+            title: '可獲得的最大點數',
+            url: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
+            difficulty: 1574,
+            completed: false
+          },
+          {
+            id: 'lc1052',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1052',
+            title: '愛生气的书店老板',
+            url: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
+            completed: false
+          },
+          {
+            id: 'lc1176',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1176',
+            title: '健身计划评估',
+            url: 'https://leetcode.com/problems/diet-plan-performance/',
+            completed: false
+          },
+          {
+            id: 'lc1100',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1100',
+            title: '長度为 K 的无重复字符子串',
+            url: 'https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/',
+            completed: false
+          },
+          {
+            id: 'lc1852',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1852',
+            title: '每個子陣列的數字种类數',
+            url: 'https://leetcode.com/problems/distinct-numbers-in-each-subarray/',
+            completed: false
+          },
+          {
+            id: 'lc1151',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '1151',
+            title: '最少交換次數来組合所有的 1',
+            url: 'https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/',
+            completed: false
+          },
+          {
+            id: 'lc2107',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '2107',
+            title: '分享 K 個糖果后独特口味的數量',
+            url: 'https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/',
+            completed: false
+          },
+          {
+            id: 'lc3439',
+            topicId: 1,
+            chapterId: 'fixed-length',
+            subsectionId: 'fixed-basic',
+            number: '3439',
+            title: '重新安排会议得到最多空余時間 I',
+            url: 'https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/',
+            difficulty: 1729,
+            completed: false
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Topic 2: 二分演算法 (Binary Search)
+export const binarySearchChapters: Chapter[] = [
+  {
+    id: 'binary-basic',
+    title: '一、二分查找 (Binary Search)',
+    subsections: [
+      {
+        id: 'basic-search',
+        title: '§1.1 基礎二分 (Basic Binary Search)',
+        problems: [
+          {
+            id: 'lc34',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '34',
+            title: '在排序陣列中查找元素的第一個和最后一個位置',
+            url: 'https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/',
+            completed: false
+          },
+          {
+            id: 'lc35',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '35',
+            title: '搜索插入位置',
+            url: 'https://leetcode.com/problems/search-insert-position/',
+            completed: false
+          },
+          {
+            id: 'lc704',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '704',
+            title: '二分查找',
+            url: 'https://leetcode.com/problems/binary-search/',
+            completed: false
+          },
+          {
+            id: 'lc744',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '744',
+            title: '寻找比目标字母大的最小字母',
+            url: 'https://leetcode.com/problems/find-smallest-letter-greater-than-target/',
+            completed: false
+          },
+          {
+            id: 'lc2529',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '2529',
+            title: '正整數和负整數的最大计數',
+            url: 'https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/',
+            completed: false
+          },
+          {
+            id: 'lc2300',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '2300',
+            title: '咒语和药水的成功對數',
+            url: 'https://leetcode.com/problems/successful-pairs-of-spells-and-potions/',
+            difficulty: 1477,
+            completed: false
+          },
+          {
+            id: 'lc1385',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '1385',
+            title: '兩個陣列間的距离值',
+            url: 'https://leetcode.com/problems/find-the-distance-value-between-two-arrays/',
+            completed: false
+          },
+          {
+            id: 'lc2389',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '2389',
+            title: '和有限的最长子序列',
+            url: 'https://leetcode.com/problems/longest-subsequence-with-limited-sum/',
+            completed: false
+          },
+          {
+            id: 'lc1170',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '1170',
+            title: '比较字串最小字母出现频次',
+            url: 'https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/',
+            completed: false
+          },
+          {
+            id: 'lc2080',
+            topicId: 2,
+            chapterId: 'binary-basic',
+            subsectionId: 'basic-search',
+            number: '2080',
+            title: '区間内查詢數字的频率',
+            url: 'https://leetcode.com/problems/range-frequency-queries/',
+            difficulty: 1702,
+            completed: false
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// Topic 3: 單調棧 (Monotonic Stack)
+export const monotonicStackChapters: Chapter[] = [
+  {
+    id: 'stack-basic',
+    title: '一、單調棧基礎 (Monotonic Stack Basics)',
+    subsections: [
+      {
+        id: 'next-greater',
+        title: '§1.1 下一個更大元素 (Next Greater Element)',
+        problems: [
+          {
+            id: 'lc739',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '739',
+            title: '每日温度',
+            url: 'https://leetcode.com/problems/daily-temperatures/',
+            completed: false
+          },
+          {
+            id: 'lc1475',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '1475',
+            title: '商品折扣后的最终价格',
+            url: 'https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/',
+            completed: false
+          },
+          {
+            id: 'lc496',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '496',
+            title: '下一個更大元素 I',
+            url: 'https://leetcode.com/problems/next-greater-element-i/',
+            completed: false
+          },
+          {
+            id: 'lc503',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '503',
+            title: '下一個更大元素 II',
+            url: 'https://leetcode.com/problems/next-greater-element-ii/',
+            completed: false
+          },
+          {
+            id: 'lc901',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '901',
+            title: '股票价格跨度',
+            url: 'https://leetcode.com/problems/online-stock-span/',
+            difficulty: 1709,
+            completed: false
+          },
+          {
+            id: 'lc853',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '853',
+            title: '车队',
+            url: 'https://leetcode.com/problems/car-fleet/',
+            completed: false
+          },
+          {
+            id: 'lc1019',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '1019',
+            title: '鏈表中的下一個更大节點',
+            url: 'https://leetcode.com/problems/next-greater-node-in-linked-list/',
+            difficulty: 1571,
+            completed: false
+          },
+          {
+            id: 'lc768',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '768',
+            title: '最多能完成排序的块 II',
+            url: 'https://leetcode.com/problems/max-chunks-to-make-sorted-ii/',
+            difficulty: 1788,
+            completed: false
+          },
+          {
+            id: 'lc654',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '654',
+            title: '最大二叉樹',
+            url: 'https://leetcode.com/problems/maximum-binary-tree/',
+            completed: false
+          },
+          {
+            id: 'lc456',
+            topicId: 3,
+            chapterId: 'stack-basic',
+            subsectionId: 'next-greater',
+            number: '456',
+            title: '132 模式',
+            url: 'https://leetcode.com/problems/132-pattern/',
+            completed: false
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// 其他主題的樣本結構
+export const gridGraphChapters: Chapter[] = [
+  {
+    id: 'grid-traversal',
+    title: '一、網格遍歷 (Grid Traversal)',
+    subsections: [
+      {
+        id: 'dfs-bfs',
+        title: '§1.1 DFS/BFS 基礎 (DFS/BFS Basics)',
+        problems: [
+          {
+            id: 'lc200',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '200',
+            title: '岛屿數量',
+            url: 'https://leetcode.com/problems/number-of-islands/',
+            completed: false
+          },
+          {
+            id: 'lc695',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '695',
+            title: '岛屿的最大面积',
+            url: 'https://leetcode.com/problems/max-area-of-island/',
+            completed: false
+          },
+          {
+            id: 'lc3619',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '3619',
+            title: '总价值可以被 K 整除的岛屿數目',
+            url: 'https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/',
+            difficulty: 1461,
+            completed: false
+          },
+          {
+            id: 'lc463',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '463',
+            title: '岛屿的周长',
+            url: 'https://leetcode.com/problems/island-perimeter/',
+            completed: false
+          },
+          {
+            id: 'lc2658',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '2658',
+            title: '網格圖中鱼的最大數目',
+            url: 'https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/',
+            difficulty: 1490,
+            completed: false
+          },
+          {
+            id: 'lc1034',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '1034',
+            title: '邊界着色',
+            url: 'https://leetcode.com/problems/coloring-a-border/',
+            difficulty: 1579,
+            completed: false
+          },
+          {
+            id: 'lc1020',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '1020',
+            title: '飞地的數量',
+            url: 'https://leetcode.com/problems/number-of-enclaves/',
+            difficulty: 1615,
+            completed: false
+          },
+          {
+            id: 'lc2684',
+            topicId: 4,
+            chapterId: 'grid-traversal',
+            subsectionId: 'dfs-bfs',
+            number: '2684',
+            title: '矩陣中移动的最大次數',
+            url: 'https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/',
+            difficulty: 1626,
+            completed: false
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// 其他主題暫時使用空陣列
+export const bitManipulationChapters: Chapter[] = [];
+export const graphAlgorithmsChapters: Chapter[] = [];
+export const dynamicProgrammingChapters: Chapter[] = [];
+export const dataStructuresChapters: Chapter[] = [];
+export const mathAlgorithmsChapters: Chapter[] = [];
+export const greedyChapters: Chapter[] = [];
+export const linkedListTreeBacktrackingChapters: Chapter[] = [];
+export const stringChapters: Chapter[] = [];
+
+export const allTopicsData: { [key: number]: Chapter[] } = {
+  1: slidingWindowChapters,
+  2: binarySearchChapters,
+  3: monotonicStackChapters,
+  4: gridGraphChapters,
+  5: bitManipulationChapters,
+  6: graphAlgorithmsChapters,
+  7: dynamicProgrammingChapters,
+  8: dataStructuresChapters,
+  9: mathAlgorithmsChapters,
+  10: greedyChapters,
+  11: linkedListTreeBacktrackingChapters,
+  12: stringChapters
+};
