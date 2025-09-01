@@ -201,7 +201,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
         <div className="completion-chart">
           <h3>📊 完成趨勢</h3>
           <div className="chart">
-            <div className="chart-bars">
+            <div className="chart-bars overflow-x-scroll">
               {chartData.map((data, index) => (
                 <div key={index} className="chart-bar-container">
                   <div 
