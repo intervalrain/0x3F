@@ -416,6 +416,13 @@ body {
   text-decoration: underline;
 }
 
+.premium-indicator {
+  margin-left: 8px;
+  color: #f59e0b;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
 .completion-date {
   color: #48bb78;
   font-size: 12px;

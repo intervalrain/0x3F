@@ -13,8 +13,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
       }
     } catch (error) {
       console.error(`Error loading ${key} from localStorage:`, error);
-    } finally {
-      // Hook is initialized
     }
   }, [key]);
 

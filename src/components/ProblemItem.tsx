@@ -7,6 +7,7 @@ interface ProblemItemProps {
 }
 
 const ProblemItem: React.FC<ProblemItemProps> = ({ problem, onToggle }) => {
+
   const handleCheckboxChange = () => {
     onToggle(problem.id);
   };
@@ -32,6 +33,11 @@ const ProblemItem: React.FC<ProblemItemProps> = ({ problem, onToggle }) => {
           className="problem-link"
         >
           {problem.title}
+          {problem.isPremium && (
+            <span className="premium-indicator" title="Premium 題目">
+              🔒
+            </span>
+          )}
         </a>
         {problem.completed && problem.completedAt && (
           <span className="completion-date">
