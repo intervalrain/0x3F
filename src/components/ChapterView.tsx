@@ -27,6 +27,11 @@ const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onToggleProblem }) =
                     className="problem-title-link"
                   >
                     {problem.title}
+                    {problem.isPremium && (
+                      <span className="premium-indicator" title="Premium 題目">
+                        🔒
+                      </span>
+                    )}
                   </a>
                   {problem.difficulty && (
                     <span className="difficulty-badge">

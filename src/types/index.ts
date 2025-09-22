@@ -6,6 +6,7 @@ export interface Problem {
   number: string;
   title: string;
   url: string;
+  isPremium?: boolean;
   difficulty?: number;
   completed: boolean;
   completedAt?: string;
