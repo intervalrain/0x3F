@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { topics } from '../data/topics';
 import { TopicProgress } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -18,6 +18,7 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string | number>("dashboard");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   
   // 資料版本，當我們更新資料結構時增加這個版本號
   const DATA_VERSION = "3.1.0";
@@ -26,19 +27,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   // Helper function: 將舊格式轉換為新格式
   const migrateOldDataToNewFormat = (oldData: any[]): TopicProgress[] => {
-    console.log("🔄 開始遷移舊資料格式...", { oldDataLength: oldData.length });
+    console.log("🔄 開始遷移舊資料格式...");
 
     return topics.map((topic) => {
       const oldTopicData = oldData.find((tp: any) => tp.topicId === topic.id);
       const baseChapters = allTopicsDataByIndex[topic.id] || []; // 直接使用 topic.id
-
-      console.log(`處理 Topic ${topic.id}:`, {
-        topicTitle: topic.title,
-        hasOldData: !!oldTopicData,
-        oldProblems: oldTopicData?.problems?.length || 0,
-        oldChapters: oldTopicData?.chapters?.length || 0,
-        baseChapters: baseChapters.length
-      });
 
       if (!oldTopicData) {
         // 沒有舊資料，直接使用新格式
@@ -121,39 +114,18 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       chapters: allTopicsDataByIndex[topic.id] || [], // 直接使用 topic.id
     }));
 
-    if (typeof window === "undefined") {
+    // SSR 時直接返回預設資料，避免 hydration 錯誤
+    if (typeof window === "undefined" || !isClient) {
       return defaultData;
     }
-
-    // Debug: 檢查當前 localStorage 內容
-    console.log("=== 遷移 Debug 資訊 ===");
-    console.log("所有 localStorage keys:", Object.keys(localStorage));
 
     const storedVersion = localStorage.getItem("leetcode-tracker-version");
     const oldFormatData = localStorage.getItem(OLD_STORAGE_KEY);
     const newFormatData = localStorage.getItem(NEW_STORAGE_KEY);
 
-    console.log("Current version:", storedVersion);
-    console.log("Expected version:", DATA_VERSION);
-    console.log("Old format data exists:", !!oldFormatData);
-    console.log("New format data exists:", !!newFormatData);
-
-    if (oldFormatData) {
-      try {
-        const parsed = JSON.parse(oldFormatData);
-        console.log("Old format data preview:", {
-          topics: parsed.length,
-          firstTopic: parsed[0]
-        });
-      } catch (e) {
-        console.log("Failed to parse old format data");
-      }
-    }
-
     // 如果已經有新格式資料且版本正確，直接返回
     if (newFormatData && storedVersion === DATA_VERSION) {
       try {
-        console.log("✅ 載入現有的新格式資料");
         return JSON.parse(newFormatData);
       } catch (error) {
         console.error("❌ 解析新格式資料失敗:", error);
@@ -195,17 +167,36 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     return defaultData;
   };
 
+  // 標記客戶端已載入，避免 SSR hydration 錯誤
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [topicProgress, setTopicProgress] = useLocalStorage<TopicProgress[]>(
     NEW_STORAGE_KEY,
     getInitialData()
   );
+
+  // 避免 SSR hydration 錯誤，客戶端載入前顯示 loading
+  if (!isClient) {
+    return (
+      <div className="app-layout">
+        <header className="app-header">
+          <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
+        </header>
+        <div className="app-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+          <div>載入中...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="app-layout">
       <header className="app-header">
         <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
       </header>
-      
+
       <div className="app-container">
         <Sidebar
           topics={topics}
@@ -214,7 +205,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           onTabChange={setActiveTab}
           onCollapseChange={setSidebarCollapsed}
         />
-        
+
         <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           {children({ activeTab, topicProgress, setTopicProgress })}
         </main>
