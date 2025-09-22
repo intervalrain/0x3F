@@ -26,11 +26,19 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   // Helper function: 將舊格式轉換為新格式
   const migrateOldDataToNewFormat = (oldData: any[]): TopicProgress[] => {
-    console.log("開始遷移舊資料格式...");
+    console.log("🔄 開始遷移舊資料格式...", { oldDataLength: oldData.length });
 
     return topics.map((topic) => {
       const oldTopicData = oldData.find((tp: any) => tp.topicId === topic.id);
       const baseChapters = allTopicsDataByIndex[topic.id - 1] || [];
+
+      console.log(`處理 Topic ${topic.id}:`, {
+        topicTitle: topic.title,
+        hasOldData: !!oldTopicData,
+        oldProblems: oldTopicData?.problems?.length || 0,
+        oldChapters: oldTopicData?.chapters?.length || 0,
+        baseChapters: baseChapters.length
+      });
 
       if (!oldTopicData) {
         // 沒有舊資料，直接使用新格式
@@ -40,6 +48,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           chapters: baseChapters,
         };
       }
+
+      let completedCount = 0;
 
       // 將舊的 problems 完成狀態合併到新的 chapters 結構
       const migratedChapters = baseChapters.map(chapter => ({
@@ -54,7 +64,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             );
 
             if (oldProblem && oldProblem.completed) {
-              console.log(`遷移題目 ${problem.number}: ${problem.title} - 已完成`);
+              completedCount++;
+              console.log(`✅ 遷移題目 ${problem.number}: ${problem.title} - 已完成`);
               return {
                 ...problem,
                 completed: true,
@@ -93,6 +104,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         });
       }
 
+      console.log(`Topic ${topic.id} 遷移完成:`, { completedProblems: completedCount });
+
       return {
         topicId: topic.id,
         problems: oldTopicData.problems || [],
@@ -112,27 +125,46 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       return defaultData;
     }
 
-    const storedVersion = localStorage.getItem("leetcode-tracker-version");
+    // Debug: 檢查當前 localStorage 內容
+    console.log("=== 遷移 Debug 資訊 ===");
+    console.log("所有 localStorage keys:", Object.keys(localStorage));
 
-    // 檢查是否需要執行遷移
+    const storedVersion = localStorage.getItem("leetcode-tracker-version");
     const oldFormatData = localStorage.getItem(OLD_STORAGE_KEY);
     const newFormatData = localStorage.getItem(NEW_STORAGE_KEY);
+
+    console.log("Current version:", storedVersion);
+    console.log("Expected version:", DATA_VERSION);
+    console.log("Old format data exists:", !!oldFormatData);
+    console.log("New format data exists:", !!newFormatData);
+
+    if (oldFormatData) {
+      try {
+        const parsed = JSON.parse(oldFormatData);
+        console.log("Old format data preview:", {
+          topics: parsed.length,
+          firstTopic: parsed[0]
+        });
+      } catch (e) {
+        console.log("Failed to parse old format data");
+      }
+    }
 
     // 如果已經有新格式資料且版本正確，直接返回
     if (newFormatData && storedVersion === DATA_VERSION) {
       try {
-        console.log("載入現有的新格式資料");
+        console.log("✅ 載入現有的新格式資料");
         return JSON.parse(newFormatData);
       } catch (error) {
-        console.error("解析新格式資料失敗:", error);
+        console.error("❌ 解析新格式資料失敗:", error);
         return defaultData;
       }
     }
 
-    // 如果有舊格式資料但沒有新格式資料，執行遷移
-    if (oldFormatData && !newFormatData) {
+    // 如果有舊格式資料，執行遷移（不管是否有新格式資料）
+    if (oldFormatData) {
       try {
-        console.log("發現舊格式資料，開始遷移...");
+        console.log("🔄 發現舊格式資料，開始遷移...");
         const oldData = JSON.parse(oldFormatData);
         const migratedData = migrateOldDataToNewFormat(oldData);
 
@@ -145,16 +177,20 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         localStorage.setItem(backupKey, oldFormatData);
         localStorage.removeItem(OLD_STORAGE_KEY);
 
-        console.log(`資料遷移完成！新資料已儲存，舊資料已備份到 ${backupKey}`);
+        console.log(`✅ 資料遷移完成！新資料已儲存，舊資料已備份到 ${backupKey}`);
+        console.log("Migrated data preview:", {
+          topics: migratedData.length,
+          firstTopic: migratedData[0]
+        });
         return migratedData;
       } catch (error) {
-        console.error("資料遷移失敗:", error);
+        console.error("❌ 資料遷移失敗:", error);
         return defaultData;
       }
     }
 
     // 沒有任何現有資料，建立新的預設資料
-    console.log("建立新的預設資料");
+    console.log("🆕 建立新的預設資料");
     localStorage.setItem("leetcode-tracker-version", DATA_VERSION);
     return defaultData;
   };
