@@ -26,11 +26,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const NEW_STORAGE_KEY = "leetcode-tracker-progress-v3";
 
   // Helper function: 將舊格式轉換為新格式
-  const migrateOldDataToNewFormat = (oldData: any[]): TopicProgress[] => {
+  const migrateOldDataToNewFormat = (oldData: TopicProgress[]): TopicProgress[] => {
     console.log("🔄 開始遷移舊資料格式...");
 
     return topics.map((topic) => {
-      const oldTopicData = oldData.find((tp: any) => tp.topicId === topic.id);
+      const oldTopicData = oldData.find((tp) => tp.topicId === topic.id);
       const baseChapters = allTopicsDataByIndex[topic.id] || []; // 直接使用 topic.id
 
       if (!oldTopicData) {
@@ -51,7 +51,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           ...subsection,
           problems: subsection.problems.map(problem => {
             // 在舊資料中尋找相同的題目（透過 number 或 id 比對）
-            const oldProblem = oldTopicData.problems?.find((op: any) =>
+            const oldProblem = oldTopicData.problems?.find((op) =>
               op.number?.toString() === problem.number.toString() ||
               op.id === problem.id
             );
@@ -71,11 +71,10 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       }));
 
       // 處理舊資料中可能存在的章節級別的 problems
-      let migratedOldFormatProblems: any[] = [];
       if (oldTopicData.chapters) {
-        oldTopicData.chapters.forEach((oldChapter: any) => {
-          oldChapter.subsections?.forEach((oldSubsection: any) => {
-            oldSubsection.problems?.forEach((oldProblem: any) => {
+        oldTopicData.chapters.forEach((oldChapter) => {
+          oldChapter.subsections?.forEach((oldSubsection) => {
+            oldSubsection.problems?.forEach((oldProblem) => {
               if (oldProblem.completed) {
                 // 嘗試在新結構中找到對應的題目並標記為完成
                 migratedChapters.forEach(newChapter => {
@@ -85,6 +84,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                       p.id === oldProblem.id
                     );
                     if (matchingProblem && !matchingProblem.completed) {
+                      completedCount++;
                       matchingProblem.completed = true;
                       matchingProblem.completedAt = oldProblem.completedAt || new Date().toISOString();
                       console.log(`從章節遷移題目 ${matchingProblem.number}: ${matchingProblem.title} - 已完成`);

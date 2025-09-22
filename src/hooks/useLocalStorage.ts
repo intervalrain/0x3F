@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((prev: T) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     try {
@@ -11,11 +10,9 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
         if (item) {
           setStoredValue(JSON.parse(item));
         }
-        setIsInitialized(true);
       }
     } catch (error) {
       console.error(`Error loading ${key} from localStorage:`, error);
-      setIsInitialized(true);
     }
   }, [key]);
 
