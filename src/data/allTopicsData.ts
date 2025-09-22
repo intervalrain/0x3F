@@ -53,9 +53,9 @@ export const allTopicsData: Chapter[][] = convertJsonToTypedData(allTopicsJsonDa
 // 導出兼容的格式（以topic ID為索引的對象）
 export const allTopicsDataByIndex: { [key: number]: Chapter[] } = {};
 
-// 初始化索引對象
+// 初始化索引對象（topic ID 從 1 開始，所以索引要 +1）
 allTopicsData.forEach((chapters, index) => {
-  allTopicsDataByIndex[index] = chapters;
+  allTopicsDataByIndex[index + 1] = chapters;
 });
 
 // 保持向後兼容性的默認導出

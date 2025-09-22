@@ -20,7 +20,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   // 資料版本，當我們更新資料結構時增加這個版本號
-  const DATA_VERSION = "3.0.0";
+  const DATA_VERSION = "3.1.0";
   const OLD_STORAGE_KEY = "leetcode-tracker-progress";
   const NEW_STORAGE_KEY = "leetcode-tracker-progress-v3";
 
@@ -30,7 +30,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
     return topics.map((topic) => {
       const oldTopicData = oldData.find((tp: any) => tp.topicId === topic.id);
-      const baseChapters = allTopicsDataByIndex[topic.id - 1] || [];
+      const baseChapters = allTopicsDataByIndex[topic.id] || []; // 直接使用 topic.id
 
       console.log(`處理 Topic ${topic.id}:`, {
         topicTitle: topic.title,
@@ -118,7 +118,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     const defaultData = topics.map((topic) => ({
       topicId: topic.id,
       problems: [],
-      chapters: allTopicsDataByIndex[topic.id - 1] || [],
+      chapters: allTopicsDataByIndex[topic.id] || [], // 直接使用 topic.id
     }));
 
     if (typeof window === "undefined") {
@@ -161,8 +161,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       }
     }
 
-    // 如果有舊格式資料，執行遷移（不管是否有新格式資料）
-    if (oldFormatData) {
+    // 如果有舊格式資料且版本不匹配，執行遷移
+    if (oldFormatData && storedVersion !== DATA_VERSION) {
       try {
         console.log("🔄 發現舊格式資料，開始遷移...");
         const oldData = JSON.parse(oldFormatData);
