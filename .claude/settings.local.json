@@ -4,7 +4,9 @@
       "Bash(npm run dev:*)",
       "Bash(npm run build:*)",
       "Bash(node:*)",
-      "Bash(timeout 10s npm run dev)"
+      "Bash(timeout 10s npm run dev)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(npx prisma generate:*)"
     ],
     "deny": [],
     "ask": []
