@@ -1,11 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { topics } from '../data/topics';
 import { TopicProgress } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { allTopicsDataByIndex } from '../data/allTopicsData';
 import Sidebar from './Sidebar';
+import { useAuth } from '../hooks/useAuth';
+import { useProgressSync } from '../hooks/useProgressSync';
+import AuthButton from './AuthButton';
+import SyncConflictModal from './SyncConflictModal';
 
 interface AppLayoutProps {
   children: (props: {
@@ -19,6 +23,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string | number>("dashboard");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [showConflictModal, setShowConflictModal] = useState(false);
+  const [conflictData, setConflictData] = useState<{ local: TopicProgress[], cloud: TopicProgress[] } | null>(null);
+
+  // Auth hooks
+  const { isAuthenticated, fetchCloudProgress, syncToCloud, mergeProgress } = useAuth();
   
   // 資料版本，當我們更新資料結構時增加這個版本號
   const DATA_VERSION = "3.1.0";
@@ -177,6 +186,144 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     getInitialData()
   );
 
+  // 使用進度同步 hook
+  const { isSyncing } = useProgressSync(topicProgress, {
+    enabled: isAuthenticated,
+    debounceDelay: 2000,
+    syncInterval: 30000,
+  });
+
+  // 登入後的初始同步（只執行一次）
+  useEffect(() => {
+    if (!isAuthenticated || !isClient) return;
+
+    const handleInitialSync = async () => {
+      console.log("Starting initial sync...");
+      try {
+        const cloudData = await fetchCloudProgress();
+        console.log("Cloud data:", cloudData);
+
+        if (!cloudData || cloudData.length === 0) {
+          // 雲端無資料，上傳本地資料
+          console.log("No cloud data, uploading local progress...");
+          const result = await syncToCloud(topicProgress);
+          console.log("Upload result:", result);
+        } else {
+          // 使用雙重哈希來高效比較完成的題目集合
+          const calculateDataHash = (data: TopicProgress[]): { hash1: number, hash2: number, count: number } => {
+            let hash1 = 0;
+            let hash2 = 0;
+            let count = 0;
+
+            data.forEach(tp => {
+              tp.chapters?.forEach(ch => {
+                ch.subsections?.forEach(ss => {
+                  ss.problems?.forEach(p => {
+                    if (p.completed) {
+                      // 使用 topicId + problemNumber 作為唯一標識
+                      const id = `${tp.topicId}-${p.number}`;
+
+                      // 計算字串的哈希值
+                      let stringHash = 0;
+                      for (let i = 0; i < id.length; i++) {
+                        stringHash = ((stringHash << 5) - stringHash + id.charCodeAt(i)) & 0xffffffff;
+                      }
+
+                      // 雙重哈希
+                      hash1 = ((hash1 * 31) + stringHash) & 0xffffffff;
+                      hash2 = ((hash2 * 37) + stringHash) & 0xffffffff;
+                      count++;
+                    }
+                  });
+                });
+              });
+            });
+
+            // 將計數混入哈希值
+            hash1 ^= count;
+            hash2 ^= (count << 16);
+
+            return { hash1, hash2, count };
+          };
+
+          const localHash = calculateDataHash(topicProgress);
+          const cloudProgressData = cloudData.map((d: any) => d.data);
+          const cloudHash = calculateDataHash(cloudProgressData);
+
+          const isDataIdentical = (
+            localHash.hash1 === cloudHash.hash1 &&
+            localHash.hash2 === cloudHash.hash2 &&
+            localHash.count === cloudHash.count
+          );
+
+          console.log(`Local: ${localHash.count} problems completed (hash1: ${localHash.hash1}, hash2: ${localHash.hash2})`);
+          console.log(`Cloud: ${cloudHash.count} problems completed (hash1: ${cloudHash.hash1}, hash2: ${cloudHash.hash2})`);
+          console.log(`Data identical: ${isDataIdentical}`);
+
+          if (isDataIdentical && localHash.count > 0) {
+            // 資料完全相同，不顯示衝突
+            console.log("Data is identical (double hash match), no conflict");
+            // 使用雲端資料以確保最新
+            setTopicProgress(cloudProgressData);
+          } else if (localHash.count === 0) {
+            // 本地無資料，直接使用雲端
+            console.log("No local data, using cloud data");
+            setTopicProgress(cloudProgressData);
+          } else if (cloudHash.count === 0) {
+            // 雲端無資料，上傳本地
+            console.log("No cloud data, uploading local data");
+            await syncToCloud(topicProgress);
+          } else {
+            // 有差異，顯示衝突對話框
+            console.log("Data differs (hash mismatch), showing conflict dialog");
+            console.log(`Hash difference - Local: (${localHash.hash1}, ${localHash.hash2}), Cloud: (${cloudHash.hash1}, ${cloudHash.hash2})`);
+
+            setConflictData({
+              local: topicProgress,
+              cloud: cloudProgressData
+            });
+            setShowConflictModal(true);
+          }
+        }
+      } catch (error) {
+        console.error("Initial sync failed:", error);
+      }
+    };
+
+    handleInitialSync();
+  }, [isAuthenticated, isClient]); // 移除其他依賴，避免重複執行
+
+  // 處理衝突解決
+  const handleConflictResolution = useCallback(async (strategy: 'local' | 'cloud' | 'merge') => {
+    if (!conflictData) return;
+
+    let finalProgress: TopicProgress[];
+
+    switch (strategy) {
+      case 'local':
+        finalProgress = conflictData.local;
+        await syncToCloud(finalProgress, true);
+        break;
+      case 'cloud':
+        finalProgress = conflictData.cloud;
+        setTopicProgress(finalProgress);
+        break;
+      case 'merge':
+        // 智能合併
+        finalProgress = conflictData.local.map((localTp, idx) => {
+          const cloudTp = conflictData.cloud[idx];
+          if (!cloudTp) return localTp;
+          return mergeProgress(localTp, cloudTp);
+        });
+        setTopicProgress(finalProgress);
+        await syncToCloud(finalProgress, true);
+        break;
+    }
+
+    setShowConflictModal(false);
+    setConflictData(null);
+  }, [conflictData, syncToCloud, mergeProgress, setTopicProgress]);
+
   // 避免 SSR hydration 錯誤，客戶端載入前顯示 loading
   if (!isClient) {
     return (
@@ -194,7 +341,24 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <div className="app-layout">
       <header className="app-header">
-        <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {isSyncing && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  backgroundColor: '#10b981',
+                  borderRadius: '50%',
+                  animation: 'pulse 2s infinite'
+                }} />
+                <span style={{ fontSize: '14px', color: '#6b7280' }}>同步中...</span>
+              </div>
+            )}
+            <AuthButton />
+          </div>
+        </div>
       </header>
 
       <div className="app-container">
@@ -210,6 +374,19 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           {children({ activeTab, topicProgress, setTopicProgress })}
         </main>
       </div>
+
+      {/* 衝突解決 Modal */}
+      {showConflictModal && conflictData && (
+        <SyncConflictModal
+          localData={conflictData.local}
+          cloudData={conflictData.cloud}
+          onResolve={handleConflictResolution}
+          onCancel={() => {
+            setShowConflictModal(false);
+            setConflictData(null);
+          }}
+        />
+      )}
     </div>
   );
 };
