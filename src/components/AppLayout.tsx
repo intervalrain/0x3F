@@ -209,7 +209,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           console.log("Upload result:", result);
         } else {
           // 檢查版本差異 - 如果是舊版本資料，強制使用本地資料
-          const cloudVersions = cloudData.map((d: any) => d.version).filter(Boolean);
+          const cloudVersions = cloudData.map((d: { version?: string }) => d.version).filter(Boolean);
           const hasOldVersion = cloudVersions.some((v: string) => v !== "3.1.0");
 
           if (hasOldVersion) {
@@ -331,7 +331,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       initialSyncCompleted.current = true;
       handleInitialSync(topicProgress);
     }
-  }, [isAuthenticated, isClient]); // 移除 handleInitialSync 和 topicProgress 依賴
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isClient]); // 故意忽略 handleInitialSync 和 topicProgress 依賴以避免無限循環
 
   // 處理衝突解決
   const handleConflictResolution = useCallback(async (strategy: 'local' | 'cloud' | 'merge') => {
