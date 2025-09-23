@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { topics } from '../data/topics';
 import { TopicProgress } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -194,24 +194,36 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   });
 
   // 登入後的初始同步（只執行一次）
-  const handleInitialSync = useCallback(async () => {
+  const handleInitialSync = useCallback(async (currentTopicProgress: TopicProgress[]) => {
     if (!isAuthenticated || !isClient) return;
-      console.log("Starting initial sync...");
-      try {
+
+    console.log("Starting initial sync...");
+    try {
         const cloudData = await fetchCloudProgress();
         console.log("Cloud data:", cloudData);
 
         if (!cloudData || cloudData.length === 0) {
           // 雲端無資料，上傳本地資料
           console.log("No cloud data, uploading local progress...");
-          const result = await syncToCloud(topicProgress);
+          const result = await syncToCloud(currentTopicProgress);
           console.log("Upload result:", result);
         } else {
+          // 檢查版本差異 - 如果是舊版本資料，強制使用本地資料
+          const cloudVersions = cloudData.map((d: any) => d.version).filter(Boolean);
+          const hasOldVersion = cloudVersions.some((v: string) => v !== "3.1.0");
+
+          if (hasOldVersion) {
+            console.log("Detected old version data in cloud, forcing local sync...");
+            await syncToCloud(currentTopicProgress, true); // 強制覆蓋
+            return;
+          }
+
           // 使用雙重哈希來高效比較完成的題目集合
-          const calculateDataHash = (data: TopicProgress[]): { hash1: number, hash2: number, count: number } => {
+          const calculateDataHash = (data: TopicProgress[], label: string): { hash1: number, hash2: number, count: number, completedProblems: string[] } => {
             let hash1 = 0;
             let hash2 = 0;
             let count = 0;
+            const completedProblems: string[] = [];
 
             data.forEach(tp => {
               tp.chapters?.forEach(ch => {
@@ -220,6 +232,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     if (p.completed) {
                       // 使用 topicId + problemNumber 作為唯一標識
                       const id = `${tp.topicId}-${p.number}`;
+                      completedProblems.push(id);
 
                       // 計算字串的哈希值
                       let stringHash = 0;
@@ -241,12 +254,14 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             hash1 ^= count;
             hash2 ^= (count << 16);
 
-            return { hash1, hash2, count };
+            console.log(`${label} completed problems:`, completedProblems.slice(0, 5), completedProblems.length > 5 ? `... and ${completedProblems.length - 5} more` : '');
+
+            return { hash1, hash2, count, completedProblems };
           };
 
-          const localHash = calculateDataHash(topicProgress);
+          const localHash = calculateDataHash(currentTopicProgress, "Local");
           const cloudProgressData = cloudData.map((d: { data: TopicProgress }) => d.data);
-          const cloudHash = calculateDataHash(cloudProgressData);
+          const cloudHash = calculateDataHash(cloudProgressData, "Cloud");
 
           const isDataIdentical = (
             localHash.hash1 === cloudHash.hash1 &&
@@ -254,13 +269,19 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             localHash.count === cloudHash.count
           );
 
+          // 備用檢查：直接比較完成的題目列表
+          const localSet = new Set(localHash.completedProblems);
+          const cloudSet = new Set(cloudHash.completedProblems);
+          const isSetIdentical = localSet.size === cloudSet.size &&
+            [...localSet].every(item => cloudSet.has(item));
+
           console.log(`Local: ${localHash.count} problems completed (hash1: ${localHash.hash1}, hash2: ${localHash.hash2})`);
           console.log(`Cloud: ${cloudHash.count} problems completed (hash1: ${cloudHash.hash1}, hash2: ${cloudHash.hash2})`);
-          console.log(`Data identical: ${isDataIdentical}`);
+          console.log(`Hash identical: ${isDataIdentical}, Set identical: ${isSetIdentical}`);
 
-          if (isDataIdentical && localHash.count > 0) {
+          if ((isDataIdentical || isSetIdentical) && localHash.count > 0) {
             // 資料完全相同，不顯示衝突
-            console.log("Data is identical (double hash match), no conflict");
+            console.log("Data is identical, no conflict");
             // 使用雲端資料以確保最新
             setTopicProgress(cloudProgressData);
           } else if (localHash.count === 0) {
@@ -270,14 +291,27 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           } else if (cloudHash.count === 0) {
             // 雲端無資料，上傳本地
             console.log("No cloud data, uploading local data");
-            await syncToCloud(topicProgress);
+            await syncToCloud(currentTopicProgress);
           } else {
             // 有差異，顯示衝突對話框
-            console.log("Data differs (hash mismatch), showing conflict dialog");
+            console.log("Data differs, showing conflict dialog");
             console.log(`Hash difference - Local: (${localHash.hash1}, ${localHash.hash2}), Cloud: (${cloudHash.hash1}, ${cloudHash.hash2})`);
 
+            // 顯示詳細差異
+            const localSet = new Set(localHash.completedProblems);
+            const cloudSet = new Set(cloudHash.completedProblems);
+            const localOnly = [...localSet].filter(x => !cloudSet.has(x));
+            const cloudOnly = [...cloudSet].filter(x => !localSet.has(x));
+
+            if (localOnly.length > 0) {
+              console.log("Local only problems:", localOnly.slice(0, 3));
+            }
+            if (cloudOnly.length > 0) {
+              console.log("Cloud only problems:", cloudOnly.slice(0, 3));
+            }
+
             setConflictData({
-              local: topicProgress,
+              local: currentTopicProgress,
               cloud: cloudProgressData
             });
             setShowConflictModal(true);
@@ -286,11 +320,18 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       } catch (error) {
         console.error("Initial sync failed:", error);
       }
-  }, [isAuthenticated, isClient, fetchCloudProgress, syncToCloud, topicProgress, setTopicProgress]);
+  }, [isAuthenticated, isClient, fetchCloudProgress, syncToCloud, setTopicProgress]);
+
+  // 添加一個 ref 來追蹤是否已經執行過初始同步
+  const initialSyncCompleted = useRef(false);
 
   useEffect(() => {
-    handleInitialSync();
-  }, [isAuthenticated, isClient, handleInitialSync]);
+    if (isAuthenticated && isClient && !initialSyncCompleted.current) {
+      console.log("Executing initial sync...");
+      initialSyncCompleted.current = true;
+      handleInitialSync(topicProgress);
+    }
+  }, [isAuthenticated, isClient]); // 移除 handleInitialSync 和 topicProgress 依賴
 
   // 處理衝突解決
   const handleConflictResolution = useCallback(async (strategy: 'local' | 'cloud' | 'merge') => {
