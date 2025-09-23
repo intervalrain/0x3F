@@ -21,8 +21,8 @@ export function useProgressSync(
   } = options;
 
   const { isAuthenticated, syncToCloud, isSyncing } = useAuth();
-  const syncTimeoutRef = useRef<NodeJS.Timeout>();
-  const lastSyncRef = useRef<string>();
+  const syncTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const lastSyncRef = useRef<string | undefined>(undefined);
   const syncQueueRef = useRef<TopicProgress[]>([]);
 
   // Debounced sync function

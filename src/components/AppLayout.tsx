@@ -194,10 +194,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   });
 
   // 登入後的初始同步（只執行一次）
-  useEffect(() => {
+  const handleInitialSync = useCallback(async () => {
     if (!isAuthenticated || !isClient) return;
-
-    const handleInitialSync = async () => {
       console.log("Starting initial sync...");
       try {
         const cloudData = await fetchCloudProgress();
@@ -247,7 +245,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           };
 
           const localHash = calculateDataHash(topicProgress);
-          const cloudProgressData = cloudData.map((d: any) => d.data);
+          const cloudProgressData = cloudData.map((d: { data: TopicProgress }) => d.data);
           const cloudHash = calculateDataHash(cloudProgressData);
 
           const isDataIdentical = (
@@ -288,10 +286,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       } catch (error) {
         console.error("Initial sync failed:", error);
       }
-    };
+  }, [isAuthenticated, isClient, fetchCloudProgress, syncToCloud, topicProgress, setTopicProgress]);
 
+  useEffect(() => {
     handleInitialSync();
-  }, [isAuthenticated, isClient]); // 移除其他依賴，避免重複執行
+  }, [isAuthenticated, isClient, handleInitialSync]);
 
   // 處理衝突解決
   const handleConflictResolution = useCallback(async (strategy: 'local' | 'cloud' | 'merge') => {

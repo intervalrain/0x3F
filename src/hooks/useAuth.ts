@@ -1,13 +1,13 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { TopicProgress } from "@/types";
 
 interface SyncResult {
   topicId: string;
   status: 'success' | 'conflict' | 'error';
-  cloudData?: any;
+  cloudData?: TopicProgress;
   cloudUpdatedAt?: string;
   error?: string;
 }

@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { TopicProgress } from "@/types";
 
 // GET: 獲取用戶的雲端進度
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as any;
 
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -24,7 +25,7 @@ export async function GET(req: NextRequest) {
 
     const progress = userProgress.map(p => ({
       topicId: p.topicId, // 這已經是字串，保持原樣
-      data: p.progressData as TopicProgress,
+      data: p.progressData as unknown as TopicProgress,
       lastSyncAt: p.lastSyncAt.toISOString(),
       version: p.version
     }));
@@ -42,7 +43,7 @@ export async function GET(req: NextRequest) {
 // POST: 同步本地進度到雲端
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as any;
 
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -131,7 +132,7 @@ export async function POST(req: NextRequest) {
 // DELETE: 刪除用戶的雲端進度（可選）
 export async function DELETE(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as any;
 
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

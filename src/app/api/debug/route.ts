@@ -1,11 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as any;
 
     let userProgress = null;
     if (session?.user?.id) {
@@ -19,9 +20,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({
       session: session ? {
         user: {
-          id: session.user.id,
-          email: session.user.email,
-          name: session.user.name
+          id: session.user?.id,
+          email: session.user?.email,
+          name: session.user?.name
         }
       } : null,
       progressCount: userProgress?.length || 0,
