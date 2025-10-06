@@ -1,8 +1,9 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { TopicProgress } from "@/types";
+import { getUserPermissions, type UserPermissions } from "@/lib/syncPolicy";
 
 interface SyncResult {
   topicId: string;
@@ -158,12 +159,18 @@ export function useAuth() {
     };
   }, []);
 
+  // 計算用戶權限
+  const permissions = useMemo<UserPermissions>(() => {
+    return getUserPermissions(session?.user?.email);
+  }, [session?.user?.email]);
+
   return {
     user: session?.user,
     isAuthenticated: status === "authenticated",
     isLoading: status === "loading",
     isSyncing,
     syncError,
+    permissions,
     login,
     logout,
     fetchCloudProgress,

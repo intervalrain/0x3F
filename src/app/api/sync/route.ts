@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { TopicProgress } from "@/types";
+import { getUserPermissions } from "@/lib/syncPolicy";
 
 // GET: 獲取用戶的雲端進度
 export async function GET() {
@@ -12,6 +13,15 @@ export async function GET() {
 
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // 權限檢查
+    const permissions = getUserPermissions(session.user.email);
+    if (!permissions.canReadFromCloud) {
+      return NextResponse.json(
+        { error: "Cloud sync is only available for certificate users and admin" },
+        { status: 403 }
+      );
     }
 
     const userProgress = await prisma.userProgress.findMany({
@@ -49,6 +59,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // 權限檢查
+    const permissions = getUserPermissions(session.user.email);
+    if (!permissions.canSyncToCloud) {
+      return NextResponse.json(
+        { error: "Cloud sync is only available for certificate users and admin" },
+        { status: 403 }
+      );
+    }
+
     const body = await req.json();
     const { topicProgress, forceOverwrite = false } = body;
 
@@ -58,6 +77,21 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // 計算進度資料的指紋（用於快速比對）
+    const getProgressFingerprint = (data: any): string => {
+      const completed: string[] = [];
+      data.chapters?.forEach((ch: any) => {
+        ch.subsections?.forEach((ss: any) => {
+          ss.problems?.forEach((p: any) => {
+            if (p.completed) {
+              completed.push(`${data.topicId}-${p.number}`);
+            }
+          });
+        });
+      });
+      return completed.sort().join(',');
+    };
 
     const results = [];
 
@@ -73,15 +107,36 @@ export async function POST(req: NextRequest) {
           }
         });
 
-        if (existing && !forceOverwrite) {
-          // 如果存在且不強制覆蓋，返回衝突資訊
-          results.push({
-            topicId: progress.topicId,
-            status: 'conflict',
-            cloudData: existing.progressData,
-            cloudUpdatedAt: existing.updatedAt.toISOString()
-          });
-        } else {
+        if (existing) {
+          // 計算指紋來快速比對資料是否相同
+          const existingFingerprint = getProgressFingerprint(existing.progressData);
+          const newFingerprint = getProgressFingerprint(progress);
+
+          if (existingFingerprint === newFingerprint && !forceOverwrite) {
+            // 資料完全相同，跳過寫入
+            results.push({
+              topicId: progress.topicId,
+              status: 'success',
+              updatedAt: existing.updatedAt.toISOString(),
+              skipped: true
+            });
+            continue;
+          }
+
+          if (!forceOverwrite) {
+            // 資料不同，返回衝突資訊
+            results.push({
+              topicId: progress.topicId,
+              status: 'conflict',
+              cloudData: existing.progressData,
+              cloudUpdatedAt: existing.updatedAt.toISOString()
+            });
+            continue;
+          }
+        }
+
+        // 更新或創建進度
+        {
           // 更新或創建進度
           const updated = await prisma.userProgress.upsert({
             where: {

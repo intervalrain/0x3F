@@ -212,10 +212,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   );
 
   // 使用進度同步 hook
-  const { isSyncing } = useProgressSync(topicProgress, {
+  const { isSyncing, canSync } = useProgressSync(topicProgress, {
     enabled: isAuthenticated,
-    debounceDelay: 2000,
-    syncInterval: 30000,
   });
 
   // 登入後的初始同步（只執行一次）
