@@ -1,5 +1,5 @@
 ---
-title: "進階技巧"
+title: "演算法基礎"
 order: 2
-description: "進階的演算法技巧與解題策略"
+description: "演算法的基本概念與策略"
 ---

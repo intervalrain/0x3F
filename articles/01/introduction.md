@@ -36,9 +36,3 @@ tags: ["基礎", "入門"]
 - 雜湊表 (Hash Table)
 
 每種資料結構都有其適用的場景，選擇合適的資料結構是解題的關鍵。
-
-```cpp
-int main() {
-    cout << "Hello World!" << endl;
-}
-```
