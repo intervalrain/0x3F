@@ -17,8 +17,6 @@ tags: ["資料結構", "Array", "Linked List", "Tree"]
 
 所有複雜的資料結構，都是以 **Array** 或 **Linked List** 為基礎延伸而來。
 
-![data_structure](./data_structure.png)
-
 ---
 
 ## Array (陣列)
@@ -154,8 +152,6 @@ struct TreeNode {
 ```
 
 ### Traversal (遍歷)
-
-![tree_traversal](tree_traversal.png)
 
 ```cpp
 // 前序遍歷 (Pre-order): 根 -> 左 -> 右

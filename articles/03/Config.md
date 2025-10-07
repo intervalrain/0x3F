@@ -1,5 +1,5 @@
 ---
-title: "實戰題解"
+title: "滑動視窗與雙指針 Sliding Window & Two Pointers"
 order: 3
-description: "經典題目詳解與思路分析"
+description: "滑動視窗與雙指針的核心概念與進階應用"
 ---

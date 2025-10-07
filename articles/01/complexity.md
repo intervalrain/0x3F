@@ -1,7 +1,7 @@
 ---
 title: "複雜度分析"
 order: 1
-description: "時間複雜度與空間複雜度的基本概念，以及如何根據 Constraints 選擇最佳演算法"
+description: "時間複雜度與空間複雜度的基本概念，以及如何根據 Constraints 分析最佳演算法"
 tags: ["複雜度", "Big O", "效能分析"]
 ---
 
@@ -12,8 +12,6 @@ tags: ["複雜度", "Big O", "效能分析"]
 時間複雜度用來衡量演算法執行所需的時間，通常使用大 O 記號 (Big O Notation) 來表示。
 
 ### 常見的時間複雜度
-
-![time_complexity](./time_complexity.png)
 
 - **O(1)** - 常數時間：不論輸入大小，執行時間固定
 - **O(log n)** - 對數時間：如二分搜尋
@@ -80,13 +78,6 @@ vector<int> copyArray(const vector<int>& arr) {
     return newArr;
 }
 ```
-
-## LeetCode 練習題
-
-以下是一些與複雜度分析相關的 LeetCode 題目：
-
-1. [時間複雜度分析] - 分析不同演算法的效率
-2. [空間優化] - 改進演算法以減少空間使用
 
 ## LeetCode 解題技巧：根據 Constraints 推測時間複雜度
 

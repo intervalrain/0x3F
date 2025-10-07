@@ -1,5 +1,5 @@
 ---
-title: "演算法基礎"
+title: "資料結構與演算法介紹 Introduction to Data Structure & Algorithm"
 order: 1
-description: "演算法與資料結構的基礎概念"
+description: "資料結構的基礎概念"
 ---
