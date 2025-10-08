@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import 'highlight.js/styles/vs.css';
+import './ArticleContent.css';
 import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 import ArticleNavigationComponent from './ArticleNavigation';
 
@@ -121,7 +122,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
               return isInline ? (
                 <code
                   style={{
-                    backgroundColor: '#f3f4f6',
+                    backgroundColor: '#e8e8e8',
                     color: '#dc2626',
                     padding: '2px 6px',
                     borderRadius: '4px',
@@ -140,9 +141,9 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
             },
             pre: ({ children }) => (
               <pre style={{
-                backgroundColor: '#f5f5f5',
-                border: '1px solid #e0e0e0',
-                padding: '20px',
+                backgroundColor: '#b0b0b0',
+                border: '1px solid #d0d0d0',
+                padding: '2px',
                 borderRadius: '8px',
                 overflowX: 'auto',
                 marginBottom: '24px',
