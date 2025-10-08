@@ -10,6 +10,8 @@ import { useAuth } from '../hooks/useAuth';
 import { useProgressSync } from '../hooks/useProgressSync';
 import AuthButton from './AuthButton';
 import SyncConflictModal from './SyncConflictModal';
+import { ArticleNode } from '../lib/articles';
+import Footer from './Footer';
 
 interface AppLayoutProps {
   children: (props: {
@@ -25,6 +27,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [isClient, setIsClient] = useState(false);
   const [showConflictModal, setShowConflictModal] = useState(false);
   const [conflictData, setConflictData] = useState<{ local: TopicProgress[], cloud: TopicProgress[] } | null>(null);
+  const [articleTree, setArticleTree] = useState<ArticleNode[]>([]);
 
   // Auth hooks
   const { isAuthenticated, fetchCloudProgress, syncToCloud, mergeProgress } = useAuth();
@@ -181,16 +184,37 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     setIsClient(true);
   }, []);
 
+  // 載入文章樹狀結構
+  useEffect(() => {
+    if (isClient) {
+      fetch('/api/articles/tree')
+        .then(res => res.json())
+        .then(data => setArticleTree(data))
+        .catch(err => console.error('Failed to load article tree:', err));
+    }
+  }, [isClient]);
+
+  // 從 URL 參數讀取 tab
+  useEffect(() => {
+    if (isClient && typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam) {
+        // 嘗試將 tab 轉換為數字（topic ID）或使用字串（dashboard/analytics）
+        const tabValue = !isNaN(Number(tabParam)) ? Number(tabParam) : tabParam;
+        setActiveTab(tabValue);
+      }
+    }
+  }, [isClient]);
+
   const [topicProgress, setTopicProgress] = useLocalStorage<TopicProgress[]>(
     NEW_STORAGE_KEY,
     getInitialData()
   );
 
   // 使用進度同步 hook
-  const { isSyncing } = useProgressSync(topicProgress, {
+  const { isSyncing, canSync } = useProgressSync(topicProgress, {
     enabled: isAuthenticated,
-    debounceDelay: 2000,
-    syncInterval: 30000,
   });
 
   // 登入後的初始同步（只執行一次）
@@ -380,7 +404,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="app-layout">
+    <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <header className="app-header">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
@@ -402,19 +426,22 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         </div>
       </header>
 
-      <div className="app-container">
+      <div className="app-container" style={{ flex: 1 }}>
         <Sidebar
           topics={topics}
           topicProgress={topicProgress}
           activeTab={activeTab}
           onTabChange={setActiveTab}
           onCollapseChange={setSidebarCollapsed}
+          articleTree={articleTree}
         />
 
         <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           {children({ activeTab, topicProgress, setTopicProgress })}
         </main>
       </div>
+
+      <Footer />
 
       {/* 衝突解決 Modal */}
       {showConflictModal && conflictData && (

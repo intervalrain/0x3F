@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { Topic } from '../data/topics';
 import { TopicProgress } from '../types';
+import { ArticleNode } from '../lib/articles';
 
 interface SidebarProps {
   topics: Topic[];
@@ -10,21 +12,139 @@ interface SidebarProps {
   activeTab: string | number;
   onTabChange: (tab: string | number) => void;
   onCollapseChange?: (isCollapsed: boolean) => void;
+  articleTree?: ArticleNode[];
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ 
-  topics, 
-  topicProgress, 
-  activeTab, 
+const Sidebar: React.FC<SidebarProps> = ({
+  topics,
+  topicProgress,
+  activeTab,
   onTabChange,
-  onCollapseChange 
+  onCollapseChange,
+  articleTree = []
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // 檢查是否在文章頁面（需要在最前面定義）
+  const isOnArticlePage = pathname?.startsWith('/articles/');
+
+  // 初始化時就從 localStorage 讀取狀態，避免閃爍
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedCollapsed = localStorage.getItem('sidebar-collapsed');
+      return savedCollapsed === 'true';
+    }
+    return false;
+  });
+
+  const [expandedArticles, setExpandedArticles] = useState<Set<string>>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sidebar-expanded-articles');
+      if (saved) {
+        try {
+          return new Set(JSON.parse(saved));
+        } catch (e) {
+          return new Set();
+        }
+      }
+    }
+    return new Set();
+  });
+
+  const [articlesExpanded, setArticlesExpanded] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sidebar-articles-section-expanded');
+      return saved === null ? true : saved === 'true';
+    }
+    return true;
+  });
+
+  const [hoveredTooltip, setHoveredTooltip] = useState<{ text: string; top: number } | null>(null);
+
+  // 自動展開當前文章所在的資料夾
+  React.useEffect(() => {
+    if (isOnArticlePage && pathname) {
+      // 從 pathname 提取資料夾路徑，例如 /articles/12/00_introduction -> /articles/12
+      const match = pathname.match(/^\/articles\/(\d+)/);
+      if (match) {
+        const folderPath = `/articles/${match[1]}`;
+        setExpandedArticles(prev => {
+          const newSet = new Set(prev);
+          if (!newSet.has(folderPath)) {
+            newSet.add(folderPath);
+            // 保存到 localStorage
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
+            }
+          }
+          return newSet;
+        });
+      }
+    }
+  }, [pathname, isOnArticlePage]);
+
+  // 通知父組件初始狀態
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedCollapsed = localStorage.getItem('sidebar-collapsed');
+      if (savedCollapsed === 'true') {
+        onCollapseChange?.(true);
+      }
+    }
+  }, [onCollapseChange]);
 
   const handleToggle = () => {
     const newCollapsed = !isCollapsed;
     setIsCollapsed(newCollapsed);
+    localStorage.setItem('sidebar-collapsed', String(newCollapsed));
     onCollapseChange?.(newCollapsed);
+  };
+
+  const handleTabClick = (tab: string | number) => {
+    if (isOnArticlePage) {
+      // 如果在文章頁面，需要導航回主頁並設置 activeTab
+      router.push(`/?tab=${tab}`);
+    } else {
+      // 在主頁面，直接改變 activeTab
+      onTabChange(tab);
+    }
+  };
+
+  const toggleArticleFolder = (path: string) => {
+    if (isCollapsed) {
+      // 在 collapsed 狀態下，直接導航到資料夾頁面
+      window.location.href = path;
+    } else {
+      // 在展開狀態下，切換資料夾的展開/收合
+      setExpandedArticles(prev => {
+        const newSet = new Set(prev);
+        if (newSet.has(path)) {
+          newSet.delete(path);
+        } else {
+          newSet.add(path);
+        }
+        // 保存到 localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
+        }
+        return newSet;
+      });
+    }
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, text: string) => {
+    if (isCollapsed) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setHoveredTooltip({
+        text,
+        top: rect.top + rect.height / 2
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredTooltip(null);
   };
   const getTabProgress = (topicId: number) => {
     const topicData = topicProgress.find((tp) => tp.topicId === topicId);
@@ -78,24 +198,27 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="mobile-tab-bar">
         <button
           className={`mobile-tab ${activeTab === "dashboard" ? "active" : ""}`}
-          onClick={() => onTabChange("dashboard")}
+          onClick={() => handleTabClick("dashboard")}
+          title="總覽"
         >
           📊
         </button>
         <button
           className={`mobile-tab ${activeTab === "analytics" ? "active" : ""}`}
-          onClick={() => onTabChange("analytics")}
+          onClick={() => handleTabClick("analytics")}
+          title="統計"
         >
           📈
         </button>
         {topics.map((topic) => {
           const { completed, total } = getTabProgress(topic.id);
+          const tooltipText = total > 0 ? `${topic.title} (${completed}/${total})` : topic.title;
           return (
             <button
               key={topic.id}
               className={`mobile-tab ${activeTab === topic.id ? "active" : ""}`}
-              onClick={() => onTabChange(topic.id)}
-              title={topic.title}
+              onClick={() => handleTabClick(topic.id)}
+              title={tooltipText}
             >
               <span className="mobile-tab-number">{topic.id}</span>
               {total > 0 && (
@@ -105,20 +228,26 @@ const Sidebar: React.FC<SidebarProps> = ({
           );
         })}
       </div>
-      
+
       <div className="sidebar-section">
         <h3 className="sidebar-section-title">主要功能</h3>
         <div className="sidebar-menu">
           <button
             className={`sidebar-item ${activeTab === "dashboard" ? "active" : ""}`}
-            onClick={() => onTabChange("dashboard")}
+            onClick={() => handleTabClick("dashboard")}
+            onMouseEnter={(e) => handleMouseEnter(e, "總覽")}
+            onMouseLeave={handleMouseLeave}
+            data-tooltip="總覽"
           >
             <span className="sidebar-icon">📊</span>
             <span className="sidebar-label">總覽</span>
           </button>
           <button
             className={`sidebar-item ${activeTab === "analytics" ? "active" : ""}`}
-            onClick={() => onTabChange("analytics")}
+            onClick={() => handleTabClick("analytics")}
+            onMouseEnter={(e) => handleMouseEnter(e, "統計")}
+            onMouseLeave={handleMouseLeave}
+            data-tooltip="統計"
           >
             <span className="sidebar-icon">📈</span>
             <span className="sidebar-label">統計</span>
@@ -126,16 +255,93 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
+      {articleTree.length > 0 && (
+        <div className="sidebar-section">
+          {!isCollapsed && (
+            <div
+              className="sidebar-section-header"
+              onClick={() => {
+                const newValue = !articlesExpanded;
+                setArticlesExpanded(newValue);
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem('sidebar-articles-section-expanded', String(newValue));
+                }
+              }}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 20px' }}
+            >
+              <span style={{ fontSize: '14px' }}>{articlesExpanded ? '▼' : '▶'}</span>
+              <h3 className="sidebar-section-title" style={{ margin: 0 }}>文章專區</h3>
+            </div>
+          )}
+          {(articlesExpanded || isCollapsed) && (
+            <div className="sidebar-menu">
+              {articleTree.map((node) => (
+                <div key={node.path}>
+                  {node.isFolder ? (
+                    <>
+                      <button
+                        className="sidebar-item article-folder"
+                        onClick={() => toggleArticleFolder(node.path)}
+                        onMouseEnter={(e) => handleMouseEnter(e, node.title)}
+                        onMouseLeave={handleMouseLeave}
+                        data-tooltip={node.title}
+                      >
+                        <span className="sidebar-icon">
+                          {expandedArticles.has(node.path) ? '📂' : '📁'}
+                        </span>
+                        <span className="sidebar-label">{node.title}</span>
+                      </button>
+                      {expandedArticles.has(node.path) && node.children && !isCollapsed && (
+                        <div className="article-children">
+                          {node.children.map((child) => (
+                            <a
+                              key={child.path}
+                              href={child.path}
+                              className="sidebar-item article-item"
+                              onMouseEnter={(e) => handleMouseEnter(e, child.title)}
+                              onMouseLeave={handleMouseLeave}
+                              data-tooltip={child.title}
+                            >
+                              <span className="sidebar-icon">📄</span>
+                              <span className="sidebar-label">{child.title}</span>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <a
+                      href={node.path}
+                      className="sidebar-item article-item"
+                      onMouseEnter={(e) => handleMouseEnter(e, node.title)}
+                      onMouseLeave={handleMouseLeave}
+                      data-tooltip={node.title}
+                    >
+                      <span className="sidebar-icon">📄</span>
+                      <span className="sidebar-label">{node.title}</span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="sidebar-section">
         <h3 className="sidebar-section-title">刷題主題</h3>
         <div className="sidebar-menu">
           {topics.map((topic) => {
             const { completed, total } = getTabProgress(topic.id);
+            const tooltipText = total > 0 ? `${topic.title} (${completed}/${total})` : topic.title;
             return (
               <button
                 key={topic.id}
                 className={`sidebar-item ${activeTab === topic.id ? "active" : ""}`}
-                onClick={() => onTabChange(topic.id)}
+                onClick={() => handleTabClick(topic.id)}
+                onMouseEnter={(e) => handleMouseEnter(e, tooltipText)}
+                onMouseLeave={handleMouseLeave}
+                data-tooltip={tooltipText}
               >
                 <span className="sidebar-number">{topic.id}</span>
                 <div className="sidebar-content">
@@ -151,6 +357,30 @@ const Sidebar: React.FC<SidebarProps> = ({
           })}
         </div>
       </div>
+
+      {/* React-based Tooltip */}
+      {hoveredTooltip && (
+        <div
+          style={{
+            position: 'fixed',
+            left: '68px',
+            top: `${hoveredTooltip.top}px`,
+            transform: 'translateY(-50%)',
+            background: '#1f2937',
+            color: 'white',
+            padding: '8px 12px',
+            borderRadius: '6px',
+            fontSize: '13px',
+            fontWeight: 500,
+            whiteSpace: 'nowrap',
+            zIndex: 99999,
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2)',
+            pointerEvents: 'none',
+          }}
+        >
+          {hoveredTooltip.text}
+        </div>
+      )}
     </aside>
   );
 };

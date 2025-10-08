@@ -12,11 +12,16 @@
     "@auth/prisma-adapter": "^2.10.0",
     "@neondatabase/serverless": "^1.0.1",
     "@prisma/client": "^6.16.2",
+    "gray-matter": "^4.0.3",
     "next": "15.5.2",
     "next-auth": "^4.24.11",
     "prisma": "^6.16.2",
     "react": "^19.1.0",
     "react-dom": "19.1.0",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "vercel": "^46.1.1"
   },
   "devDependencies": {
