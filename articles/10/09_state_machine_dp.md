@@ -1,8 +1,14 @@
 ---
-title: "State Machine DP"
+title: 10-9. State Machine DP
 order: 9
-description: "狀態機動態規劃：股票買賣系列問題"
-tags: ["動態規劃", "狀態機 DP", "股票問題"]
+description: 狀態機動態規劃：股票買賣系列問題
+tags:
+  - 動態規劃
+  - 狀態機 DP
+  - 股票問題
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # State Machine DP (狀態機 DP)

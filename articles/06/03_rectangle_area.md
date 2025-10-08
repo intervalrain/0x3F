@@ -1,6 +1,11 @@
 ---
-title: "矩形面積 (Rectangle Area)"
+title: 06-3. 矩形面積 (Rectangle Area)
 order: 3
+description: '使用單調棧解決柱狀圖最大矩形、二維矩陣最大矩形等幾何問題。深入理解如何透過單調遞增棧找到左右邊界，實現 O(n) 時間複雜度的高效算法。'
+tags: ['Monotonic Stack', 'Rectangle', 'Histogram', 'DP', '單調棧', '矩形', '動態規劃']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 矩形面積 (Rectangle Area)

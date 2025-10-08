@@ -1,8 +1,14 @@
 ---
-title: "1. Bitwise Operations"
+title: 09-1. Bitwise Operations
 order: 1
-description: "基本位元運算子與常用技巧"
-tags: ["bit manipulation", "bitwise operators", "基礎"]
+description: 基本位元運算子與常用技巧
+tags:
+  - bit manipulation
+  - bitwise operators
+  - 基礎
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 1. Bitwise Operations (基本位元運算)

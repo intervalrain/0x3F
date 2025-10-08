@@ -1,6 +1,11 @@
 ---
-title: "Multi-source BFS, 狀態空間 BFS"
+title: '07-3. Multi-source BFS, 狀態空間 BFS'
 order: 3
+description: '掌握多源 BFS 與狀態空間 BFS 的進階技巧。學習如何同時從多個起點擴展、計算到最近源點的距離，以及在狀態空間中進行搜索的方法與應用。'
+tags: ['Multi-source BFS', 'State Space', 'Distance', 'Shortest Bridge', '多源BFS', '狀態空間']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Multi-source BFS, 狀態空間 BFS

@@ -1,8 +1,15 @@
 ---
-title: "DP + Sliding Window"
+title: 10-10. DP + Sliding Window
 order: 10
-description: "結合動態規劃與滑動窗口的優化技巧"
-tags: ["動態規劃", "滑動窗口", "單調隊列", "優化"]
+description: 結合動態規劃與滑動窗口的優化技巧
+tags:
+  - 動態規劃
+  - 滑動窗口
+  - 單調隊列
+  - 優化
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # DP + Sliding Window

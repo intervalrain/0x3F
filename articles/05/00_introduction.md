@@ -1,8 +1,15 @@
 ---
-title: "LinkedList, Binary Tree, Tree 介紹"
+title: '05-0. LinkedList, Binary Tree, Tree 介紹'
 order: 0
-description: "鏈表與樹的基本概念、術語與結構類型"
-tags: ["LinkedList", "Binary Tree", "Tree", "基礎概念"]
+description: 鏈表與樹的基本概念、術語與結構類型
+tags:
+  - LinkedList
+  - Binary Tree
+  - Tree
+  - 基礎概念
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # LinkedList, Binary Tree, Tree 介紹

@@ -1,8 +1,15 @@
 ---
-title: "基本資料結構"
+title: 01-2. 基本資料結構
 order: 2
-description: "Array 與 Linked List 的特性、CRUD 操作，以及資料結構的選擇策略"
-tags: ["資料結構", "Array", "Linked List", "Tree"]
+description: Array 與 Linked List 的特性、CRUD 操作，以及資料結構的選擇策略
+tags:
+  - 資料結構
+  - Array
+  - Linked List
+  - Tree
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 基本資料結構 (Basic Data Structures)

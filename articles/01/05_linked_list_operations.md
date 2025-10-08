@@ -1,8 +1,16 @@
 ---
-title: "Linked List 操作與變體"
+title: 01-5. Linked List 操作與變體
 order: 5
-description: "Linked List 的插入、刪除操作，以及 Doubly Linked List 和 Deque 的介紹"
-tags: ["Linked List", "Doubly Linked List", "Deque", "插入", "刪除"]
+description: Linked List 的插入、刪除操作，以及 Doubly Linked List 和 Deque 的介紹
+tags:
+  - Linked List
+  - Doubly Linked List
+  - Deque
+  - 插入
+  - 刪除
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Linked List 操作與變體

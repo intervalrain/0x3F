@@ -1,8 +1,14 @@
 ---
-title: "Divide and Conquer (分治法)"
+title: 02-3. Divide and Conquer (分治法)
 order: 3
-description: "分治法的核心思想：分割、解決、合併"
-tags: ["Divide and Conquer", "分治法", "遞迴"]
+description: 分治法的核心思想：分割、解決、合併
+tags:
+  - Divide and Conquer
+  - 分治法
+  - 遞迴
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Divide and Conquer (分治法)

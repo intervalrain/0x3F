@@ -1,8 +1,15 @@
 ---
-title: "快速冪 - Modular Exponentiation"
+title: 12-4. 快速冪 - Modular Exponentiation
 order: 4
-description: "快速冪算法、模快速冪與矩陣快速冪的原理與應用"
-tags: ["Number Theory", "Fast Power", "Binary Exponentiation", "Matrix"]
+description: 快速冪算法、模快速冪與矩陣快速冪的原理與應用
+tags:
+  - Number Theory
+  - Fast Power
+  - Binary Exponentiation
+  - Matrix
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 4. 快速冪 - Modular Exponentiation

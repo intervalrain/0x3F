@@ -1,8 +1,14 @@
 ---
-title: "4. Approximate String Matching"
+title: 14-4. Approximate String Matching
 order: 4
-description: "編輯距離與近似字串匹配"
-tags: ["edit-distance", "dp", "levenshtein"]
+description: 編輯距離與近似字串匹配
+tags:
+  - edit-distance
+  - dp
+  - levenshtein
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 4. Approximate String Matching

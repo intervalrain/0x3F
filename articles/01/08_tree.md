@@ -1,8 +1,16 @@
 ---
-title: "Tree (樹)"
+title: 01-8. Tree (樹)
 order: 8
-description: "Binary Tree、BST、TreeNode 結構，以及各種樹的變體"
-tags: ["Tree", "Binary Tree", "BST", "AVL", "Red-Black Tree"]
+description: Binary Tree、BST、TreeNode 結構，以及各種樹的變體
+tags:
+  - Tree
+  - Binary Tree
+  - BST
+  - AVL
+  - Red-Black Tree
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Tree (樹)

@@ -1,8 +1,14 @@
 ---
-title: "基礎查找"
+title: 04-1. 基礎查找
 order: 1
-description: "二分搜尋的基礎應用：查找元素、插入位置、邊界查找"
-tags: ["Binary Search", "Basic Search", "基礎查找"]
+description: 二分搜尋的基礎應用：查找元素、插入位置、邊界查找
+tags:
+  - Binary Search
+  - Basic Search
+  - 基礎查找
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 基礎查找 (Basic Search)

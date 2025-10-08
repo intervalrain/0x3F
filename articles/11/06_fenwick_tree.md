@@ -1,8 +1,15 @@
 ---
-title: "Fenwick Tree (Binary Indexed Tree)"
+title: 11-6. Fenwick Tree (Binary Indexed Tree)
 order: 6
-description: "樹狀陣列：動態維護前綴和的高效結構"
-tags: ["Fenwick Tree", "BIT", "Binary Indexed Tree", "Prefix Sum"]
+description: 樹狀陣列：動態維護前綴和的高效結構
+tags:
+  - Fenwick Tree
+  - BIT
+  - Binary Indexed Tree
+  - Prefix Sum
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Fenwick Tree (Binary Indexed Tree)

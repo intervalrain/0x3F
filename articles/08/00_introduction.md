@@ -1,8 +1,13 @@
 ---
-title: "圖論介紹"
+title: 08-0. 圖論介紹
 order: 0
-description: "圖的基本概念、表示方式與術語"
-tags: ["graph", "基礎概念"]
+description: 圖的基本概念、表示方式與術語
+tags:
+  - graph
+  - 基礎概念
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 圖論介紹

@@ -1,8 +1,16 @@
 ---
-title: "HashMap 原理"
+title: 01-4. HashMap 原理
 order: 4
-description: "HashMap 的 O(1) 查找原理、哈希衝突解決、負載因子與擴容機制"
-tags: ["HashMap", "Hash Table", "哈希衝突", "負載因子", "Amortized"]
+description: HashMap 的 O(1) 查找原理、哈希衝突解決、負載因子與擴容機制
+tags:
+  - HashMap
+  - Hash Table
+  - 哈希衝突
+  - 負載因子
+  - Amortized
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # HashMap 原理

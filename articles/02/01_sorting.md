@@ -1,8 +1,16 @@
 ---
-title: "排序演算法"
+title: 02-1. 排序演算法
 order: 1
-description: "常見排序演算法：穩定性、原地排序，以及各種排序方法的比較"
-tags: ["排序", "Sorting", "Bubble Sort", "Quick Sort", "Merge Sort"]
+description: 常見排序演算法：穩定性、原地排序，以及各種排序方法的比較
+tags:
+  - 排序
+  - Sorting
+  - Bubble Sort
+  - Quick Sort
+  - Merge Sort
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 排序演算法

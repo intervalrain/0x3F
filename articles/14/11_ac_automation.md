@@ -1,8 +1,15 @@
 ---
-title: "11. AC Automation, Subsequence Automation (*)"
+title: '14-11. AC Automation, Subsequence Automation (*)'
 order: 11
-description: "AC 自動機與多模式匹配"
-tags: ["ac-automation", "aho-corasick", "trie", "advanced"]
+description: AC 自動機與多模式匹配
+tags:
+  - ac-automation
+  - aho-corasick
+  - trie
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 11. AC Automation, Subsequence Automation

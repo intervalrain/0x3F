@@ -1,8 +1,14 @@
 ---
-title: "3. Suffix Tree, Suffix Array (*)"
+title: '14-3. Suffix Tree, Suffix Array (*)'
 order: 3
-description: "後綴樹與後綴陣列的基礎與應用"
-tags: ["suffix-tree", "suffix-array", "advanced"]
+description: 後綴樹與後綴陣列的基礎與應用
+tags:
+  - suffix-tree
+  - suffix-array
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 3. Suffix Tree, Suffix Array

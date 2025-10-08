@@ -26,6 +26,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   const router = useRouter();
   const pathname = usePathname();
 
+  // 檢查是否在文章頁面（需要在最前面定義）
+  const isOnArticlePage = pathname?.startsWith('/articles/');
+
   // 初始化時就從 localStorage 讀取狀態，避免閃爍
   const [isCollapsed, setIsCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -35,12 +38,51 @@ const Sidebar: React.FC<SidebarProps> = ({
     return false;
   });
 
-  const [expandedArticles, setExpandedArticles] = useState<Set<string>>(new Set());
-  const [articlesExpanded, setArticlesExpanded] = useState(true);
+  const [expandedArticles, setExpandedArticles] = useState<Set<string>>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sidebar-expanded-articles');
+      if (saved) {
+        try {
+          return new Set(JSON.parse(saved));
+        } catch (e) {
+          return new Set();
+        }
+      }
+    }
+    return new Set();
+  });
+
+  const [articlesExpanded, setArticlesExpanded] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sidebar-articles-section-expanded');
+      return saved === null ? true : saved === 'true';
+    }
+    return true;
+  });
+
   const [hoveredTooltip, setHoveredTooltip] = useState<{ text: string; top: number } | null>(null);
 
-  // 檢查是否在文章頁面
-  const isOnArticlePage = pathname?.startsWith('/articles/');
+  // 自動展開當前文章所在的資料夾
+  React.useEffect(() => {
+    if (isOnArticlePage && pathname) {
+      // 從 pathname 提取資料夾路徑，例如 /articles/12/00_introduction -> /articles/12
+      const match = pathname.match(/^\/articles\/(\d+)/);
+      if (match) {
+        const folderPath = `/articles/${match[1]}`;
+        setExpandedArticles(prev => {
+          const newSet = new Set(prev);
+          if (!newSet.has(folderPath)) {
+            newSet.add(folderPath);
+            // 保存到 localStorage
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
+            }
+          }
+          return newSet;
+        });
+      }
+    }
+  }, [pathname, isOnArticlePage]);
 
   // 通知父組件初始狀態
   React.useEffect(() => {
@@ -81,6 +123,10 @@ const Sidebar: React.FC<SidebarProps> = ({
           newSet.delete(path);
         } else {
           newSet.add(path);
+        }
+        // 保存到 localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
         }
         return newSet;
       });
@@ -214,7 +260,13 @@ const Sidebar: React.FC<SidebarProps> = ({
           {!isCollapsed && (
             <div
               className="sidebar-section-header"
-              onClick={() => setArticlesExpanded(!articlesExpanded)}
+              onClick={() => {
+                const newValue = !articlesExpanded;
+                setArticlesExpanded(newValue);
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem('sidebar-articles-section-expanded', String(newValue));
+                }
+              }}
               style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 20px' }}
             >
               <span style={{ fontSize: '14px' }}>{articlesExpanded ? '▼' : '▶'}</span>

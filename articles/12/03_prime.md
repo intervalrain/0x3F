@@ -1,8 +1,15 @@
 ---
-title: "Prime - 質數"
+title: 12-3. Prime - 質數
 order: 3
-description: "質數判定、埃拉托斯特尼篩法、質因數分解與歐拉篩法"
-tags: ["Number Theory", "Prime", "Sieve", "Factorization"]
+description: 質數判定、埃拉托斯特尼篩法、質因數分解與歐拉篩法
+tags:
+  - Number Theory
+  - Prime
+  - Sieve
+  - Factorization
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 3. Prime - 質數

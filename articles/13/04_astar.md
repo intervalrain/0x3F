@@ -1,8 +1,15 @@
 ---
-title: "A* 算法"
+title: 13-4. A* 算法
 order: 4
-description: "A* 啟發式搜索：貪心與最短路徑的結合"
-tags: ["greedy", "shortest-path", "heuristic", "advanced"]
+description: A* 啟發式搜索：貪心與最短路徑的結合
+tags:
+  - greedy
+  - shortest-path
+  - heuristic
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 4. A* 算法 (**)

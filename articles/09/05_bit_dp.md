@@ -1,8 +1,16 @@
 ---
-title: "5. Bit DP"
+title: 09-5. Bit DP
 order: 5
-description: "狀態壓縮動態規劃與位元字典樹"
-tags: ["bit manipulation", "dynamic programming", "bitmask DP", "trie", "進階"]
+description: 狀態壓縮動態規劃與位元字典樹
+tags:
+  - bit manipulation
+  - dynamic programming
+  - bitmask DP
+  - trie
+  - 進階
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 5. Bit DP (位元動態規劃)

@@ -1,8 +1,14 @@
 ---
-title: "二分法介紹"
+title: 04-0. 二分法介紹
 order: 0
-description: "二分搜尋的核心概念、模板與應用場景"
-tags: ["Binary Search", "二分搜尋", "二分法"]
+description: 二分搜尋的核心概念、模板與應用場景
+tags:
+  - Binary Search
+  - 二分搜尋
+  - 二分法
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 二分法介紹

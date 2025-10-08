@@ -1,8 +1,15 @@
 ---
-title: "SPFA 演算法"
+title: 08-6. SPFA 演算法
 order: 6
-description: "Bellman-Ford 的隊列優化 - Shortest Path Faster Algorithm"
-tags: ["graph", "shortest path", "SPFA", "queue optimization"]
+description: Bellman-Ford 的隊列優化 - Shortest Path Faster Algorithm
+tags:
+  - graph
+  - shortest path
+  - SPFA
+  - queue optimization
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # SPFA (Shortest Path Faster Algorithm)

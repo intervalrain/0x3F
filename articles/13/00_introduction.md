@@ -1,8 +1,13 @@
 ---
-title: "貪心法介紹"
+title: 13-0. 貪心法介紹
 order: 0
-description: "貪心法的核心思想、可行性條件與證明方法"
-tags: ["greedy", "algorithm-design"]
+description: 貪心法的核心思想、可行性條件與證明方法
+tags:
+  - greedy
+  - algorithm-design
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 0. 貪心法介紹

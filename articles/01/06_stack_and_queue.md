@@ -1,8 +1,15 @@
 ---
-title: "Stack 與 Queue"
+title: 01-6. Stack 與 Queue
 order: 6
-description: "Stack (LIFO) 與 Queue (FIFO) 的原理、實作與應用"
-tags: ["Stack", "Queue", "LIFO", "FIFO"]
+description: Stack (LIFO) 與 Queue (FIFO) 的原理、實作與應用
+tags:
+  - Stack
+  - Queue
+  - LIFO
+  - FIFO
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Stack 與 Queue

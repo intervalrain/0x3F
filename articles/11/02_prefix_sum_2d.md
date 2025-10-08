@@ -1,8 +1,14 @@
 ---
-title: "2D Prefix Sum"
+title: 11-2. 2D Prefix Sum
 order: 2
-description: "二維前綴和：矩陣子區域和的 O(1) 查詢"
-tags: ["2D Prefix Sum", "Matrix", "Inclusion-Exclusion"]
+description: 二維前綴和：矩陣子區域和的 O(1) 查詢
+tags:
+  - 2D Prefix Sum
+  - Matrix
+  - Inclusion-Exclusion
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 2D Prefix Sum（二維前綴和）

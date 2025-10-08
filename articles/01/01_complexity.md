@@ -1,8 +1,14 @@
 ---
-title: "複雜度分析"
+title: 01-1. 複雜度分析
 order: 1
-description: "時間複雜度與空間複雜度的基本概念，以及如何根據 Constraints 分析最佳演算法"
-tags: ["複雜度", "Big O", "效能分析"]
+description: 時間複雜度與空間複雜度的基本概念，以及如何根據 Constraints 分析最佳演算法
+tags:
+  - 複雜度
+  - Big O
+  - 效能分析
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 複雜度 (Complexity)

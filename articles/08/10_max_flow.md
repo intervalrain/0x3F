@@ -1,8 +1,17 @@
 ---
-title: "最大流演算法 (進階)"
+title: 08-10. 最大流演算法 (進階)
 order: 10
-description: "網路流問題 - Edmonds-Karp 與 Dinic 演算法"
-tags: ["graph", "max flow", "network flow", "edmonds-karp", "dinic", "advanced"]
+description: 網路流問題 - Edmonds-Karp 與 Dinic 演算法
+tags:
+  - graph
+  - max flow
+  - network flow
+  - edmonds-karp
+  - dinic
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 最大流演算法 (Maximum Flow)

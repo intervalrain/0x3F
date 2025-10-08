@@ -11,6 +11,7 @@ import { useProgressSync } from '../hooks/useProgressSync';
 import AuthButton from './AuthButton';
 import SyncConflictModal from './SyncConflictModal';
 import { ArticleNode } from '../lib/articles';
+import Footer from './Footer';
 
 interface AppLayoutProps {
   children: (props: {
@@ -403,7 +404,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="app-layout">
+    <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <header className="app-header">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
@@ -425,7 +426,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         </div>
       </header>
 
-      <div className="app-container">
+      <div className="app-container" style={{ flex: 1 }}>
         <Sidebar
           topics={topics}
           topicProgress={topicProgress}
@@ -439,6 +440,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           {children({ activeTab, topicProgress, setTopicProgress })}
         </main>
       </div>
+
+      <Footer />
 
       {/* 衝突解決 Modal */}
       {showConflictModal && conflictData && (

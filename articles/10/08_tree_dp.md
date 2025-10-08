@@ -1,8 +1,15 @@
 ---
-title: "Tree DP"
+title: 10-8. Tree DP
 order: 8
-description: "樹上的動態規劃問題"
-tags: ["動態規劃", "Tree DP", "樹", "DFS"]
+description: 樹上的動態規劃問題
+tags:
+  - 動態規劃
+  - Tree DP
+  - 樹
+  - DFS
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Tree DP

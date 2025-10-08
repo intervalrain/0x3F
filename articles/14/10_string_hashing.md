@@ -1,8 +1,14 @@
 ---
-title: "10. String Hashing"
+title: 14-10. String Hashing
 order: 10
-description: "字串雜湊與前綴雜湊陣列"
-tags: ["string-hashing", "rolling-hash", "prefix-hash"]
+description: 字串雜湊與前綴雜湊陣列
+tags:
+  - string-hashing
+  - rolling-hash
+  - prefix-hash
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 10. String Hashing

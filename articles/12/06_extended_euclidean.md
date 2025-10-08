@@ -1,8 +1,16 @@
 ---
-title: "擴展歐幾里得 - Extended Euclidean Algorithm (*)"
+title: 12-6. 擴展歐幾里得 - Extended Euclidean Algorithm (*)
 order: 6
-description: "擴展歐幾里得算法、線性同餘方程與中國餘數定理（進階主題）"
-tags: ["Number Theory", "Extended GCD", "CRT", "Linear Congruence", "Advanced"]
+description: 擴展歐幾里得算法、線性同餘方程與中國餘數定理（進階主題）
+tags:
+  - Number Theory
+  - Extended GCD
+  - CRT
+  - Linear Congruence
+  - Advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 6. 擴展歐幾里得 - Extended Euclidean Algorithm (**)

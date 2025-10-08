@@ -1,8 +1,16 @@
 ---
-title: "進階主題 - Möbius / Segmented Sieve (*)"
+title: 12-7. 進階主題 - Möbius / Segmented Sieve (*)
 order: 7
-description: "莫比烏斯函數、分段篩法與米勒-拉賓素性測試（進階主題概覽）"
-tags: ["Number Theory", "Möbius", "Segmented Sieve", "Miller-Rabin", "Advanced"]
+description: 莫比烏斯函數、分段篩法與米勒-拉賓素性測試（進階主題概覽）
+tags:
+  - Number Theory
+  - Möbius
+  - Segmented Sieve
+  - Miller-Rabin
+  - Advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 7. 進階主題 - Möbius / Segmented Sieve (**)

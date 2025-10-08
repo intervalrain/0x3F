@@ -1,8 +1,14 @@
 ---
-title: "7. Boyer-Moore (*)"
+title: 14-7. Boyer-Moore (*)
 order: 7
-description: "Boyer-Moore 字串匹配算法"
-tags: ["boyer-moore", "string-matching", "advanced"]
+description: Boyer-Moore 字串匹配算法
+tags:
+  - boyer-moore
+  - string-matching
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 7. Boyer-Moore

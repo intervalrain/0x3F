@@ -1,8 +1,15 @@
 ---
-title: "Backtracking (回溯法)"
+title: 02-6. Backtracking (回溯法)
 order: 6
-description: "回溯法：窮舉所有可能解，遇到不可行就回退"
-tags: ["Backtracking", "回溯法", "DFS", "剪枝"]
+description: 回溯法：窮舉所有可能解，遇到不可行就回退
+tags:
+  - Backtracking
+  - 回溯法
+  - DFS
+  - 剪枝
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Backtracking (回溯法)

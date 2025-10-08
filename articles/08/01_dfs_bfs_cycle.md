@@ -1,8 +1,15 @@
 ---
-title: "DFS/BFS 與環檢測"
+title: 08-1. DFS/BFS 與環檢測
 order: 1
-description: "深度優先搜尋、廣度優先搜尋與圖的環檢測"
-tags: ["graph", "DFS", "BFS", "cycle detection"]
+description: 深度優先搜尋、廣度優先搜尋與圖的環檢測
+tags:
+  - graph
+  - DFS
+  - BFS
+  - cycle detection
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # DFS/BFS 與環檢測

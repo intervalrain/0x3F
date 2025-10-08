@@ -1,8 +1,15 @@
 ---
-title: "同向雙指針"
+title: 03-4. 同向雙指針
 order: 4
-description: "快慢指針技巧與經典題目"
-tags: ["Two Pointers", "Same Direction", "同向指針", "快慢指針"]
+description: 快慢指針技巧與經典題目
+tags:
+  - Two Pointers
+  - Same Direction
+  - 同向指針
+  - 快慢指針
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 同向雙指針 (Same Direction Two Pointers)

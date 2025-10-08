@@ -1,8 +1,15 @@
 ---
-title: "拓撲排序 (Topological Sort)"
+title: 08-3. 拓撲排序 (Topological Sort)
 order: 3
-description: "有向無環圖的線性排序 - Kahn 演算法與 DFS 方法"
-tags: ["graph", "topological sort", "DAG", "Kahn algorithm"]
+description: 有向無環圖的線性排序 - Kahn 演算法與 DFS 方法
+tags:
+  - graph
+  - topological sort
+  - DAG
+  - Kahn algorithm
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 拓撲排序 (Topological Sort)

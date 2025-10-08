@@ -1,8 +1,15 @@
 ---
-title: "Heap + 貪心"
+title: 13-3. Heap + 貪心
 order: 3
-description: "優先隊列在貪心算法中的應用：Huffman編碼、任務調度與掃描線"
-tags: ["greedy", "heap", "priority-queue", "sweep-line"]
+description: 優先隊列在貪心算法中的應用：Huffman編碼、任務調度與掃描線
+tags:
+  - greedy
+  - heap
+  - priority-queue
+  - sweep-line
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 3. Heap + 貪心

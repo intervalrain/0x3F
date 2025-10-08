@@ -1,8 +1,15 @@
 ---
-title: "Trie (Prefix Tree)"
+title: 11-5. Trie (Prefix Tree)
 order: 5
-description: "字典樹：高效的字串查詢與前綴匹配"
-tags: ["Trie", "Prefix Tree", "String", "Dictionary"]
+description: 字典樹：高效的字串查詢與前綴匹配
+tags:
+  - Trie
+  - Prefix Tree
+  - String
+  - Dictionary
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Trie (Prefix Tree)

@@ -1,8 +1,14 @@
 ---
-title: "數論介紹"
+title: 12-0. 數論介紹
 order: 0
-description: "數論的基本概念與在算法競賽中的應用"
-tags: ["Number Theory", "Mathematics", "Introduction"]
+description: 數論的基本概念與在算法競賽中的應用
+tags:
+  - Number Theory
+  - Mathematics
+  - Introduction
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 0. 數論介紹

@@ -1,8 +1,18 @@
 ---
-title: "Graph (圖)"
+title: 01-9. Graph (圖)
 order: 9
-description: "圖的表示方法、有向圖、無向圖、有權圖，以及基本演算法"
-tags: ["Graph", "DFS", "BFS", "有向圖", "無向圖", "鄰接矩陣", "鄰接串列"]
+description: 圖的表示方法、有向圖、無向圖、有權圖，以及基本演算法
+tags:
+  - Graph
+  - DFS
+  - BFS
+  - 有向圖
+  - 無向圖
+  - 鄰接矩陣
+  - 鄰接串列
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Graph (圖)

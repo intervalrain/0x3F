@@ -1,8 +1,14 @@
 ---
-title: "同餘性質 - Modular Arithmetic"
+title: 12-1. 同餘性質 - Modular Arithmetic
 order: 1
-description: "模運算的基本性質、模反元素與大數處理技巧"
-tags: ["Number Theory", "Modular Arithmetic", "Modular Inverse"]
+description: 模運算的基本性質、模反元素與大數處理技巧
+tags:
+  - Number Theory
+  - Modular Arithmetic
+  - Modular Inverse
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 1. 同餘性質 - Modular Arithmetic

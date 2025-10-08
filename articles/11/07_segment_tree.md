@@ -1,8 +1,15 @@
 ---
-title: "Segment Tree"
+title: 11-7. Segment Tree
 order: 7
-description: "線段樹：最強大的區間資料結構"
-tags: ["Segment Tree", "Lazy Propagation", "Range Query", "Range Update"]
+description: 線段樹：最強大的區間資料結構
+tags:
+  - Segment Tree
+  - Lazy Propagation
+  - Range Query
+  - Range Update
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Segment Tree（線段樹）

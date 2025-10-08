@@ -1,8 +1,14 @@
 ---
-title: "並查集 (Union Find)"
+title: 08-2. 並查集 (Union Find)
 order: 2
-description: "高效處理集合合併與查詢的資料結構"
-tags: ["graph", "union find", "disjoint set"]
+description: 高效處理集合合併與查詢的資料結構
+tags:
+  - graph
+  - union find
+  - disjoint set
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 並查集 (Union Find)

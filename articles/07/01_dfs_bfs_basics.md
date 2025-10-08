@@ -1,6 +1,11 @@
 ---
-title: "DFS/BFS 基礎 (DFS/BFS Basics)"
+title: 07-1. DFS/BFS 基礎 (DFS/BFS Basics)
 order: 1
+description: '深入學習網格圖的 DFS 與 BFS 基礎應用。透過 Flood Fill、島嶼計數、最大面積等經典題目，掌握連通區域搜索、邊界處理、原地標記等實用技巧。'
+tags: ['DFS', 'BFS', 'Grid', 'Flood Fill', 'Island', '深度優先', '廣度優先']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # DFS/BFS 基礎

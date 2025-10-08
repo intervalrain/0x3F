@@ -1,9 +1,11 @@
 ---
-title: "文章標題"
+title: "{SectionId}.{order}. {title}"
 order: 0
 description: "文章簡短描述"
 tags: ["標籤1", "標籤2"]
 author: "作者名稱"
+date: 2025-10-08
+draft: false
 ---
 
 # 文章標題

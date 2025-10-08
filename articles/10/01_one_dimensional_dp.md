@@ -1,8 +1,14 @@
 ---
-title: "1 維 DP"
+title: 10-1. 1 維 DP
 order: 1
-description: "一維動態規劃的經典問題與解法"
-tags: ["動態規劃", "1D DP", "序列問題"]
+description: 一維動態規劃的經典問題與解法
+tags:
+  - 動態規劃
+  - 1D DP
+  - 序列問題
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 1 維 DP

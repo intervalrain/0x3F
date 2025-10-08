@@ -1,8 +1,14 @@
 ---
-title: "定長滑動視窗"
+title: 03-1. 定長滑動視窗
 order: 1
-description: "固定窗口大小的滑動視窗技巧與經典題目"
-tags: ["Sliding Window", "Fixed Length", "定長視窗"]
+description: 固定窗口大小的滑動視窗技巧與經典題目
+tags:
+  - Sliding Window
+  - Fixed Length
+  - 定長視窗
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 定長滑動視窗 (Fixed-Length Sliding Window)

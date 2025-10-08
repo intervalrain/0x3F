@@ -1,8 +1,14 @@
 ---
-title: "區間 DP"
+title: 10-2. 區間 DP
 order: 2
-description: "區間動態規劃的經典問題與解法"
-tags: ["動態規劃", "區間 DP", "Interval DP"]
+description: 區間動態規劃的經典問題與解法
+tags:
+  - 動態規劃
+  - 區間 DP
+  - Interval DP
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 區間 DP (Interval DP)

@@ -1,8 +1,15 @@
 ---
-title: "序列貪心"
+title: 13-2. 序列貪心
 order: 2
-description: "序列上的貪心策略：排序、狀態維護與字典序問題"
-tags: ["greedy", "array", "sorting", "monotonic-stack"]
+description: 序列上的貪心策略：排序、狀態維護與字典序問題
+tags:
+  - greedy
+  - array
+  - sorting
+  - monotonic-stack
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 2. 序列貪心

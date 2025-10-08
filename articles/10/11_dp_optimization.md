@@ -1,8 +1,15 @@
 ---
-title: "DP 優化技巧"
+title: 10-11. DP 優化技巧
 order: 11
-description: "動態規劃的進階優化技巧：二分、貪心、決策單調性"
-tags: ["動態規劃", "優化", "二分搜索", "貪心"]
+description: 動態規劃的進階優化技巧：二分、貪心、決策單調性
+tags:
+  - 動態規劃
+  - 優化
+  - 二分搜索
+  - 貪心
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # DP 優化技巧

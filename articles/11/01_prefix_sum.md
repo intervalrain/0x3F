@@ -1,8 +1,15 @@
 ---
-title: "Prefix Sum & Difference Array"
+title: 11-1. Prefix Sum & Difference Array
 order: 1
-description: "前綴和與差分陣列：用空間換時間的經典範例"
-tags: ["Prefix Sum", "Difference Array", "Array", "Preprocessing"]
+description: 前綴和與差分陣列：用空間換時間的經典範例
+tags:
+  - Prefix Sum
+  - Difference Array
+  - Array
+  - Preprocessing
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Prefix Sum & Difference Array

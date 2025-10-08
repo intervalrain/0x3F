@@ -1,8 +1,15 @@
 ---
-title: "2. 回文 - Palindrome"
+title: 14-2. 回文 - Palindrome
 order: 2
-description: "回文字串的判定與相關問題"
-tags: ["palindrome", "two-pointers", "dp", "expand-around-center"]
+description: 回文字串的判定與相關問題
+tags:
+  - palindrome
+  - two-pointers
+  - dp
+  - expand-around-center
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 2. 回文 - Palindrome

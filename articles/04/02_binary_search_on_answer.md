@@ -1,8 +1,14 @@
 ---
-title: "二分猜答案"
+title: 04-2. 二分猜答案
 order: 2
-description: "將優化問題轉化為判定問題，使用二分搜尋猜測最優解"
-tags: ["Binary Search", "Binary Search on Answer", "二分猜答案"]
+description: 將優化問題轉化為判定問題，使用二分搜尋猜測最優解
+tags:
+  - Binary Search
+  - Binary Search on Answer
+  - 二分猜答案
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 二分猜答案 (Binary Search on Answer)

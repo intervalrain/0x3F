@@ -1,8 +1,15 @@
 ---
-title: "狀態壓縮 DP / Bitmask DP"
+title: 10-7. 狀態壓縮 DP / Bitmask DP
 order: 7
-description: "使用位元運算進行狀態壓縮的動態規劃"
-tags: ["動態規劃", "狀態壓縮", "Bitmask DP", "位元運算"]
+description: 使用位元運算進行狀態壓縮的動態規劃
+tags:
+  - 動態規劃
+  - 狀態壓縮
+  - Bitmask DP
+  - 位元運算
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 狀態壓縮 DP / Bitmask DP

@@ -1,8 +1,17 @@
 ---
-title: "二分圖最大匹配 (進階)"
+title: 08-11. 二分圖最大匹配 (進階)
 order: 11
-description: "二分圖判定與最大匹配 - 匈牙利演算法與 Hopcroft-Karp"
-tags: ["graph", "bipartite", "matching", "hungarian algorithm", "hopcroft-karp", "advanced"]
+description: 二分圖判定與最大匹配 - 匈牙利演算法與 Hopcroft-Karp
+tags:
+  - graph
+  - bipartite
+  - matching
+  - hungarian algorithm
+  - hopcroft-karp
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 二分圖最大匹配

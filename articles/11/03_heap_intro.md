@@ -1,8 +1,15 @@
 ---
-title: "Heap (Priority Queue)"
+title: 11-3. Heap (Priority Queue)
 order: 3
-description: "堆：動態維護極值的利器"
-tags: ["Heap", "Priority Queue", "Binary Heap", "Top K"]
+description: 堆：動態維護極值的利器
+tags:
+  - Heap
+  - Priority Queue
+  - Binary Heap
+  - Top K
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Heap (Priority Queue)

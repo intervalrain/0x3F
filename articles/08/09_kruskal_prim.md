@@ -1,8 +1,17 @@
 ---
-title: "最小生成樹 - Kruskal & Prim"
+title: 08-9. 最小生成樹 - Kruskal & Prim
 order: 9
-description: "連接所有節點的最小代價 - 兩種經典 MST 演算法"
-tags: ["graph", "MST", "kruskal", "prim", "greedy", "union find"]
+description: 連接所有節點的最小代價 - 兩種經典 MST 演算法
+tags:
+  - graph
+  - MST
+  - kruskal
+  - prim
+  - greedy
+  - union find
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 最小生成樹 (Minimum Spanning Tree, MST)

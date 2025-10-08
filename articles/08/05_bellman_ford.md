@@ -1,8 +1,16 @@
 ---
-title: "Bellman-Ford 演算法"
+title: 08-5. Bellman-Ford 演算法
 order: 5
-description: "支援負權邊的單源最短路徑演算法"
-tags: ["graph", "shortest path", "bellman-ford", "negative edge", "dynamic programming"]
+description: 支援負權邊的單源最短路徑演算法
+tags:
+  - graph
+  - shortest path
+  - bellman-ford
+  - negative edge
+  - dynamic programming
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Bellman-Ford 演算法

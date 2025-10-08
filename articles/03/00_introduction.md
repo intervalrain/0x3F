@@ -1,8 +1,15 @@
 ---
-title: "滑動視窗與雙指針介紹"
+title: 03-0. 滑動視窗與雙指針介紹
 order: 0
-description: "滑動視窗與雙指針的核心概念、使用場景與解題模板"
-tags: ["Sliding Window", "Two Pointers", "滑動視窗", "雙指針"]
+description: 滑動視窗與雙指針的核心概念、使用場景與解題模板
+tags:
+  - Sliding Window
+  - Two Pointers
+  - 滑動視窗
+  - 雙指針
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 滑動視窗與雙指針

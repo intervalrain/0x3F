@@ -1,8 +1,15 @@
 ---
-title: "第 K 小/大元素"
+title: 04-3. 第 K 小/大元素
 order: 3
-description: "使用二分搜尋、快速選擇和堆找第 K 小/大元素"
-tags: ["Binary Search", "Kth Element", "Quick Select", "Heap"]
+description: 使用二分搜尋、快速選擇和堆找第 K 小/大元素
+tags:
+  - Binary Search
+  - Kth Element
+  - Quick Select
+  - Heap
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 第 K 小/大元素 (Kth Element)

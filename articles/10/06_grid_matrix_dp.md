@@ -1,8 +1,15 @@
 ---
-title: "Grid/Matrix DP"
+title: 10-6. Grid/Matrix DP
 order: 6
-description: "網格動態規劃：路徑問題與矩陣問題"
-tags: ["動態規劃", "網格 DP", "路徑問題", "矩陣"]
+description: 網格動態規劃：路徑問題與矩陣問題
+tags:
+  - 動態規劃
+  - 網格 DP
+  - 路徑問題
+  - 矩陣
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Grid/Matrix DP

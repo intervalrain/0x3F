@@ -1,6 +1,11 @@
 ---
-title: "網格圖的介紹"
+title: 07-0. 網格圖的介紹
 order: 0
+description: '全面介紹網格圖的基本概念與遍歷技巧。學習四向/八向移動、邊界檢查、visited 陣列的使用，掌握 DFS 與 BFS 在網格圖中的應用模板與最佳實踐。'
+tags: ['Grid', 'Graph', 'DFS', 'BFS', '網格圖', '圖論']
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 網格圖的介紹

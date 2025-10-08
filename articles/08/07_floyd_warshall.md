@@ -1,8 +1,16 @@
 ---
-title: "Floyd-Warshall 演算法"
+title: 08-7. Floyd-Warshall 演算法
 order: 7
-description: "全源最短路徑的動態規劃解法"
-tags: ["graph", "shortest path", "floyd-warshall", "all-pairs", "dynamic programming"]
+description: 全源最短路徑的動態規劃解法
+tags:
+  - graph
+  - shortest path
+  - floyd-warshall
+  - all-pairs
+  - dynamic programming
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Floyd-Warshall 演算法

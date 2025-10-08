@@ -1,8 +1,14 @@
 ---
-title: "6. Rabin-Karp (*)"
+title: 14-6. Rabin-Karp (*)
 order: 6
-description: "基於滾動雜湊的字串匹配算法"
-tags: ["rabin-karp", "rolling-hash", "advanced"]
+description: 基於滾動雜湊的字串匹配算法
+tags:
+  - rabin-karp
+  - rolling-hash
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 6. Rabin-Karp

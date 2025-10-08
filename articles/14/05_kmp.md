@@ -1,8 +1,14 @@
 ---
-title: "5. KMP - Knuth-Morris-Pratt"
+title: 14-5. KMP - Knuth-Morris-Pratt
 order: 5
-description: "KMP 字串匹配算法詳解"
-tags: ["kmp", "string-matching", "pattern-matching"]
+description: KMP 字串匹配算法詳解
+tags:
+  - kmp
+  - string-matching
+  - pattern-matching
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 5. KMP - Knuth-Morris-Pratt

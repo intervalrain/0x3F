@@ -1,6 +1,11 @@
 ---
-title: "最短路徑 (Shortest Path)"
+title: 07-4. 最短路徑 (Shortest Path)
 order: 4
+description: '完整解析網格圖的最短路徑算法。從 BFS 到 Dijkstra，學習無權圖、帶權圖的最短路徑求解，掌握最小化最大值、最大化最小值等變形問題的解法。'
+tags: ['Shortest Path', 'Dijkstra', 'BFS', 'Graph', 'Binary Search', '最短路徑', 'Dijkstra算法']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 最短路徑 (Shortest Path)

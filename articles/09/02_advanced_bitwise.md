@@ -1,8 +1,15 @@
 ---
-title: "2. Advanced Bitwise Operations"
+title: 09-2. Advanced Bitwise Operations
 order: 2
-description: "進階位元運算技巧：位元遮罩、漢明距離、子集枚舉"
-tags: ["bit manipulation", "bitmask", "subset enumeration", "進階"]
+description: 進階位元運算技巧：位元遮罩、漢明距離、子集枚舉
+tags:
+  - bit manipulation
+  - bitmask
+  - subset enumeration
+  - 進階
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 2. Advanced Bitwise Operations (進階位元運算)

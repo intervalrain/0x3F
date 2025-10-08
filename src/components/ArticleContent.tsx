@@ -5,15 +5,17 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
-import 'highlight.js/styles/github-dark.css';
-import { ArticleMetadata } from '@/lib/articles';
+import 'highlight.js/styles/vs.css';
+import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
+import ArticleNavigationComponent from './ArticleNavigation';
 
 interface ArticleContentProps {
   metadata: ArticleMetadata;
   content: string;
+  navigation?: ArticleNavigation;
 }
 
-const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content }) => {
+const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navigation }) => {
   return (
     <div className="article-page" style={{
       width: '100%',
@@ -124,7 +126,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content }) =>
                     padding: '2px 6px',
                     borderRadius: '4px',
                     fontSize: '0.875em',
-                    fontFamily: 'monospace'
+                    fontFamily: 'Consolas, Monaco, "Courier New", monospace'
                   }}
                   {...props}
                 >
@@ -138,13 +140,15 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content }) =>
             },
             pre: ({ children }) => (
               <pre style={{
-                backgroundColor: '#1f2937',
-                color: '#f9fafb',
+                backgroundColor: '#f5f5f5',
+                border: '1px solid #e0e0e0',
                 padding: '20px',
                 borderRadius: '8px',
                 overflowX: 'auto',
                 marginBottom: '24px',
-                fontSize: '0.875rem'
+                fontSize: '0.875rem',
+                lineHeight: '1.6',
+                fontFamily: 'Consolas, Monaco, "Courier New", monospace'
               }}>
                 {children}
               </pre>
@@ -227,6 +231,9 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content }) =>
           {content}
         </ReactMarkdown>
       </article>
+
+      {/* Article Navigation */}
+      {navigation && <ArticleNavigationComponent navigation={navigation} />}
     </div>
   );
 };

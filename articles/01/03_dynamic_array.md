@@ -1,8 +1,15 @@
 ---
-title: "動態陣列"
+title: 01-3. 動態陣列
 order: 3
-description: "動態陣列的擴縮容機制、索引邊界檢查，以及如何實作動態陣列"
-tags: ["動態陣列", "Vector", "擴容", "Amortized"]
+description: 動態陣列的擴縮容機制、索引邊界檢查，以及如何實作動態陣列
+tags:
+  - 動態陣列
+  - Vector
+  - 擴容
+  - Amortized
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 動態陣列 (Dynamic Array)

@@ -1,6 +1,11 @@
 ---
-title: "Tree"
+title: 05-5. Tree
 order: 5
+description: '深入探討各種樹形資料結構，包含二元搜尋樹（BST）、平衡樹（AVL）、紅黑樹等進階主題。理解樹的性質、操作複雜度，以及在實際應用中的選擇與權衡。'
+tags: ['Tree', 'BST', 'AVL', 'Red-Black Tree', '樹', '平衡樹']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Tree (樹)

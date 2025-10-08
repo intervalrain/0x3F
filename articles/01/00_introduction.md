@@ -1,8 +1,13 @@
 ---
-title: "演算法與資料結構心法"
+title: 01-0. 演算法與資料結構心法
 order: 0
-description: "學習演算法與資料結構的基本概念與心法"
-tags: ["基礎", "入門"]
+description: 學習演算法與資料結構的基本概念與心法
+tags:
+  - 基礎
+  - 入門
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 演算法與資料結構心法

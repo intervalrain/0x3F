@@ -1,8 +1,15 @@
 ---
-title: "4. Bitwise Tricks"
+title: 09-4. Bitwise Tricks
 order: 4
-description: "常用的位元運算技巧與模式"
-tags: ["bit manipulation", "tricks", "patterns", "進階"]
+description: 常用的位元運算技巧與模式
+tags:
+  - bit manipulation
+  - tricks
+  - patterns
+  - 進階
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 4. Bitwise Tricks (位元運算技巧)

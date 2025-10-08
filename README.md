@@ -7,29 +7,29 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)
 ![React](https://img.shields.io/badge/React-18-blue.svg)
 
-Have fun! [Let's Start](https://0x3-f.vercel.app/)
+開始使用：https://0x3-f.vercel.app/
 
-## ✨ 功能特色
+## 功能特色
 
-### 📊 主要功能
-- **📈 總覽面板**: 查看整體刷題進度和統計資料
-- **📊 詳細分析**: 各主題完成率、最近完成題目等數據分析
-- **🎯 主題分類**: 按照 0x3F 題單的分類系統組織題目
-- **✅ 進度追蹤**: 實時記錄解題進度和完成時間
+### 主要功能
+- 總覽面板：查看整體刷題進度和統計資料
+- 詳細分析：各主題完成率、最近完成題目等數據分析
+- 主題分類：按照 0x3F 題單的分類系統組織題目
+- 進度追蹤：實時記錄解題進度和完成時間
+- 文章系統：內建演算法學習文章，支援 Markdown 格式
 
-### 🎨 界面設計
-- **🔄 可摺疊側邊欄**: 點擊按鈕即可摺疊/展開導航欄
-- **📱 響應式設計**: 支援桌面和手機裝置
-- **🎯 現代化 UI**: 簡潔美觀的使用者界面
-- **⚡ 流暢動畫**: 平滑的過渡效果和互動體驗
+### 界面設計
+- 可摺疊側邊欄：點擊按鈕即可摺疊或展開導航欄
+- 響應式設計：支援桌面和手機裝置
 
-### 💾 資料管理
-- **🔒 本地儲存**: 資料儲存在瀏覽器本地，隱私安全
-- **📝 自訂題目**: 可以新增自己的練習題目
-- **📚 章節結構**: 支援題目的分章節管理
-- **🔄 資料版本控制**: 自動處理資料結構升級
+### 資料管理
+- 本地儲存：資料儲存在瀏覽器本地，隱私安全
+- 雲端同步：支援 GitHub OAuth 登入，多裝置同步進度(審核會員)
+- 自訂題目：可以新增自己的練習題目
+- 章節結構：支援題目的分章節管理
+- 資料版本控制：自動處理資料結構升級
 
-## 🚀 快速開始
+## 快速開始
 
 ### 環境要求
 - Node.js 18.0 或以上版本
@@ -37,28 +37,27 @@ Have fun! [Let's Start](https://0x3-f.vercel.app/)
 
 ### 安裝與運行
 
-1. **複製專案**
+1. 複製專案
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/intervalrain/0x3F.git
 cd 0x3f2
 ```
 
-2. **安裝依賴**
+2. 安裝依賴
 ```bash
 npm install
 # 或
 yarn install
 ```
 
-3. **啟動開發伺服器**
+3. 啟動開發伺服器
 ```bash
 npm run dev
 # 或
 yarn dev
 ```
 
-4. **開啟瀏覽器**
-前往 [http://localhost:3000](http://localhost:3000) 查看應用程式
+4. 開啟瀏覽器訪問 [http://localhost:3000](http://localhost:3000)
 
 ### 建置部署
 
@@ -70,7 +69,7 @@ npm run build
 npm start
 ```
 
-## 📁 專案結構
+## 專案結構
 
 ```
 src/
@@ -78,7 +77,8 @@ src/
 │   ├── layout.tsx          # 根佈局
 │   ├── page.tsx            # 主頁面
 │   ├── globals.css         # 全域樣式
-│   └── ...
+│   └── api/                # API 路由
+│       └── articles/       # 文章相關 API
 ├── components/
 │   ├── AppLayout.tsx       # 應用程式佈局
 │   ├── Sidebar.tsx         # 側邊欄組件
@@ -88,51 +88,79 @@ src/
 │   ├── TopicTabStructured.tsx # 主題頁面（結構化）
 │   ├── ProblemItem.tsx     # 題目項目
 │   ├── AddProblemForm.tsx  # 新增題目表單
-│   └── ChapterView.tsx     # 章節檢視
+│   ├── ChapterView.tsx     # 章節檢視
+│   ├── Footer.tsx          # 頁尾組件
+│   └── AuthButton.tsx      # 認證按鈕
 ├── data/
 │   ├── topics.ts           # 主題資料
 │   ├── allTopicsData.ts    # 完整題目資料
 │   └── sampleProblems.ts   # 範例題目
 ├── hooks/
-│   └── useLocalStorage.ts  # 本地儲存 Hook
+│   ├── useLocalStorage.ts  # 本地儲存 Hook
+│   ├── useAuth.ts          # 認證 Hook
+│   └── useProgressSync.ts  # 進度同步 Hook
+├── lib/
+│   └── articles.ts         # 文章處理函式庫
 ├── types/
 │   └── index.ts            # TypeScript 類型定義
 └── App.css                 # 主要樣式文件
+
+articles/                   # 文章目錄
+├── 01/                     # 資料結構
+├── 02/                     # 演算法範式
+├── 03/                     # 滑動視窗與雙指針
+├── 04/                     # 二分法
+├── 05/                     # 鏈結串列與樹
+├── 06/                     # 堆疊與單調堆疊
+├── 07/                     # 網格圖
+├── 08/                     # 圖論
+├── 09/                     # 位元運算
+├── 10/                     # 動態規劃
+├── 11/                     # 進階資料結構
+├── 12/                     # 數論
+├── 13/                     # 貪心演算法
+└── 14/                     # 字串演算法
 ```
 
-## 🎯 使用說明
+## 使用說明
 
 ### 基本操作
 
-1. **瀏覽主題**: 在側邊欄選擇要練習的演算法主題
-2. **查看題目**: 點擊主題後會顯示該主題下的所有題目
-3. **標記完成**: 勾選題目前的複選框來標記完成狀態
-4. **新增題目**: 使用新增題目表單來添加自訂練習題
-5. **追蹤進度**: 在總覽頁面查看整體學習進度
+1. 瀏覽主題：在側邊欄選擇要練習的演算法主題
+2. 查看題目：點擊主題後會顯示該主題下的所有題目
+3. 標記完成：勾選題目前的複選框來標記完成狀態
+4. 新增題目：使用新增題目表單來添加自訂練習題
+5. 追蹤進度：在總覽頁面查看整體學習進度
+6. 閱讀文章：點擊側邊欄的「演算法文章」查看學習資源
 
-### 側邊欄功能
-- **摺疊/展開**: 點擊左上角的箭頭按鈕
-- **主要功能**: 總覽和統計頁面
-- **刷題主題**: 所有演算法主題分類
+### 雲端同步(審核會員)
+
+1. 點擊右上角的「登入」按鈕
+2. 使用 GitHub 帳號進行 OAuth 認證
+3. 登入後，進度會自動同步到雲端
+4. 在多個裝置上登入同一帳號即可同步進度
 
 ### 資料儲存
+
 所有進度資料都儲存在瀏覽器的 localStorage 中，包括：
 - 題目完成狀態
 - 完成時間記錄
 - 自訂新增的題目
 - 學習進度統計
 
-## 🛠 技術棧
+## 技術棧
 
-- **前端框架**: [Next.js 15](https://nextjs.org/) - React 全端框架
-- **程式語言**: [TypeScript](https://www.typescriptlang.org/) - 型別安全的 JavaScript
-- **UI 庫**: [React 18](https://reactjs.org/) - 使用者界面庫
-- **樣式**: CSS3 + CSS Modules - 現代 CSS 樣式
-- **狀態管理**: React Hooks - 本地狀態管理
-- **資料持久化**: localStorage - 瀏覽器本地儲存
-- **建置工具**: [Turbopack](https://turbo.build/pack) - 高效能建置工具
+- 前端框架：[Next.js 15](https://nextjs.org/)
+- 程式語言：[TypeScript](https://www.typescriptlang.org/)
+- UI 函式庫：[React 18](https://reactjs.org/)
+- 樣式：CSS3 + CSS Modules
+- 狀態管理：React Hooks
+- 資料持久化：localStorage + 雲端同步
+- 建置工具：[Turbopack](https://turbo.build/pack)
+- 認證：GitHub OAuth
+- 內容解析：gray-matter
 
-## 📊 功能詳解
+## 功能詳解
 
 ### 總覽面板
 - 整體完成進度圓形圖表
@@ -152,39 +180,50 @@ src/
 - 完成時間自動記錄
 - 自訂題目新增功能
 
-## 🤝 貢獻指南
+### 文章系統
+- 支援 Markdown 格式
+- YAML frontmatter 元資料
+- 階層式導航結構
 
-歡迎貢獻代碼、回報問題或提出建議！
+## 貢獻指南
+
+歡迎貢獻程式碼、回報問題或提出建議。
 
 1. Fork 專案
-2. 建立功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交變更 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
+2. 建立功能分支（`git checkout -b feature/AmazingFeature`）
+3. 提交變更（`git commit -m 'Add some AmazingFeature'`）
+4. 推送到分支（`git push origin feature/AmazingFeature`）
 5. 開啟 Pull Request
 
-## 📝 更新日誌
+## 更新日誌
 
-### v2.0.0
-- ✨ 新增可摺疊側邊欄設計
-- 🎨 重構為現代化 UI 界面
-- 📊 改進統計和分析功能
-- 📱 優化響應式設計
-- 🔄 升級到 Next.js 15
+### v0.1.1（2025-10-08）
+- 新增文章系統，支援 Markdown 格式
 
-### v1.0.0
-- 🎉 初始版本發布
-- ✅ 基本題目追蹤功能
-- 📊 簡單統計面板
-- 💾 本地資料儲存
+### v0.1.0 (2025-09-22)
+- 新增可摺疊側邊欄設計
+- 重構為現代化介面
+- 改進統計和分析功能
+- 優化響應式設計
+- 升級到 Next.js 15
 
-## 📄 授權條款
+### v0.0.1 (2025-09-01)
+- 初始版本發布
+- 基本題目追蹤功能
+- 簡單統計面板
+- 本地資料儲存
+
+## 授權條款
 
 本專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 文件
 
-## 🙋‍♂️ 聯絡資訊
+## 聯絡資訊
 
 如有問題或建議，歡迎透過 GitHub Issues 聯絡。
 
+專案來源：[intervalrain/0x3F](https://github.com/intervalrain/0x3F)
+email: intervalrain@gmail.com
+
 ---
 
-⭐ 如果這個專案對你有幫助，請給個星星支持一下！
+如果這個專案對你有幫助，請給個星星支持。Thanks！

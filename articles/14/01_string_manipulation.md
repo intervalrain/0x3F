@@ -1,8 +1,14 @@
 ---
-title: "1. String Manipulation"
+title: 14-1. String Manipulation
 order: 1
-description: "字串基本操作與常見模式"
-tags: ["string", "manipulation", "two-pointers"]
+description: 字串基本操作與常見模式
+tags:
+  - string
+  - manipulation
+  - two-pointers
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 1. String Manipulation

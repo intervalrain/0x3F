@@ -1,8 +1,14 @@
 ---
-title: "Brute Force (暴力法)"
+title: 02-2. Brute Force (暴力法)
 order: 2
-description: "暴力法的概念、應用場景與優化策略"
-tags: ["Brute Force", "暴力法", "窮舉"]
+description: 暴力法的概念、應用場景與優化策略
+tags:
+  - Brute Force
+  - 暴力法
+  - 窮舉
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Brute Force (暴力法)

@@ -1,8 +1,16 @@
 ---
-title: "Dijkstra 最短路徑演算法"
+title: 08-4. Dijkstra 最短路徑演算法
 order: 4
-description: "單源最短路徑的貪心演算法"
-tags: ["graph", "shortest path", "dijkstra", "greedy", "priority queue"]
+description: 單源最短路徑的貪心演算法
+tags:
+  - graph
+  - shortest path
+  - dijkstra
+  - greedy
+  - priority queue
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Dijkstra 最短路徑演算法

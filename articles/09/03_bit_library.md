@@ -1,8 +1,15 @@
 ---
-title: "3. Bit Library - STL"
+title: 09-3. Bit Library - STL
 order: 3
-description: "C++ STL 位元函式庫：bitset 與 GCC Built-in Functions"
-tags: ["bit manipulation", "bitset", "STL", "GCC builtin"]
+description: C++ STL 位元函式庫：bitset 與 GCC Built-in Functions
+tags:
+  - bit manipulation
+  - bitset
+  - STL
+  - GCC builtin
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 3. Bit Library - STL

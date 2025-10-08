@@ -1,8 +1,14 @@
 ---
-title: "不定長滑動視窗"
+title: 03-2. 不定長滑動視窗
 order: 2
-description: "可變窗口大小的滑動視窗技巧與經典題目"
-tags: ["Sliding Window", "Variable Length", "不定長視窗"]
+description: 可變窗口大小的滑動視窗技巧與經典題目
+tags:
+  - Sliding Window
+  - Variable Length
+  - 不定長視窗
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 不定長滑動視窗 (Variable-Length Sliding Window)

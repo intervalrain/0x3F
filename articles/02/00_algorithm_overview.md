@@ -1,8 +1,15 @@
 ---
-title: "演算法概述"
+title: 02-0. 演算法概述
 order: 0
-description: "演算法的選擇策略：以找某值為例，探討時間與空間的權衡"
-tags: ["演算法", "複雜度", "Hash Table", "Binary Search"]
+description: 演算法的選擇策略：以找某值為例，探討時間與空間的權衡
+tags:
+  - 演算法
+  - 複雜度
+  - Hash Table
+  - Binary Search
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 演算法概述

@@ -1,8 +1,15 @@
 ---
-title: "完全背包"
+title: 10-4. 完全背包
 order: 4
-description: "完全背包問題的原理與應用"
-tags: ["動態規劃", "背包問題", "完全背包", "Unbounded Knapsack"]
+description: 完全背包問題的原理與應用
+tags:
+  - 動態規劃
+  - 背包問題
+  - 完全背包
+  - Unbounded Knapsack
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 完全背包 (Unbounded Knapsack)

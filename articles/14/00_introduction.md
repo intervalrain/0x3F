@@ -1,8 +1,13 @@
 ---
-title: "0. String 介紹"
+title: 14-0. String 介紹
 order: 0
-description: "C++ 字串基礎與常用技巧"
-tags: ["string", "基礎"]
+description: C++ 字串基礎與常用技巧
+tags:
+  - string
+  - 基礎
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 0. String 介紹

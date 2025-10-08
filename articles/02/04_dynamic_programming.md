@@ -1,8 +1,15 @@
 ---
-title: "Dynamic Programming (動態規劃)"
+title: 02-4. Dynamic Programming (動態規劃)
 order: 4
-description: "動態規劃的核心思想：記憶化、狀態轉移方程"
-tags: ["Dynamic Programming", "DP", "動態規劃", "記憶化"]
+description: 動態規劃的核心思想：記憶化、狀態轉移方程
+tags:
+  - Dynamic Programming
+  - DP
+  - 動態規劃
+  - 記憶化
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Dynamic Programming (動態規劃)

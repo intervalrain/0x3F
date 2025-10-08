@@ -1,8 +1,15 @@
 ---
-title: "動態規劃介紹"
+title: 10-0. 動態規劃介紹
 order: 0
-description: "動態規劃的核心概念與基礎原理"
-tags: ["動態規劃", "DP", "狀態轉移", "記憶化搜索"]
+description: 動態規劃的核心概念與基礎原理
+tags:
+  - 動態規劃
+  - DP
+  - 狀態轉移
+  - 記憶化搜索
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 動態規劃介紹

@@ -1,8 +1,15 @@
 ---
-title: "Union Find (Disjoint Set Union)"
+title: 11-4. Union Find (Disjoint Set Union)
 order: 4
-description: "並查集：高效處理集合合併與連通性問題"
-tags: ["Union Find", "DSU", "Disjoint Set", "Connected Components"]
+description: 並查集：高效處理集合合併與連通性問題
+tags:
+  - Union Find
+  - DSU
+  - Disjoint Set
+  - Connected Components
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Union Find (Disjoint Set Union)

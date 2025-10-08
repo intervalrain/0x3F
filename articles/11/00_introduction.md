@@ -1,8 +1,14 @@
 ---
-title: "進階資料結構概論"
+title: 11-0. 進階資料結構概論
 order: 0
-description: "理解時間與空間的權衡，選擇合適的資料結構"
-tags: ["Data Structure", "Time Complexity", "Space Complexity"]
+description: 理解時間與空間的權衡，選擇合適的資料結構
+tags:
+  - Data Structure
+  - Time Complexity
+  - Space Complexity
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 進階資料結構概論

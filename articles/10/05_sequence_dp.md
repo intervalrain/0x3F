@@ -1,8 +1,16 @@
 ---
-title: "序列 DP"
+title: 10-5. 序列 DP
 order: 5
-description: "序列動態規劃：LIS、LCS、編輯距離"
-tags: ["動態規劃", "序列 DP", "LIS", "LCS", "編輯距離"]
+description: 序列動態規劃：LIS、LCS、編輯距離
+tags:
+  - 動態規劃
+  - 序列 DP
+  - LIS
+  - LCS
+  - 編輯距離
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 序列 DP (Sequence DP)

@@ -1,8 +1,14 @@
 ---
-title: "9. Manacher (*)"
+title: 14-9. Manacher (*)
 order: 9
-description: "Manacher 算法 - O(n) 求最長回文子串"
-tags: ["manacher", "palindrome", "advanced"]
+description: Manacher 算法 - O(n) 求最長回文子串
+tags:
+  - manacher
+  - palindrome
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 9. Manacher

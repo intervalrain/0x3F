@@ -1,8 +1,16 @@
 ---
-title: "12. String Compression (*)"
+title: 14-12. String Compression (*)
 order: 12
-description: "字串壓縮算法"
-tags: ["compression", "rle", "lzw", "huffman", "advanced"]
+description: 字串壓縮算法
+tags:
+  - compression
+  - rle
+  - lzw
+  - huffman
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 12. String Compression

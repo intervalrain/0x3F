@@ -1,6 +1,11 @@
 ---
-title: "Stack, Queue, Deque, 單調棧介紹"
+title: '06-0. Stack, Queue, Deque, 單調棧介紹'
 order: 0
+description: '完整介紹堆疊、佇列、雙端佇列與單調棧的概念與實作。從基本操作到進階應用，理解 LIFO、FIFO 特性，掌握單調棧解決 Next Greater Element 等經典問題的核心技巧。'
+tags: ['Stack', 'Queue', 'Deque', 'Monotonic Stack', '堆疊', '佇列', '單調棧']
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # Stack, Queue, Deque, 單調棧介紹

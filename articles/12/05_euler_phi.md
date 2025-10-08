@@ -1,8 +1,15 @@
 ---
-title: "歐拉函數 - Euler's Phi Function (*)"
+title: 12-5. 歐拉函數 - Euler's Phi Function (*)
 order: 5
-description: "歐拉函數的定義、計算與應用（進階主題）"
-tags: ["Number Theory", "Euler Phi", "Euler's Theorem", "Advanced"]
+description: 歐拉函數的定義、計算與應用（進階主題）
+tags:
+  - Number Theory
+  - Euler Phi
+  - Euler's Theorem
+  - Advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 5. 歐拉函數 - Euler's Phi Function (**)

@@ -1,8 +1,14 @@
 ---
-title: "8. Z-function (*)"
+title: 14-8. Z-function (*)
 order: 8
-description: "Z-function 與 Z-algorithm"
-tags: ["z-function", "z-algorithm", "advanced"]
+description: Z-function 與 Z-algorithm
+tags:
+  - z-function
+  - z-algorithm
+  - advanced
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 8. Z-function

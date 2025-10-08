@@ -1,8 +1,15 @@
 ---
-title: "雙向雙指針"
+title: 03-3. 雙向雙指針
 order: 3
-description: "對撞指針技巧與經典題目"
-tags: ["Two Pointers", "Opposite Direction", "雙向指針", "對撞指針"]
+description: 對撞指針技巧與經典題目
+tags:
+  - Two Pointers
+  - Opposite Direction
+  - 雙向指針
+  - 對撞指針
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 雙向雙指針 (Opposite Direction Two Pointers)

@@ -1,8 +1,15 @@
 ---
-title: "Heap 與 Priority Queue"
+title: 01-7. Heap 與 Priority Queue
 order: 7
-description: "Heap 的原理、實作與應用，以及 Priority Queue 的使用"
-tags: ["Heap", "Priority Queue", "Binary Heap", "堆積"]
+description: Heap 的原理、實作與應用，以及 Priority Queue 的使用
+tags:
+  - Heap
+  - Priority Queue
+  - Binary Heap
+  - 堆積
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Heap 與 Priority Queue

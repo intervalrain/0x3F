@@ -1,8 +1,15 @@
 ---
-title: "GCD/LCM - 最大公因數與最小公倍數"
+title: 12-2. GCD/LCM - 最大公因數與最小公倍數
 order: 2
-description: "輾轉相除法、擴展歐幾里得算法與貝祖等式"
-tags: ["Number Theory", "GCD", "LCM", "Euclidean Algorithm"]
+description: 輾轉相除法、擴展歐幾里得算法與貝祖等式
+tags:
+  - Number Theory
+  - GCD
+  - LCM
+  - Euclidean Algorithm
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 2. GCD/LCM - 最大公因數與最小公倍數

@@ -1,8 +1,14 @@
 ---
-title: "區間問題"
+title: 13-1. 區間問題
 order: 1
-description: "貪心法在區間問題中的應用：調度、覆蓋、分組與合併"
-tags: ["greedy", "interval", "sorting"]
+description: 貪心法在區間問題中的應用：調度、覆蓋、分組與合併
+tags:
+  - greedy
+  - interval
+  - sorting
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 1. 區間問題

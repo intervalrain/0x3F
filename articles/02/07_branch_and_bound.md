@@ -1,8 +1,14 @@
 ---
-title: "Branch and Bound (分支定界法)"
+title: 02-7. Branch and Bound (分支定界法)
 order: 7
-description: "分支定界法：透過界限函數剪枝，找到最優解"
-tags: ["Branch and Bound", "分支定界", "最優化"]
+description: 分支定界法：透過界限函數剪枝，找到最優解
+tags:
+  - Branch and Bound
+  - 分支定界
+  - 最優化
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Branch and Bound (分支定界法)

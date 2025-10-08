@@ -1,6 +1,11 @@
 ---
-title: "Segment Tree"
+title: 05-7. Segment Tree
 order: 7
+description: '學習線段樹的構建與應用，解決區間查詢與更新問題。掌握區間和、區間最值、懶惰標記等進階技巧，實現高效的範圍操作與動態查詢。'
+tags: ['Segment Tree', 'Range Query', 'Lazy Propagation', '線段樹', '區間查詢']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Segment Tree (線段樹)

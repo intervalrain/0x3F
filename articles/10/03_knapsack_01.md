@@ -1,8 +1,14 @@
 ---
-title: "0-1 背包 DP"
+title: 10-3. 0-1 背包 DP
 order: 3
-description: "0-1 背包問題的原理與變形"
-tags: ["動態規劃", "背包問題", "0-1 Knapsack"]
+description: 0-1 背包問題的原理與變形
+tags:
+  - 動態規劃
+  - 背包問題
+  - 0-1 Knapsack
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 0-1 背包 DP (0-1 Knapsack)

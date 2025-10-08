@@ -1,4 +1,4 @@
-import { getArticle, getAllArticlePaths } from '@/lib/articles';
+import { getArticle, getAllArticlePaths, getGlobalArticleNavigation } from '@/lib/articles';
 import { notFound } from 'next/navigation';
 import ArticlePageClient from './ArticlePageClient';
 
@@ -25,10 +25,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  // 獲取文章導航（跨資料夾）
+  const navigation = getGlobalArticleNavigation(folder, slug);
+
   return (
     <ArticlePageClient
       metadata={article.metadata}
       content={article.content}
+      navigation={navigation}
     />
   );
 }

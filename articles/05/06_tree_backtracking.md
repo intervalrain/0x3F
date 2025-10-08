@@ -1,6 +1,11 @@
 ---
-title: "Tree + Backtracking"
+title: 05-6. Tree + Backtracking
 order: 6
+description: '結合樹形結構與回溯算法，解決路徑搜尋、組合問題、決策樹等經典題型。掌握樹上回溯的模板與技巧，學習如何在樹中尋找所有可能的解。'
+tags: ['Tree', 'Backtracking', 'Path Sum', 'DFS', '樹', '回溯']
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Tree + Backtracking (樹 + 回溯)

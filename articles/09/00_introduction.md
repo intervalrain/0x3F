@@ -1,8 +1,14 @@
 ---
-title: "0. 位元運算介紹"
+title: 09-0. 位元運算介紹
 order: 0
-description: "位元運算的基礎概念與術語"
-tags: ["bit manipulation", "binary", "基礎"]
+description: 位元運算的基礎概念與術語
+tags:
+  - bit manipulation
+  - binary
+  - 基礎
+author: Rain Hu
+date: '2025-10-08'
+draft: false
 ---
 
 # 0. 位元運算介紹

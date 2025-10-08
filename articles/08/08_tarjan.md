@@ -1,8 +1,17 @@
 ---
-title: "Tarjan 演算法"
+title: 08-8. Tarjan 演算法
 order: 8
-description: "強連通分量、橋與割點的統一解法"
-tags: ["graph", "tarjan", "SCC", "bridge", "articulation point", "DFS"]
+description: 強連通分量、橋與割點的統一解法
+tags:
+  - graph
+  - tarjan
+  - SCC
+  - bridge
+  - articulation point
+  - DFS
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Tarjan 演算法

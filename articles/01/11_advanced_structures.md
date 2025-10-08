@@ -1,8 +1,16 @@
 ---
-title: "進階資料結構"
+title: 01-11. 進階資料結構
 order: 11
-description: "LeetCode 中常用的進階資料結構：Trie、Segment Tree、Fenwick Tree、Monotonic Stack 等"
-tags: ["Trie", "Segment Tree", "Fenwick Tree", "Monotonic Stack", "Disjoint Set"]
+description: LeetCode 中常用的進階資料結構：Trie、Segment Tree、Fenwick Tree、Monotonic Stack 等
+tags:
+  - Trie
+  - Segment Tree
+  - Fenwick Tree
+  - Monotonic Stack
+  - Disjoint Set
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # 進階資料結構

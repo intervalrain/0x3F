@@ -1,8 +1,14 @@
 ---
-title: "Greedy (貪心法)"
+title: 02-5. Greedy (貪心法)
 order: 5
-description: "貪心法的核心思想：局部最優解導向全域最優解"
-tags: ["Greedy", "貪心法", "局部最優"]
+description: 貪心法的核心思想：局部最優解導向全域最優解
+tags:
+  - Greedy
+  - 貪心法
+  - 局部最優
+author: Rain Hu
+date: ''
+draft: true
 ---
 
 # Greedy (貪心法)
