@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "0x3F LeetCode 刷題追蹤器",
   description: "LeetCode Problem Tracker - Track your progress through 0x3F algorithm problems",
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/apple-touch-icon.svg',
+  },
 };
 
 export default function RootLayout({
