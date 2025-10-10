@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import AppLayout from '@/components/AppLayout';
 import ArticleListContent from '@/components/ArticleListContent';
 import { Article } from '@/lib/articles';
 
@@ -19,16 +18,12 @@ const FolderPageClient: React.FC<FolderPageClientProps> = ({
   folder
 }) => {
   return (
-    <AppLayout>
-      {() => (
-        <ArticleListContent
-          folderTitle={folderTitle}
-          folderDescription={folderDescription}
-          articles={articles}
-          folder={folder}
-        />
-      )}
-    </AppLayout>
+    <ArticleListContent
+      folderTitle={folderTitle}
+      folderDescription={folderDescription}
+      articles={articles}
+      folder={folder}
+    />
   );
 };
 

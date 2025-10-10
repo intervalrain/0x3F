@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import {
+  Box,
+} from '@mui/material';
 import { topics } from '../data/topics';
 import { TopicProgress } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -8,10 +11,10 @@ import { allTopicsDataByIndex } from '../data/allTopicsData';
 import Sidebar from './Sidebar';
 import { useAuth } from '../hooks/useAuth';
 import { useProgressSync } from '../hooks/useProgressSync';
-import AuthButton from './AuthButton';
 import SyncConflictModal from './SyncConflictModal';
 import { ArticleNode } from '../lib/articles';
 import Footer from './Footer';
+import Header from './Header';
 
 interface AppLayoutProps {
   children: (props: {
@@ -22,7 +25,7 @@ interface AppLayoutProps {
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const [activeTab, setActiveTab] = useState<string | number>("dashboard");
+  const [activeTab, setActiveTab] = useState<string | number>("home");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [showConflictModal, setShowConflictModal] = useState(false);
@@ -213,7 +216,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   );
 
   // 使用進度同步 hook
-  const { isSyncing, canSync } = useProgressSync(topicProgress, {
+  const { isSyncing } = useProgressSync(topicProgress, {
     enabled: isAuthenticated,
   });
 
@@ -404,29 +407,14 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <header className="app-header">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-          <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            {isSyncing && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{
-                  width: '8px',
-                  height: '8px',
-                  backgroundColor: '#10b981',
-                  borderRadius: '50%',
-                  animation: 'pulse 2s infinite'
-                }} />
-                <span style={{ fontSize: '14px', color: '#6b7280' }}>同步中...</span>
-              </div>
-            )}
-            <AuthButton />
-          </div>
-        </div>
-      </header>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Header
+        isSyncing={isSyncing}
+        onNavigate={setActiveTab}
+        onMenuClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
 
-      <div className="app-container" style={{ flex: 1 }}>
+      <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
         <Sidebar
           topics={topics}
           topicProgress={topicProgress}
@@ -436,10 +424,17 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           articleTree={articleTree}
         />
 
-        <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            overflow: 'auto',
+            backgroundColor: 'background.default',
+          }}
+        >
           {children({ activeTab, topicProgress, setTopicProgress })}
-        </main>
-      </div>
+        </Box>
+      </Box>
 
       <Footer />
 
@@ -455,7 +450,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           }}
         />
       )}
-    </div>
+    </Box>
   );
 };
 

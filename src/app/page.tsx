@@ -7,23 +7,23 @@ import TopicTab from "../components/TopicTab";
 import TopicTabStructured from "../components/TopicTabStructured";
 import Dashboard from "../components/Dashboard";
 import Analytics from "../components/Analytics";
-import AppLayout from "../components/AppLayout";
+import HomePage from "../components/HomePage";
+import { useLayout } from "../contexts/LayoutContext";
 
 export default function Home() {
-  const getCurrentTopicProblems = (activeTab: string | number, topicProgress: TopicProgress[]) =>
-    typeof activeTab === "number"
-      ? topicProgress.find((tp) => tp.topicId === activeTab)?.problems || []
+  const { activeTab, topicProgress, setTopicProgress } = useLayout();
+
+  const getCurrentTopicProblems = (tab: string | number, progress: TopicProgress[]) =>
+    typeof tab === "number"
+      ? progress.find((tp) => tp.topicId === tab)?.problems || []
       : [];
 
-  const getCurrentTopicChapters = (activeTab: string | number, topicProgress: TopicProgress[]) =>
-    typeof activeTab === "number"
-      ? topicProgress.find((tp) => tp.topicId === activeTab)?.chapters || []
+  const getCurrentTopicChapters = (tab: string | number, progress: TopicProgress[]) =>
+    typeof tab === "number"
+      ? progress.find((tp) => tp.topicId === tab)?.chapters || []
       : [];
 
-  const createHandleToggleProblem = (
-    activeTab: string | number,
-    setTopicProgress: React.Dispatch<React.SetStateAction<TopicProgress[]>>
-  ) => (problemId: string) => {
+  const handleToggleProblem = (problemId: string) => {
     if (typeof activeTab !== "number") return;
 
     setTopicProgress((prev: TopicProgress[]) =>
@@ -74,10 +74,7 @@ export default function Home() {
     );
   };
 
-  const createHandleAddProblem = (
-    activeTab: string | number,
-    setTopicProgress: React.Dispatch<React.SetStateAction<TopicProgress[]>>
-  ) => (problem: Problem) => {
+  const handleAddProblem = (problem: Problem) => {
     if (typeof activeTab !== "number") return;
 
     setTopicProgress((prev: TopicProgress[]) =>
@@ -119,10 +116,7 @@ export default function Home() {
     );
   };
 
-  const createHandleAddChapter = (
-    activeTab: string | number,
-    setTopicProgress: React.Dispatch<React.SetStateAction<TopicProgress[]>>
-  ) => (chapter: Chapter) => {
+  const handleAddChapter = (chapter: Chapter) => {
     if (typeof activeTab !== "number") return;
 
     setTopicProgress((prev: TopicProgress[]) =>
@@ -138,10 +132,7 @@ export default function Home() {
     );
   };
 
-  const createHandleAddSubsection = (
-    activeTab: string | number,
-    setTopicProgress: React.Dispatch<React.SetStateAction<TopicProgress[]>>
-  ) => (
+  const handleAddSubsection = (
     chapterId: string,
     subsection: { id: string; title: string; problems: Problem[] }
   ) => {
@@ -169,50 +160,41 @@ export default function Home() {
     );
   };
 
-  return (
-    <AppLayout>
-      {({ activeTab, topicProgress, setTopicProgress }) => {
-        const currentTopicProblems = getCurrentTopicProblems(activeTab, topicProgress);
-        const currentTopicChapters = getCurrentTopicChapters(activeTab, topicProgress);
-        const handleToggleProblem = createHandleToggleProblem(activeTab, setTopicProgress);
-        const handleAddProblem = createHandleAddProblem(activeTab, setTopicProgress);
-        const handleAddChapter = createHandleAddChapter(activeTab, setTopicProgress);
-        const handleAddSubsection = createHandleAddSubsection(activeTab, setTopicProgress);
+  const currentTopicProblems = getCurrentTopicProblems(activeTab, topicProgress);
+  const currentTopicChapters = getCurrentTopicChapters(activeTab, topicProgress);
 
-        return (
-          <>
-            {activeTab === "dashboard" && (
-              <Dashboard topics={topics} topicProgress={topicProgress} />
-            )}
-            {activeTab === "analytics" && (
-              <Analytics topics={topics} topicProgress={topicProgress} />
-            )}
-            {topics.map(
-              (topic) =>
-                activeTab === topic.id &&
-                (currentTopicChapters.length > 0 ? (
-                  <TopicTabStructured
-                    key={topic.id}
-                    topic={topic}
-                    chapters={currentTopicChapters}
-                    onToggleProblem={handleToggleProblem}
-                    onAddProblem={handleAddProblem}
-                    onAddChapter={handleAddChapter}
-                    onAddSubsection={handleAddSubsection}
-                  />
-                ) : (
-                  <TopicTab
-                    key={topic.id}
-                    topic={topic}
-                    problems={currentTopicProblems}
-                    onToggleProblem={handleToggleProblem}
-                    onAddProblem={handleAddProblem}
-                  />
-                ))
-            )}
-          </>
-        );
-      }}
-    </AppLayout>
+  return (
+    <>
+      {activeTab === "home" && <HomePage />}
+      {activeTab === "dashboard" && (
+        <Dashboard topics={topics} topicProgress={topicProgress} />
+      )}
+      {activeTab === "analytics" && (
+        <Analytics topics={topics} topicProgress={topicProgress} />
+      )}
+      {topics.map(
+        (topic) =>
+          activeTab === topic.id &&
+          (currentTopicChapters.length > 0 ? (
+            <TopicTabStructured
+              key={topic.id}
+              topic={topic}
+              chapters={currentTopicChapters}
+              onToggleProblem={handleToggleProblem}
+              onAddProblem={handleAddProblem}
+              onAddChapter={handleAddChapter}
+              onAddSubsection={handleAddSubsection}
+            />
+          ) : (
+            <TopicTab
+              key={topic.id}
+              topic={topic}
+              problems={currentTopicProblems}
+              onToggleProblem={handleToggleProblem}
+              onAddProblem={handleAddProblem}
+            />
+          ))
+      )}
+    </>
   );
 }
