@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import AppLayout from '@/components/AppLayout';
 import ArticleContent from '@/components/ArticleContent';
 import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 
@@ -13,11 +12,7 @@ interface ArticlePageClientProps {
 
 const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ metadata, content, navigation }) => {
   return (
-    <AppLayout>
-      {() => (
-        <ArticleContent metadata={metadata} content={content} navigation={navigation} />
-      )}
-    </AppLayout>
+    <ArticleContent metadata={metadata} content={content} navigation={navigation} />
   );
 };
 

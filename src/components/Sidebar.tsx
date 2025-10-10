@@ -1,10 +1,30 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import {
+  Drawer,
+  Box,
+  useMediaQuery,
+  useTheme,
+  Typography,
+  Chip,
+  IconButton,
+} from '@mui/material';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { TreeItem } from '@mui/x-tree-view/TreeItem';
+import {
+  Code as CodeIcon,
+  Article as ArticleIcon,
+  CodeOff as CodeBracketSquareIcon,
+  ExpandMore,
+  ChevronRight,
+  ChevronLeft,
+} from '@mui/icons-material';
 import { Topic } from '../data/topics';
 import { TopicProgress } from '../types';
 import { ArticleNode } from '../lib/articles';
+import { useLayout } from '../contexts/LayoutContext';
 
 interface SidebarProps {
   topics: Topic[];
@@ -21,367 +41,337 @@ const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
   onTabChange,
   onCollapseChange,
-  articleTree = []
+  articleTree = [],
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const {
+    sidebarWidth,
+    setSidebarWidth,
+    expandedItems,
+    setExpandedItems,
+    sidebarCollapsed,
+    setSidebarCollapsed
+  } = useLayout();
+  const [isResizing, setIsResizing] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  // 檢查是否在文章頁面（需要在最前面定義）
-  const isOnArticlePage = pathname?.startsWith('/articles/');
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+    onCollapseChange?.(!mobileOpen);
+  };
 
-  // 初始化時就從 localStorage 讀取狀態，避免閃爍
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedCollapsed = localStorage.getItem('sidebar-collapsed');
-      return savedCollapsed === 'true';
-    }
-    return false;
-  });
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizing(true);
+  };
 
-  const [expandedArticles, setExpandedArticles] = useState<Set<string>>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('sidebar-expanded-articles');
-      if (saved) {
-        try {
-          return new Set(JSON.parse(saved));
-        } catch (e) {
-          return new Set();
-        }
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing) return;
+
+      const newWidth = e.clientX;
+      if (newWidth >= 200 && newWidth <= 500) {
+        setSidebarWidth(newWidth);
       }
-    }
-    return new Set();
-  });
-
-  const [articlesExpanded, setArticlesExpanded] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('sidebar-articles-section-expanded');
-      return saved === null ? true : saved === 'true';
-    }
-    return true;
-  });
-
-  const [hoveredTooltip, setHoveredTooltip] = useState<{ text: string; top: number } | null>(null);
-
-  // 自動展開當前文章所在的資料夾
-  React.useEffect(() => {
-    if (isOnArticlePage && pathname) {
-      // 從 pathname 提取資料夾路徑，例如 /articles/12/00_introduction -> /articles/12
-      const match = pathname.match(/^\/articles\/(\d+)/);
-      if (match) {
-        const folderPath = `/articles/${match[1]}`;
-        setExpandedArticles(prev => {
-          const newSet = new Set(prev);
-          if (!newSet.has(folderPath)) {
-            newSet.add(folderPath);
-            // 保存到 localStorage
-            if (typeof window !== 'undefined') {
-              localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
-            }
-          }
-          return newSet;
-        });
-      }
-    }
-  }, [pathname, isOnArticlePage]);
-
-  // 通知父組件初始狀態
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedCollapsed = localStorage.getItem('sidebar-collapsed');
-      if (savedCollapsed === 'true') {
-        onCollapseChange?.(true);
-      }
-    }
-  }, [onCollapseChange]);
-
-  const handleToggle = () => {
-    const newCollapsed = !isCollapsed;
-    setIsCollapsed(newCollapsed);
-    localStorage.setItem('sidebar-collapsed', String(newCollapsed));
-    onCollapseChange?.(newCollapsed);
-  };
-
-  const handleTabClick = (tab: string | number) => {
-    if (isOnArticlePage) {
-      // 如果在文章頁面，需要導航回主頁並設置 activeTab
-      router.push(`/?tab=${tab}`);
-    } else {
-      // 在主頁面，直接改變 activeTab
-      onTabChange(tab);
-    }
-  };
-
-  const toggleArticleFolder = (path: string) => {
-    if (isCollapsed) {
-      // 在 collapsed 狀態下，直接導航到資料夾頁面
-      window.location.href = path;
-    } else {
-      // 在展開狀態下，切換資料夾的展開/收合
-      setExpandedArticles(prev => {
-        const newSet = new Set(prev);
-        if (newSet.has(path)) {
-          newSet.delete(path);
-        } else {
-          newSet.add(path);
-        }
-        // 保存到 localStorage
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('sidebar-expanded-articles', JSON.stringify(Array.from(newSet)));
-        }
-        return newSet;
-      });
-    }
-  };
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, text: string) => {
-    if (isCollapsed) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      setHoveredTooltip({
-        text,
-        top: rect.top + rect.height / 2
-      });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredTooltip(null);
-  };
-  const getTabProgress = (topicId: number) => {
-    const topicData = topicProgress.find((tp) => tp.topicId === topicId);
-    if (!topicData) return { completed: 0, total: 0 };
-
-    // Count problems in old format
-    const oldProblems = topicData.problems || [];
-    const oldCompleted = oldProblems.filter((p) => p.completed).length;
-
-    // Count problems in structured format
-    const chapterProblems =
-      topicData.chapters?.reduce(
-        (total, chapter) =>
-          total +
-          chapter.subsections.reduce(
-            (subtotal, subsection) => subtotal + subsection.problems.length,
-            0
-          ),
-        0
-      ) || 0;
-
-    const chapterCompleted =
-      topicData.chapters?.reduce(
-        (total, chapter) =>
-          total +
-          chapter.subsections.reduce(
-            (subtotal, subsection) =>
-              subtotal + subsection.problems.filter((p) => p.completed).length,
-            0
-          ),
-        0
-      ) || 0;
-
-    return {
-      completed: oldCompleted + chapterCompleted,
-      total: oldProblems.length + chapterProblems,
     };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing]);
+
+  const handleNodeSelect = (event: React.SyntheticEvent, nodeId: string) => {
+    // Check if it's a topic ID (number)
+    if (!isNaN(Number(nodeId))) {
+      // Only navigate if not already on home page
+      if (pathname !== '/') {
+        router.push('/');
+      }
+      onTabChange(Number(nodeId));
+    } else if (nodeId.startsWith('article-')) {
+      // Article node - extract path from nodeId
+      const articlePath = nodeId.replace('article-', '');
+      // Path already contains full route (e.g., "/articles/01/article-name")
+      // Only navigate if it's not a folder
+      if (articlePath && !articlePath.startsWith('folder-')) {
+        router.push(articlePath);
+      }
+    }
+
+    if (isMobile) {
+      setMobileOpen(false);
+    }
   };
 
-  return (
-    <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-      <button 
-        className="sidebar-toggle"
-        onClick={handleToggle}
-        title={isCollapsed ? "展開側邊欄" : "收合側邊欄"}
-      >
-        <span className="sidebar-toggle-icon">◀</span>
-      </button>
-      
-      {/* 手機版收合時的水平 tab bar */}
-      <div className="mobile-tab-bar">
-        <button
-          className={`mobile-tab ${activeTab === "dashboard" ? "active" : ""}`}
-          onClick={() => handleTabClick("dashboard")}
-          title="總覽"
-        >
-          📊
-        </button>
-        <button
-          className={`mobile-tab ${activeTab === "analytics" ? "active" : ""}`}
-          onClick={() => handleTabClick("analytics")}
-          title="統計"
-        >
-          📈
-        </button>
-        {topics.map((topic) => {
-          const { completed, total } = getTabProgress(topic.id);
-          const tooltipText = total > 0 ? `${topic.title} (${completed}/${total})` : topic.title;
-          return (
-            <button
-              key={topic.id}
-              className={`mobile-tab ${activeTab === topic.id ? "active" : ""}`}
-              onClick={() => handleTabClick(topic.id)}
-              title={tooltipText}
+  const handleArticleClick = (articlePath: string, event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (articlePath && !articlePath.startsWith('folder-')) {
+      router.push(articlePath);
+    }
+  };
+
+  const renderArticleTree = (nodes: ArticleNode[], parentId = ''): React.ReactNode => {
+    return nodes.map((node, index) => {
+      // Use path for unique ID, fallback to index if path is undefined
+      const nodePath = node.path || `folder-${index}`;
+      const nodeId = `article-${nodePath}`;
+      const hasChildren = node.children && node.children.length > 0;
+
+      return (
+        <TreeItem
+          key={nodeId}
+          itemId={nodeId}
+          label={
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', py: 0.5 }}
+              onClick={(e) => !hasChildren && handleArticleClick(nodePath, e)}
             >
-              <span className="mobile-tab-number">{topic.id}</span>
-              {total > 0 && (
-                <span className="mobile-tab-progress">{completed}/{total}</span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="sidebar-section">
-        <h3 className="sidebar-section-title">主要功能</h3>
-        <div className="sidebar-menu">
-          <button
-            className={`sidebar-item ${activeTab === "dashboard" ? "active" : ""}`}
-            onClick={() => handleTabClick("dashboard")}
-            onMouseEnter={(e) => handleMouseEnter(e, "總覽")}
-            onMouseLeave={handleMouseLeave}
-            data-tooltip="總覽"
-          >
-            <span className="sidebar-icon">📊</span>
-            <span className="sidebar-label">總覽</span>
-          </button>
-          <button
-            className={`sidebar-item ${activeTab === "analytics" ? "active" : ""}`}
-            onClick={() => handleTabClick("analytics")}
-            onMouseEnter={(e) => handleMouseEnter(e, "統計")}
-            onMouseLeave={handleMouseLeave}
-            data-tooltip="統計"
-          >
-            <span className="sidebar-icon">📈</span>
-            <span className="sidebar-label">統計</span>
-          </button>
-        </div>
-      </div>
-
-      {articleTree.length > 0 && (
-        <div className="sidebar-section">
-          {!isCollapsed && (
-            <div
-              className="sidebar-section-header"
-              onClick={() => {
-                const newValue = !articlesExpanded;
-                setArticlesExpanded(newValue);
-                if (typeof window !== 'undefined') {
-                  localStorage.setItem('sidebar-articles-section-expanded', String(newValue));
-                }
-              }}
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 20px' }}
-            >
-              <span style={{ fontSize: '14px' }}>{articlesExpanded ? '▼' : '▶'}</span>
-              <h3 className="sidebar-section-title" style={{ margin: 0 }}>文章專區</h3>
-            </div>
-          )}
-          {(articlesExpanded || isCollapsed) && (
-            <div className="sidebar-menu">
-              {articleTree.map((node) => (
-                <div key={node.path}>
-                  {node.isFolder ? (
-                    <>
-                      <button
-                        className="sidebar-item article-folder"
-                        onClick={() => toggleArticleFolder(node.path)}
-                        onMouseEnter={(e) => handleMouseEnter(e, node.title)}
-                        onMouseLeave={handleMouseLeave}
-                        data-tooltip={node.title}
-                      >
-                        <span className="sidebar-icon">
-                          {expandedArticles.has(node.path) ? '📂' : '📁'}
-                        </span>
-                        <span className="sidebar-label">{node.title}</span>
-                      </button>
-                      {expandedArticles.has(node.path) && node.children && !isCollapsed && (
-                        <div className="article-children">
-                          {node.children.map((child) => (
-                            <a
-                              key={child.path}
-                              href={child.path}
-                              className="sidebar-item article-item"
-                              onMouseEnter={(e) => handleMouseEnter(e, child.title)}
-                              onMouseLeave={handleMouseLeave}
-                              data-tooltip={child.title}
-                            >
-                              <span className="sidebar-icon">📄</span>
-                              <span className="sidebar-label">{child.title}</span>
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <a
-                      href={node.path}
-                      className="sidebar-item article-item"
-                      onMouseEnter={(e) => handleMouseEnter(e, node.title)}
-                      onMouseLeave={handleMouseLeave}
-                      data-tooltip={node.title}
-                    >
-                      <span className="sidebar-icon">📄</span>
-                      <span className="sidebar-label">{node.title}</span>
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="sidebar-section">
-        <h3 className="sidebar-section-title">刷題主題</h3>
-        <div className="sidebar-menu">
-          {topics.map((topic) => {
-            const { completed, total } = getTabProgress(topic.id);
-            const tooltipText = total > 0 ? `${topic.title} (${completed}/${total})` : topic.title;
-            return (
-              <button
-                key={topic.id}
-                className={`sidebar-item ${activeTab === topic.id ? "active" : ""}`}
-                onClick={() => handleTabClick(topic.id)}
-                onMouseEnter={(e) => handleMouseEnter(e, tooltipText)}
-                onMouseLeave={handleMouseLeave}
-                data-tooltip={tooltipText}
+              <Typography
+                variant="body2"
+                sx={{
+                  flexGrow: 1,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  cursor: hasChildren ? 'default' : 'pointer',
+                  '&:hover': {
+                    color: !hasChildren ? 'primary.main' : 'inherit',
+                  },
+                }}
               >
-                <span className="sidebar-number">{topic.id}</span>
-                <div className="sidebar-content">
-                  <span className="sidebar-label">{topic.title}</span>
-                  {total > 0 && (
-                    <span className="sidebar-progress">
-                      {completed}/{total}
-                    </span>
-                  )}
-                </div>
-              </button>
+                {node.title}
+              </Typography>
+            </Box>
+          }
+        >
+          {hasChildren && renderArticleTree(node.children!)}
+        </TreeItem>
+      );
+    });
+  };
+
+  const getTopicProgress = (topicId: number) => {
+    const progress = topicProgress.find((p) => p.topicId === topicId);
+    if (!progress) return { completed: 0, total: 0 };
+
+    const total = progress.problems.length;
+    const completed = progress.problems.filter((p) => p.solved).length;
+    return { completed, total };
+  };
+
+  const drawerContent = (
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {!isMobile && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1, borderBottom: '1px solid', borderColor: 'divider' }}>
+          <IconButton
+            onClick={() => {
+              setSidebarCollapsed(true);
+              onCollapseChange?.(true);
+            }}
+            size="small"
+            sx={{ color: 'text.secondary' }}
+          >
+            <ChevronLeft />
+          </IconButton>
+        </Box>
+      )}
+      <SimpleTreeView
+        aria-label="navigation tree"
+        expandedItems={expandedItems}
+        onExpandedItemsChange={(event, itemIds) => setExpandedItems(itemIds)}
+        slots={{
+          expandIcon: ChevronRight,
+          collapseIcon: ExpandMore,
+        }}
+        onItemClick={handleNodeSelect}
+        sx={{
+          flexGrow: 1,
+          overflowY: 'auto',
+          overflowX: 'hidden',
+        }}
+      >
+        {/* 刷題主題 */}
+        <TreeItem
+          itemId="problems-root"
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center', py: 1 }}>
+              <CodeBracketSquareIcon sx={{ mr: 1, fontSize: 20 }} />
+              <Typography variant="subtitle2" fontWeight={600}>
+                刷題主題
+              </Typography>
+            </Box>
+          }
+        >
+          {topics.map((topic) => {
+            const { completed, total } = getTopicProgress(topic.id);
+            const isActive = activeTab === topic.id;
+
+            return (
+              <TreeItem
+                key={topic.id}
+                itemId={String(topic.id)}
+                label={
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 0.5 }}>
+                    <CodeIcon sx={{ fontSize: 18 }} />
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        flexGrow: 1,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        fontWeight: isActive ? 600 : 400,
+                      }}
+                    >
+                      {topic.title}
+                    </Typography>
+                    {total > 0 && (
+                      <Chip
+                        label={`${completed}/${total}`}
+                        size="small"
+                        color={isActive ? 'primary' : 'default'}
+                        sx={{ height: 20, fontSize: '0.7rem' }}
+                      />
+                    )}
+                  </Box>
+                }
+              />
             );
           })}
-        </div>
-      </div>
+        </TreeItem>
 
-      {/* React-based Tooltip */}
-      {hoveredTooltip && (
-        <div
-          style={{
-            position: 'fixed',
-            left: '68px',
-            top: `${hoveredTooltip.top}px`,
-            transform: 'translateY(-50%)',
-            background: '#1f2937',
-            color: 'white',
-            padding: '8px 12px',
-            borderRadius: '6px',
-            fontSize: '13px',
-            fontWeight: 500,
-            whiteSpace: 'nowrap',
-            zIndex: 99999,
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2)',
-            pointerEvents: 'none',
-          }}
+        {/* 文章專區 */}
+        <TreeItem
+          itemId="articles-root"
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center', py: 1 }}>
+              <ArticleIcon sx={{ mr: 1, fontSize: 20 }} />
+              <Typography variant="subtitle2" fontWeight={600}>
+                文章專區
+              </Typography>
+            </Box>
+          }
         >
-          {hoveredTooltip.text}
-        </div>
-      )}
-    </aside>
+          {renderArticleTree(articleTree)}
+        </TreeItem>
+
+        {/* 未來擴充預留位置 */}
+        {/* 可以在這裡加入第三層 */}
+      </SimpleTreeView>
+    </Box>
+  );
+
+  if (isMobile) {
+    return (
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: 280,
+            boxSizing: 'border-box',
+          },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+    );
+  }
+
+  if (sidebarCollapsed) {
+    return null;
+  }
+
+  return (
+    <Box sx={{ display: 'flex', position: 'relative' }}>
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: sidebarWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: sidebarWidth,
+            boxSizing: 'border-box',
+            position: 'relative',
+            transition: isResizing ? 'none' : 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+
+      {/* Resize Handle */}
+      <Box
+        onMouseDown={handleMouseDown}
+        sx={{
+          width: '8px',
+          cursor: 'col-resize',
+          backgroundColor: 'transparent',
+          position: 'absolute',
+          right: -4,
+          top: 0,
+          bottom: 0,
+          zIndex: 1300,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.2s ease',
+          '&::before': {
+            content: '""',
+            width: '2px',
+            height: '40px',
+            backgroundColor: 'divider',
+            borderRadius: '2px',
+            opacity: 0,
+            transition: 'opacity 0.2s ease',
+          },
+          '&:hover': {
+            '&::before': {
+              opacity: 0.5,
+            },
+          },
+          '&:hover::after': {
+            content: '""',
+            position: 'absolute',
+            width: '3px',
+            height: '100%',
+            backgroundColor: theme.palette.primary.main,
+            opacity: 0.3,
+          },
+          ...(isResizing && {
+            '&::before': {
+              opacity: 1,
+              backgroundColor: theme.palette.primary.main,
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              width: '3px',
+              height: '100%',
+              backgroundColor: theme.palette.primary.main,
+              opacity: 0.5,
+            },
+          }),
+        }}
+      />
+    </Box>
   );
 };
 

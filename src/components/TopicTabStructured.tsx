@@ -1,8 +1,21 @@
+"use client";
+
 import React, { useState } from 'react';
+import {
+  Box,
+  Typography,
+  LinearProgress,
+  Paper,
+  Chip,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
+import {
+  CheckCircle as CheckCircleIcon,
+} from '@mui/icons-material';
 import { Topic } from '../data/topics';
 import { Problem, Chapter } from '../types';
 import ChapterView from './ChapterView';
-import AddProblemForm from './AddProblemForm';
 
 interface TopicTabStructuredProps {
   topic: Topic;
@@ -17,84 +30,142 @@ const TopicTabStructured: React.FC<TopicTabStructuredProps> = ({
   topic,
   chapters,
   onToggleProblem,
-  onAddProblem,
-  onAddChapter,
-  onAddSubsection
 }) => {
-  const [showAddForm, setShowAddForm] = useState(false);
+  const [hidePremium, setHidePremium] = useState(false);
+  const [hideCompleted, setHideCompleted] = useState(false);
 
   // Calculate total progress
-  const totalProblems = chapters.reduce((total, chapter) => 
-    total + chapter.subsections.reduce((subtotal, subsection) => 
+  const totalProblems = chapters.reduce((total, chapter) =>
+    total + chapter.subsections.reduce((subtotal, subsection) =>
       subtotal + subsection.problems.length, 0), 0);
-  
-  const completedProblems = chapters.reduce((total, chapter) => 
-    total + chapter.subsections.reduce((subtotal, subsection) => 
+
+  const completedProblems = chapters.reduce((total, chapter) =>
+    total + chapter.subsections.reduce((subtotal, subsection) =>
       subtotal + subsection.problems.filter(p => p.completed).length, 0), 0);
-  
-  const completionRate = totalProblems > 0 ? Math.round((completedProblems / totalProblems) * 100) : 0;
+
+  const completionRate = totalProblems > 0 ? (completedProblems / totalProblems) * 100 : 0;
 
   return (
-    <div className="topic-tab-structured">
-      <div className="topic-header">
-        <h2>{topic.title}</h2>
-        <div className="topic-actions">
-          <a 
-            href={topic.url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="topic-link"
-          >
-            前往 LeetCode 題庫 (Go to LeetCode)
-          </a>
-          <button
-            onClick={() => setShowAddForm(!showAddForm)}
-            className="toggle-form-btn"
-          >
-            {showAddForm ? '隱藏表單' : '新增內容'}
-          </button>
-        </div>
-      </div>
-      
-      <div className="progress-bar-container">
-        <div className="progress-info">
-          <span>總進度: {completedProblems}/{totalProblems} ({completionRate}%)</span>
-        </div>
-        <div className="progress-bar">
-          <div 
-            className="progress-fill" 
-            style={{ width: `${completionRate}%` }}
-          />
-        </div>
-      </div>
+    <Box sx={{ p: 3 }}>
+      {/* Topic Header */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            textAlign: "center",
+            mb: 2,
+            color: 'text.primary',
+          }}
+        >
+          {topic.title}
+        </Typography>
 
-      {showAddForm && (
-        <AddProblemForm
-          topicId={topic.id}
-          chapters={chapters}
-          onAddProblem={onAddProblem}
-          onAddChapter={onAddChapter}
-          onAddSubsection={onAddSubsection}
-        />
-      )}
-
-      <div className="chapters-container">
-        {chapters.length === 0 ? (
-          <div className="empty-state">
-            <p>尚未新增任何章節內容</p>
-            <p>請點擊「新增內容」開始建立章節和題目</p>
-          </div>
-        ) : (
-          chapters.map(chapter => (
-            <ChapterView
-              key={chapter.id}
-              chapter={chapter}
-              onToggleProblem={onToggleProblem}
+        {/* Progress Section */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            backgroundColor: 'background.paper',
+            border: '1px solid',
+            borderColor: 'divider',
+            borderRadius: 2,
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
+              <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                Total Progress
+              </Typography>
+            </Box>
+            <Chip
+              label={`${completedProblems} / ${totalProblems}`}
+              color="primary"
+              size="small"
+              sx={{ fontWeight: 600 }}
             />
-          ))
+          </Box>
+
+          <Box sx={{ mb: 1 }}>
+            <LinearProgress
+              variant="determinate"
+              value={completionRate}
+              sx={{
+                height: 4,
+                borderRadius: 1,
+                backgroundColor: 'rgba(88, 166, 255, 0.1)',
+                '& .MuiLinearProgress-bar': {
+                  borderRadius: 1,
+                  background: 'linear-gradient(90deg, #58a6ff 0%, #79c0ff 100%)',
+                },
+              }}
+            />
+          </Box>
+
+          <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'right' }}>
+            {completionRate.toFixed(1)}% Complete
+          </Typography>
+        </Paper>
+
+        {/* Filter Controls */}
+        <Box sx={{ mt: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={hidePremium}
+                onChange={(e) => setHidePremium(e.target.checked)}
+                size="small"
+              />
+            }
+            label="Hide Premium"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={hideCompleted}
+                onChange={(e) => setHideCompleted(e.target.checked)}
+                size="small"
+              />
+            }
+            label="Hide Completed"
+          />
+        </Box>
+      </Box>
+
+      {/* Chapters Container */}
+      <Box>
+        {chapters.length === 0 ? (
+          <Paper
+            elevation={0}
+            sx={{
+              p: 6,
+              textAlign: 'center',
+              backgroundColor: 'background.paper',
+              border: '1px solid',
+              borderColor: 'divider',
+              borderRadius: 2,
+            }}
+          >
+            <Typography variant="body1" color="text.secondary">
+              No chapters added yet
+            </Typography>
+          </Paper>
+        ) : (
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {chapters.map(chapter => (
+              <ChapterView
+                key={chapter.id}
+                chapter={chapter}
+                onToggleProblem={onToggleProblem}
+                hidePremium={hidePremium}
+                hideCompleted={hideCompleted}
+              />
+            ))}
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

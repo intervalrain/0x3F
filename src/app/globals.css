@@ -12,31 +12,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  overflow-x: hidden; /* 防止水平滾動 */
-}
-
-.App {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.App-header {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.App-header h1 {
-  color: #333;
-  font-size: 28px;
-  text-align: center;
+  overflow-x: hidden;
+  background: #0d1117;
+  color: #c9d1d9;
 }
 
 /* 總覽和統計區域樣式 */
@@ -77,9 +56,9 @@ body {
 }
 
 .overview-tab.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .overview-analytics-content {
@@ -129,9 +108,9 @@ body {
 }
 
 .tab.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .tab-number {
@@ -222,17 +201,16 @@ body {
 
 .topic-link {
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 500;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .topic-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: #79b8ff;
 }
 
 .progress-bar-container {
@@ -260,7 +238,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   transition: width 0.3s ease;
   display: flex;
   align-items: center;
@@ -288,23 +266,22 @@ body {
 
 .input-field:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .add-button {
   padding: 10px 25px;
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  background: #238636;
   color: white;
   border: none;
   border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .add-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+  background: #2ea043;
 }
 
 .problems-list {
@@ -359,7 +336,7 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #58a6ff;
 }
 
 .problem-content {
@@ -370,7 +347,7 @@ body {
 }
 
 .problem-link {
-  color: #667eea;
+  color: #58a6ff;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -378,7 +355,7 @@ body {
 }
 
 .problem-link:hover {
-  color: #764ba2;
+  color: #79b8ff;
   text-decoration: underline;
 }
 
@@ -439,7 +416,7 @@ body {
   font-weight: 500;
   margin-bottom: 15px;
   padding-left: 10px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #58a6ff;
 }
 
 .problems-grid {
@@ -492,7 +469,7 @@ body {
 }
 
 .problem-number {
-  color: #667eea;
+  color: #58a6ff;
   font-weight: 600;
   font-size: 14px;
   min-width: 40px;
@@ -508,7 +485,7 @@ body {
 }
 
 .problem-title-link:hover {
-  color: #667eea;
+  color: #58a6ff;
   text-decoration: underline;
 }
 
@@ -585,9 +562,9 @@ body {
 }
 
 .mode-btn.active {
-  background: #667eea;
+  background: #58a6ff;
   color: white;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .add-form {
@@ -614,7 +591,7 @@ body {
 
 .select-field:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .submit-btn {
@@ -833,7 +810,7 @@ body {
   margin-bottom: 24px;
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -866,7 +843,7 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
 }
 
 .summary-card:hover {
@@ -888,9 +865,9 @@ body {
   height: 100px;
   border-radius: 50%;
   background: conic-gradient(
-    from 0deg, 
-    #667eea 0%, 
-    #764ba2 var(--percentage, 0%), 
+    from 0deg,
+    #58a6ff 0%,
+    #58a6ff var(--percentage, 0%),
     #f1f5f9 var(--percentage, 0%)
   );
   display: flex;
@@ -898,7 +875,7 @@ body {
   justify-content: center;
   margin: 16px auto;
   position: relative;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.2);
 }
 
 .progress-circle::after {
@@ -1004,7 +981,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1027,7 +1004,7 @@ body {
 }
 
 .topic-number {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
   border-radius: 8px;
   width: 32px;
@@ -1145,7 +1122,7 @@ body {
 }
 
 .problem-number {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
   border-radius: 6px;
   padding: 4px 8px;
@@ -1270,7 +1247,7 @@ body {
   color: #1a1a2e;
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1300,10 +1277,10 @@ body {
 }
 
 .time-range-selector button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  border-color: #58a6ff;
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
 }
 
 .analytics-summary {
@@ -1353,7 +1330,7 @@ body {
 }
 
 .chart-bar {
-  background: linear-gradient(to top, #667eea, #764ba2);
+  background: #58a6ff;
   border-radius: 4px 4px 0 0;
   width: 100%;
   position: relative;
@@ -1361,7 +1338,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.3);
 }
 
 .chart-bar:hover {
@@ -1458,7 +1435,7 @@ body {
 }
 
 .topic-rank {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #58a6ff;
   color: white;
   border-radius: 50%;
   width: 32px;
