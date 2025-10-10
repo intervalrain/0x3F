@@ -17,6 +17,8 @@ interface LayoutContextType {
   setSidebarCollapsed: (collapsed: boolean) => void;
   sidebarWidth: number;
   setSidebarWidth: (width: number) => void;
+  mobileDrawerOpen: boolean;
+  setMobileDrawerOpen: (open: boolean) => void;
 
   // TreeView state
   expandedItems: string[];
@@ -52,6 +54,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string | number>("home");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(280);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>(['problems-root', 'articles-root']);
   const [articleTree, setArticleTree] = useState<ArticleNode[]>([]);
   const [isClient, setIsClient] = useState(false);
@@ -121,6 +124,8 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
     setSidebarCollapsed,
     sidebarWidth,
     setSidebarWidth,
+    mobileDrawerOpen,
+    setMobileDrawerOpen,
     expandedItems,
     setExpandedItems,
     topicProgress,

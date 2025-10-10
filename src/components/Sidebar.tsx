@@ -10,6 +10,7 @@ import {
   Typography,
   Chip,
   IconButton,
+  Tooltip,
 } from '@mui/material';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
@@ -31,7 +32,6 @@ interface SidebarProps {
   topicProgress: TopicProgress[];
   activeTab: string | number;
   onTabChange: (tab: string | number) => void;
-  onCollapseChange?: (isCollapsed: boolean) => void;
   articleTree?: ArticleNode[];
 }
 
@@ -40,27 +40,26 @@ const Sidebar: React.FC<SidebarProps> = ({
   topicProgress,
   activeTab,
   onTabChange,
-  onCollapseChange,
   articleTree = [],
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [mobileOpen, setMobileOpen] = useState(false);
   const {
     sidebarWidth,
     setSidebarWidth,
     expandedItems,
     setExpandedItems,
     sidebarCollapsed,
-    setSidebarCollapsed
+    setSidebarCollapsed,
+    mobileDrawerOpen,
+    setMobileDrawerOpen
   } = useLayout();
   const [isResizing, setIsResizing] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-    onCollapseChange?.(!mobileOpen);
+    setMobileDrawerOpen(false);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -94,25 +93,38 @@ const Sidebar: React.FC<SidebarProps> = ({
   }, [isResizing, setSidebarWidth]);
 
   const handleNodeSelect = (event: React.SyntheticEvent, nodeId: string) => {
-    // Check if it's a topic ID (number)
+    // Don't close drawer for root nodes or folder nodes
+    const isRootNode = nodeId === 'problems-root' || nodeId === 'articles-root';
+
+    // Check if it's a topic ID (number) - these are leaf nodes in the problem tree
     if (!isNaN(Number(nodeId))) {
       // Only navigate if not already on home page
       if (pathname !== '/') {
         router.push('/');
       }
       onTabChange(Number(nodeId));
+
+      // Topics are leaf nodes - close drawer in mobile mode
+      if (isMobile) {
+        setMobileDrawerOpen(false);
+      }
     } else if (nodeId.startsWith('article-')) {
       // Article node - extract path from nodeId
       const articlePath = nodeId.replace('article-', '');
-      // Path already contains full route (e.g., "/articles/01/article-name")
-      // Only navigate if it's not a folder
-      if (articlePath && !articlePath.startsWith('folder-')) {
-        router.push(articlePath);
-      }
-    }
 
-    if (isMobile) {
-      setMobileOpen(false);
+      // Check if it's a folder node (starts with 'folder-')
+      const isFolderNode = articlePath.startsWith('folder-');
+
+      // Only navigate if it's not a folder (i.e., it's a leaf node)
+      if (!isFolderNode && articlePath) {
+        router.push(articlePath);
+
+        // Articles are leaf nodes - close drawer in mobile mode
+        if (isMobile) {
+          setMobileDrawerOpen(false);
+        }
+      }
+      // If it's a folder (non-leaf), do nothing - just let TreeView handle the expand/collapse
     }
   };
 
@@ -120,41 +132,48 @@ const Sidebar: React.FC<SidebarProps> = ({
     event.stopPropagation();
     if (articlePath && !articlePath.startsWith('folder-')) {
       router.push(articlePath);
+
+      // Close drawer in mobile mode after selecting an article (leaf node)
+      if (isMobile) {
+        setMobileDrawerOpen(false);
+      }
     }
   };
 
   const renderArticleTree = (nodes: ArticleNode[]): React.ReactNode => {
     return nodes.map((node, index) => {
-      // Use path for unique ID, fallback to index if path is undefined
-      const nodePath = node.path || `folder-${index}`;
-      const nodeId = `article-${nodePath}`;
       const hasChildren = node.children && node.children.length > 0;
+      // Use path for unique ID, for folders use special prefix
+      const nodePath = hasChildren ? `folder-${node.path || index}` : node.path || `item-${index}`;
+      const nodeId = `article-${nodePath}`;
 
       return (
         <TreeItem
           key={nodeId}
           itemId={nodeId}
           label={
-            <Box
-              sx={{ display: 'flex', alignItems: 'center', py: 0.5 }}
-              onClick={(e) => !hasChildren && handleArticleClick(nodePath, e)}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  flexGrow: 1,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  cursor: hasChildren ? 'default' : 'pointer',
-                  '&:hover': {
-                    color: !hasChildren ? 'primary.main' : 'inherit',
-                  },
-                }}
+            <Tooltip title={node.title} placement="right" arrow>
+              <Box
+                sx={{ display: 'flex', alignItems: 'center', py: 0.5 }}
+                onClick={(e) => !hasChildren && handleArticleClick(nodePath, e)}
               >
-                {node.title}
-              </Typography>
-            </Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    flexGrow: 1,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    cursor: hasChildren ? 'default' : 'pointer',
+                    '&:hover': {
+                      color: !hasChildren ? 'primary.main' : 'inherit',
+                    },
+                  }}
+                >
+                  {node.title}
+                </Typography>
+              </Box>
+            </Tooltip>
           }
         >
           {hasChildren && renderArticleTree(node.children!)}
@@ -174,13 +193,34 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const drawerContent = (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {!isMobile && (
+      {isMobile ? (
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 2,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          position: 'relative'
+        }}>
+          <Box
+            sx={{
+              width: 40,
+              height: 4,
+              backgroundColor: 'divider',
+              borderRadius: 2,
+              position: 'absolute',
+              top: 8,
+            }}
+          />
+          <Typography variant="h6" sx={{ fontWeight: 600, mt: 1 }}>
+            選單
+          </Typography>
+        </Box>
+      ) : (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1, borderBottom: '1px solid', borderColor: 'divider' }}>
           <IconButton
-            onClick={() => {
-              setSidebarCollapsed(true);
-              onCollapseChange?.(true);
-            }}
+            onClick={() => setSidebarCollapsed(true)}
             size="small"
             sx={{ color: 'text.secondary' }}
           >
@@ -224,29 +264,31 @@ const Sidebar: React.FC<SidebarProps> = ({
                 key={topic.id}
                 itemId={String(topic.id)}
                 label={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 0.5 }}>
-                    <CodeIcon sx={{ fontSize: 18 }} />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        flexGrow: 1,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        fontWeight: isActive ? 600 : 400,
-                      }}
-                    >
-                      {topic.title}
-                    </Typography>
-                    {total > 0 && (
-                      <Chip
-                        label={`${completed}/${total}`}
-                        size="small"
-                        color={isActive ? 'primary' : 'default'}
-                        sx={{ height: 20, fontSize: '0.7rem' }}
-                      />
-                    )}
-                  </Box>
+                  <Tooltip title={topic.title} placement="right" arrow>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 0.5 }}>
+                      <CodeIcon sx={{ fontSize: 18 }} />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          flexGrow: 1,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          fontWeight: isActive ? 600 : 400,
+                        }}
+                      >
+                        {topic.title}
+                      </Typography>
+                      {total > 0 && (
+                        <Chip
+                          label={`${completed}/${total}`}
+                          size="small"
+                          color={isActive ? 'primary' : 'default'}
+                          sx={{ height: 20, fontSize: '0.7rem' }}
+                        />
+                      )}
+                    </Box>
+                  </Tooltip>
                 }
               />
             );
@@ -278,14 +320,18 @@ const Sidebar: React.FC<SidebarProps> = ({
     return (
       <Drawer
         variant="temporary"
-        open={mobileOpen}
+        anchor="bottom"
+        open={mobileDrawerOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
           keepMounted: true,
         }}
         sx={{
           '& .MuiDrawer-paper': {
-            width: 280,
+            height: '80vh',
+            maxHeight: '80vh',
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
             boxSizing: 'border-box',
           },
         }}
