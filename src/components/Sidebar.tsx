@@ -91,7 +91,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isResizing]);
+  }, [isResizing, setSidebarWidth]);
 
   const handleNodeSelect = (event: React.SyntheticEvent, nodeId: string) => {
     // Check if it's a topic ID (number)
@@ -123,7 +123,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
-  const renderArticleTree = (nodes: ArticleNode[], parentId = ''): React.ReactNode => {
+  const renderArticleTree = (nodes: ArticleNode[]): React.ReactNode => {
     return nodes.map((node, index) => {
       // Use path for unique ID, fallback to index if path is undefined
       const nodePath = node.path || `folder-${index}`;
@@ -168,7 +168,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     if (!progress) return { completed: 0, total: 0 };
 
     const total = progress.problems.length;
-    const completed = progress.problems.filter((p) => p.solved).length;
+    const completed = progress.problems.filter((p) => p.completed).length;
     return { completed, total };
   };
 

@@ -3,23 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Box,
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  IconButton,
-  Menu,
-  MenuItem,
-  Avatar,
-  CircularProgress,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material';
-import {
-  Menu as MenuIcon,
-  Dashboard as DashboardIcon,
-  Analytics as AnalyticsIcon,
-} from '@mui/icons-material';
 import { topics } from '../data/topics';
 import { TopicProgress } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -232,7 +216,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   );
 
   // 使用進度同步 hook
-  const { isSyncing, canSync } = useProgressSync(topicProgress, {
+  const { isSyncing } = useProgressSync(topicProgress, {
     enabled: isAuthenticated,
   });
 

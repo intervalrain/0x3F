@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Box, Typography, LinearProgress, Paper, Chip, FormControlLabel, Checkbox } from '@mui/material';
-import { CheckCircle as CheckCircleIcon, Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon } from '@mui/icons-material';
+import { CheckCircle as CheckCircleIcon } from '@mui/icons-material';
 import { Topic } from '../data/topics';
 import { Problem } from '../types';
 import ProblemItem from './ProblemItem';

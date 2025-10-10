@@ -56,7 +56,6 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
   const [articleTree, setArticleTree] = useState<ArticleNode[]>([]);
   const [isClient, setIsClient] = useState(false);
 
-  const DATA_VERSION = "3.1.0";
   const NEW_STORAGE_KEY = "leetcode-tracker-progress-v3";
 
   // Initialize topic progress

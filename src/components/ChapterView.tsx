@@ -24,7 +24,7 @@ interface ChapterViewProps {
   hideCompleted?: boolean;
 }
 
-const getDifficultyColor = (difficulty?: string | any): 'success' | 'warning' | 'error' | 'default' => {
+const getDifficultyColor = (difficulty?: string): 'success' | 'warning' | 'error' | 'default' => {
   if (!difficulty || typeof difficulty !== 'string') {
     return 'default';
   }
@@ -155,7 +155,7 @@ const ChapterView: React.FC<ChapterViewProps> = ({
                         <Chip
                           label={String(problem.difficulty).toUpperCase()}
                           size="small"
-                          color={getDifficultyColor(problem.difficulty)}
+                          color={getDifficultyColor(String(problem.difficulty))}
                           variant="outlined"
                           sx={{
                             fontSize: '0.7rem',

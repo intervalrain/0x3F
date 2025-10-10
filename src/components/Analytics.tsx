@@ -5,7 +5,6 @@ import {
   Box,
   Typography,
   Paper,
-  Grid,
   ToggleButtonGroup,
   ToggleButton,
   Chip,
@@ -94,7 +93,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
       }
     });
 
-    const data: [string, number][] = [['Date', 'Problems']];
+    const data: (string | number)[][] = [['Date', 'Problems']];
     const now = new Date();
 
     for (let i = days - 1; i >= 0; i--) {
@@ -117,7 +116,7 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
       topicCounts[problem.topicId] = (topicCounts[problem.topicId] || 0) + 1;
     });
 
-    const data: [string, number][] = [['Topic', 'Count']];
+    const data: (string | number)[][] = [['Topic', 'Count']];
     Object.entries(topicCounts).forEach(([topicId, count]) => {
       const topic = topics.find(t => t.id === Number(topicId));
       if (topic) {
@@ -168,8 +167,8 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
       </Box>
 
       {/* Summary Cards */}
-      <Grid container spacing={2} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={4}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: timeRange === 'all' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)' }, gap: 2, mb: 4 }}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
               <Typography variant="body2" color="text.secondary">Completed in Period</Typography>
@@ -182,10 +181,10 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
               problems
             </Typography>
           </Paper>
-        </Grid>
+        </Box>
 
         {timeRange !== 'all' && (
-          <Grid item xs={12} sm={4}>
+          <Box>
             <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">Average per Day</Typography>
@@ -198,10 +197,10 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
                 problems/day
               </Typography>
             </Paper>
-          </Grid>
+          </Box>
         )}
 
-        <Grid item xs={12} sm={timeRange === 'all' ? 8 : 4}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
               <Typography variant="body2" color="text.secondary">Total Completed</Typography>
@@ -214,14 +213,14 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
               all time
             </Typography>
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {/* Charts */}
-      <Grid container spacing={2} sx={{ mb: 4 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: 'repeat(2, 1fr)' }, gap: 2, mb: 4 }}>
         {/* Line Chart - Completion Trend */}
         {timeRange !== 'all' && lineChartData && (
-          <Grid item xs={12} lg={6}>
+          <Box>
             <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2, height: '100%' }}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>Completion Trend</Typography>
               <Box sx={{ width: '100%', height: 300 }}>
@@ -250,12 +249,12 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
                 />
               </Box>
             </Paper>
-          </Grid>
+          </Box>
         )}
 
         {/* Pie Chart - Topic Distribution */}
         {pieChartData && pieChartData.length > 1 && (
-          <Grid item xs={12} lg={timeRange === 'all' ? 6 : 6}>
+          <Box>
             <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2, height: '100%' }}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>Topic Distribution</Typography>
               <Box sx={{ width: '100%', height: 300 }}>
@@ -278,12 +277,12 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
                 />
               </Box>
             </Paper>
-          </Grid>
+          </Box>
         )}
 
         {/* Bar Chart - Topic Comparison */}
         {topicStats.length > 0 && (
-          <Grid item xs={12} lg={6}>
+          <Box>
             <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2, height: '100%' }}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>Topic Comparison</Typography>
               <Box sx={{ width: '100%', height: 300 }}>
@@ -316,57 +315,104 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
                 />
               </Box>
             </Paper>
-          </Grid>
+          </Box>
         )}
 
-        {/* Column Chart - Difficulty Distribution */}
+        {/* Streak Card - Consecutive Days */}
         {getAllCompletedProblems.length > 0 && (
-          <Grid item xs={12} lg={6}>
+          <Box>
             <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2, height: '100%' }}>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>Difficulty Distribution</Typography>
-              <Box sx={{ width: '100%', height: 300 }}>
-                <Chart
-                  chartType="ColumnChart"
-                  data={(() => {
-                    const difficulties = { Easy: 0, Medium: 0, Hard: 0 };
-                    filteredProblems.forEach(p => {
-                      const diff = p.difficulty;
-                      if (diff && typeof diff === 'string') {
-                        const normalized = diff.charAt(0).toUpperCase() + diff.slice(1).toLowerCase();
-                        if (normalized in difficulties) {
-                          difficulties[normalized as keyof typeof difficulties]++;
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>Streak Statistics</Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, justifyContent: 'center', height: 250 }}>
+                {(() => {
+                  // Calculate current and longest streak
+                  const sortedProblems = [...getAllCompletedProblems].sort((a, b) =>
+                    new Date(a.completedAt!).getTime() - new Date(b.completedAt!).getTime()
+                  );
+
+                  const dates = new Set<string>();
+                  sortedProblems.forEach(p => {
+                    if (p.completedAt) {
+                      dates.add(new Date(p.completedAt).toISOString().split('T')[0]);
+                    }
+                  });
+
+                  const sortedDates = Array.from(dates).sort();
+                  let currentStreak = 0;
+                  let longestStreak = 0;
+                  let tempStreak = 1;
+
+                  // Calculate longest streak
+                  for (let i = 1; i < sortedDates.length; i++) {
+                    const prevDate = new Date(sortedDates[i - 1]);
+                    const currDate = new Date(sortedDates[i]);
+                    const diffDays = Math.floor((currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24));
+
+                    if (diffDays === 1) {
+                      tempStreak++;
+                    } else {
+                      longestStreak = Math.max(longestStreak, tempStreak);
+                      tempStreak = 1;
+                    }
+                  }
+                  longestStreak = Math.max(longestStreak, tempStreak);
+
+                  // Calculate current streak
+                  if (sortedDates.length > 0) {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    const lastDate = new Date(sortedDates[sortedDates.length - 1]);
+                    lastDate.setHours(0, 0, 0, 0);
+                    const daysSinceLastActivity = Math.floor((today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+
+                    if (daysSinceLastActivity <= 1) {
+                      currentStreak = 1;
+                      for (let i = sortedDates.length - 2; i >= 0; i--) {
+                        const currDate = new Date(sortedDates[i + 1]);
+                        const prevDate = new Date(sortedDates[i]);
+                        const diffDays = Math.floor((currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24));
+
+                        if (diffDays === 1) {
+                          currentStreak++;
+                        } else {
+                          break;
                         }
                       }
-                    });
-                    return [
-                      ['Difficulty', 'Count', { role: 'style' }],
-                      ['Easy', difficulties.Easy, '#56d364'],
-                      ['Medium', difficulties.Medium, '#f78166'],
-                      ['Hard', difficulties.Hard, '#ff7b72'],
-                    ];
-                  })()}
-                  width="100%"
-                  height="100%"
-                  options={{
-                    backgroundColor: 'transparent',
-                    legend: { position: 'none' },
-                    hAxis: {
-                      textStyle: { color: '#c9d1d9', fontSize: 11 },
-                    },
-                    vAxis: {
-                      textStyle: { color: '#c9d1d9', fontSize: 11 },
-                      gridlines: { color: '#30363d' },
-                      minValue: 0,
-                    },
-                    chartArea: { width: '80%', height: '70%' },
-                    bar: { groupWidth: '60%' },
-                  }}
-                />
+                    }
+                  }
+
+                  return (
+                    <>
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                          Current Streak
+                        </Typography>
+                        <Typography variant="h2" sx={{ fontWeight: 700, color: currentStreak > 0 ? 'success.main' : 'text.secondary' }}>
+                          {currentStreak}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {currentStreak === 1 ? 'day' : 'days'}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                          Longest Streak
+                        </Typography>
+                        <Typography variant="h2" sx={{ fontWeight: 700, color: 'primary.main' }}>
+                          {longestStreak}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {longestStreak === 1 ? 'day' : 'days'}
+                        </Typography>
+                      </Box>
+                    </>
+                  );
+                })()}
               </Box>
             </Paper>
-          </Grid>
+          </Box>
         )}
-      </Grid>
+      </Box>
 
       {/* Topic Statistics */}
       {topicStats.length > 0 && (
@@ -423,9 +469,9 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
       {filteredProblems.length > 0 && (
         <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>Recent Completions</Typography>
-          <Grid container spacing={2}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }, gap: 2 }}>
             {filteredProblems.slice(-12).reverse().map((problem, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={`${problem.id}-${index}`}>
+              <Box key={`${problem.id}-${index}`}>
                 <Card
                   elevation={0}
                   sx={{
@@ -485,9 +531,9 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
                     </Typography>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
         </Paper>
       )}
 

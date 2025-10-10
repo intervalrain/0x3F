@@ -5,7 +5,6 @@ import {
   Box,
   Typography,
   Paper,
-  Grid,
   LinearProgress,
   Chip,
   Card,
@@ -120,8 +119,8 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
       </Typography>
 
       {/* Summary Cards */}
-      <Grid container spacing={2} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 2, mb: 4 }}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
               <Typography variant="body2" color="text.secondary">Overall Progress</Typography>
@@ -143,9 +142,9 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
               }}
             />
           </Paper>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
               <Typography variant="body2" color="text.secondary">Completed</Typography>
@@ -158,9 +157,9 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
               of {totalProblems} problems
             </Typography>
           </Paper>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
               <Typography variant="body2" color="text.secondary">In Progress</Typography>
@@ -173,9 +172,9 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
               remaining
             </Typography>
           </Paper>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Box>
           <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
               <Typography variant="body2" color="text.secondary">Total Problems</Typography>
@@ -188,17 +187,17 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
               across all topics
             </Typography>
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {/* Topic Progress */}
       <Paper elevation={0} sx={{ p: 3, mb: 4, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
         <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>Topic Progress</Typography>
-        <Grid container spacing={2}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 2 }}>
           {topics.map(topic => {
             const stats = getTopicStats(topic);
             return (
-              <Grid item xs={12} sm={6} md={4} key={topic.id}>
+              <Box key={topic.id}>
                 <Box sx={{ p: 2, backgroundColor: 'rgba(88, 166, 255, 0.03)', borderRadius: 1, border: '1px solid', borderColor: 'divider' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
                     <Chip
@@ -234,19 +233,19 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
                     {stats.completed} / {stats.total} ({stats.percentage.toFixed(0)}%)
                   </Typography>
                 </Box>
-              </Grid>
+              </Box>
             );
           })}
-        </Grid>
+        </Box>
       </Paper>
 
       {/* Recent Activity */}
       <Paper elevation={0} sx={{ p: 3, backgroundColor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
         <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>Recent Activity</Typography>
         {recentProblems.length > 0 ? (
-          <Grid container spacing={2}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 2 }}>
             {recentProblems.map((problem, index) => (
-              <Grid item xs={12} sm={6} md={3} key={`${problem.id}-${index}`}>
+              <Box key={`${problem.id}-${index}`}>
                 <Card
                   elevation={0}
                   sx={{
@@ -308,9 +307,9 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
                     </Typography>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
         ) : (
           <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
             No completed problems yet
