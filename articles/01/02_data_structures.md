@@ -200,6 +200,80 @@ void levelorder(TreeNode* root) {
 }
 ```
 
+### Traversal in interation(迭代遍歷)
+
+```cpp
+// 前序遍歷 (Pre-order): 根 -> 左 -> 右
+void preorder(TreeNode* root) {
+    if (root == nullptr) return;
+    stack<TreeNode*> st;
+    st.push(root);
+    while (!st.empty()) {
+        TreeNode* curr = st.top(); st.pop();
+        cout << node->val << " ";
+        if (curr->right) st.push(curr->right)   // 注意先右在左
+        if (curr->left) st.push(curr->left)
+    }
+}
+
+// 中序遍歷 (In-order): 左 -> 根 -> 右
+// 想法: 一路走完左邊，再 pop 出來處理右子樹
+// 假設有一個 TreeNode* curr 走的順序就正好是中序遍歷
+// 1->2->4->null->4->null->4->2->5->6->null->6->null->6-> .....
+//     1        
+//    /  \      
+//   2    3     
+//  / \
+// 4   5
+//    / \
+//   6   7
+void inorder(TreeNode* root) {
+    if (root == nullptr) return;
+    stack<TreeNode*> st;
+    TreeNode* curr = root;
+    while (curr || !st.empty()) {
+        while (curr) {
+            st.push(curr);
+            curr = curr->left;
+        }
+        curr = st.top();
+        st.pop();
+        cout << node->val << " ";                 // 動作
+        curr = curr->right;
+    }
+    return res;
+}
+
+// 後序遍歷 (Post-order): 左 -> 右 -> 根
+void postorder(TreeNode* root) {
+    if (root == nullptr) return;
+    stack<TreeNode*> st;
+    st.push(root);
+    while (!st.empty()) {
+        TreeNode* curr = st.top(); st.pop();
+        cout << node->val << " ";                 // 動作
+        if (curr->left) st.push(curr->left)       // 注意先左在右
+        if (curr->right) st.push(curr->right)   
+    }
+    // reverse(res.begin(), res.end())         ***如果如傳陣列的話要反轉***
+}
+
+// 層序遍歷 (Level-order): 使用 Queue
+void levelorder(TreeNode* root) {
+    if (root == nullptr) return;
+    queue<TreeNode*> q;
+    q.push(root);
+    while (!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        cout << node->val << " ";                 // 動作
+        if (node->left) q.push(node->left);
+        if (node->right) q.push(node->right);
+    }
+}
+```
+
+
 ---
 
 ## 資料結構的本質
@@ -312,11 +386,11 @@ vector<int> sortedSquares(vector<int>& nums) {
 - [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 ### Linked List 相關
-- [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+- [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) (必寫)
 - [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
 
 ### Tree 相關
-- [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+- [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) (必寫)
 - [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 
 ---
