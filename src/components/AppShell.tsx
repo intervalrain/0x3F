@@ -23,6 +23,7 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
     setActiveTab,
     sidebarCollapsed,
     setSidebarCollapsed,
+    setMobileDrawerOpen,
     topicProgress,
     setTopicProgress,
     articleTree,
@@ -70,7 +71,7 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
       <Header
         isSyncing={isSyncing}
         onNavigate={setActiveTab}
-        onMenuClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+        onMenuClick={() => setMobileDrawerOpen(true)}
       />
 
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
@@ -97,7 +98,6 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
             topicProgress={topicProgress}
             activeTab={activeTab}
             onTabChange={setActiveTab}
-            onCollapseChange={setSidebarCollapsed}
             articleTree={articleTree}
           />
         )}

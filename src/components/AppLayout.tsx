@@ -15,6 +15,7 @@ import SyncConflictModal from './SyncConflictModal';
 import { ArticleNode } from '../lib/articles';
 import Footer from './Footer';
 import Header from './Header';
+import { useLayout } from '../contexts/LayoutContext';
 
 interface AppLayoutProps {
   children: (props: {
@@ -26,11 +27,13 @@ interface AppLayoutProps {
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string | number>("home");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [showConflictModal, setShowConflictModal] = useState(false);
   const [conflictData, setConflictData] = useState<{ local: TopicProgress[], cloud: TopicProgress[] } | null>(null);
   const [articleTree, setArticleTree] = useState<ArticleNode[]>([]);
+
+  // Context hooks
+  const { setMobileDrawerOpen } = useLayout();
 
   // Auth hooks
   const { isAuthenticated, fetchCloudProgress, syncToCloud, mergeProgress } = useAuth();
@@ -411,7 +414,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       <Header
         isSyncing={isSyncing}
         onNavigate={setActiveTab}
-        onMenuClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+        onMenuClick={() => setMobileDrawerOpen(true)}
       />
 
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
@@ -420,7 +423,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           topicProgress={topicProgress}
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          onCollapseChange={setSidebarCollapsed}
           articleTree={articleTree}
         />
 
