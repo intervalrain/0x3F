@@ -1,34 +1,32 @@
 ---
-title: 11-7. Segment Tree
+title: 11-7. Segment Tree Advanced
 order: 7
-description: 線段樹：最強大的區間資料結構
+description: 線段樹進階：Lazy Propagation 與動態開點
 tags:
   - Segment Tree
   - Lazy Propagation
   - Range Query
   - Range Update
+  - Dynamic Segment Tree
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-11'
+draft: false
 ---
 
-# Segment Tree（線段樹）
+# Segment Tree Advanced（線段樹進階）
 
-## 核心概念
+## 前言
 
-Segment Tree（線段樹）是一種**功能最強大**的區間資料結構，支援：
-- **區間查詢**：O(log n)（區間和、最值、GCD 等）
-- **單點修改**：O(log n)
-- **區間修改**：O(log n)（配合 Lazy Propagation）
+本章節為線段樹的進階內容，主要涵蓋：
+- **Lazy Propagation（懶惰標記）**：高效處理區間修改
+- **動態開點**：處理大範圍稀疏數據
+- **複雜應用**：多種可結合操作的實現
 
-**核心思想**：
-- 每個節點代表一個**區間**
-- 父節點的區間是子節點區間的合併
-- 使用**分治**思想處理區間操作
+**建議**：請先閱讀 [11-6. Fenwick Tree & Segment Tree](/articles/11/06_fenwick_tree_and_segment_tree) 瞭解基礎概念。
 
 ---
 
-## 一、樹的結構
+## 一、Lazy Propagation（懶惰標記）
 
 ### 二叉樹表示
 
@@ -953,12 +951,12 @@ public:
 
 | 問題類型 | 是否適用 |
 |---------|---------|
-| 區間和查詢 + 單點修改 | ✅ 完美 |
-| 區間最值查詢 | ✅ 完美 |
-| 區間修改 + 區間查詢 | ✅ Lazy Propagation |
-| 動態維護複雜信息 | ✅ 可結合的任意操作 |
-| 靜態查詢 | ⚠️ 用 Prefix Sum 更簡單 |
-| 單點修改簡單場景 | ⚠️ Fenwick Tree 更簡潔 |
+| 區間和查詢 + 單點修改 | 適合 |
+| 區間最值查詢 | 適合 |
+| 區間修改 + 區間查詢 | Lazy Propagation |
+| 動態維護複雜信息 | 可結合的任意操作 |
+| 靜態查詢 | 用 Prefix Sum 更簡單 |
+| 單點修改簡單場景 | Fenwick Tree 更簡潔 |
 
 ### Segment Tree vs Fenwick Tree
 
@@ -967,9 +965,9 @@ public:
 | 實現難度 | 複雜 | 簡單 |
 | 代碼量 | 50+ 行 | 20 行 |
 | 空間 | O(4n) | O(n) |
-| 區間修改 | ✅ Lazy Propagation | ⚠️ 需要差分 |
+| 區間修改 | Lazy Propagation | 需要差分 |
 | 支援操作 | 任意可結合操作 | 主要是加法 |
-| 區間最值 | ✅ 完美 | ❌ 不支援 |
+| 區間最值 | 適合 | 不支援 |
 
 ### 模板速查
 
@@ -1025,4 +1023,3 @@ public:
 ```
 
 Segment Tree 是最強大的區間資料結構，掌握它就能解決幾乎所有區間問題！
-

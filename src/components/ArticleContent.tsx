@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -9,6 +9,7 @@ import 'highlight.js/styles/vs.css';
 import './ArticleContent.css';
 import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 import ArticleNavigationComponent from './ArticleNavigation';
+import TableOfContents from './TableOfContents';
 
 interface ArticleContentProps {
   metadata: ArticleMetadata;
@@ -17,6 +18,56 @@ interface ArticleContentProps {
 }
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navigation }) => {
+  // Helper function to strip markdown formatting from text
+  const stripMarkdown = (text: string): string => {
+    return text
+      // Remove bold/italic: ***text*** -> text, **text** -> text, *text* -> text
+      .replace(/\*\*\*(.+?)\*\*\*/g, '$1')
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/\*(.+?)\*/g, '$1')
+      // Remove underline bold/italic: ___text___ -> text, __text__ -> text, _text_ -> text
+      .replace(/___(.+?)___/g, '$1')
+      .replace(/__(.+?)__/g, '$1')
+      .replace(/_(.+?)_/g, '$1')
+      // Remove inline code: `code` -> code
+      .replace(/`(.+?)`/g, '$1')
+      // Remove strikethrough: ~~text~~ -> text
+      .replace(/~~(.+?)~~/g, '$1')
+      // Remove links: [text](url) -> text
+      .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+      // Remove images: ![alt](url) -> alt
+      .replace(/!\[(.+?)\]\(.+?\)/g, '$1');
+  };
+
+  // Pre-generate heading IDs from content to avoid hydration mismatch
+  const headingIds = useMemo(() => {
+    const ids = new Map<string, string>();
+    const lines = content.split('\n');
+    let counter = 0;
+
+    lines.forEach((line) => {
+      const match = line.match(/^(#{1,6})\s+(.+)$/);
+      if (match) {
+        const rawText = match[2].trim();
+        const cleanText = stripMarkdown(rawText);
+        const id = `heading-${counter}-${cleanText.toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g, '-')}`;
+        // Store both raw and clean text mappings
+        ids.set(rawText, id);
+        ids.set(cleanText, id);
+        counter++;
+      }
+    });
+
+    return ids;
+  }, [content]);
+
+  const getHeadingId = (text: string | React.ReactNode): string => {
+    const textStr = typeof text === 'string' ? text : String(text);
+    // Try to find by exact match first, then by stripped version
+    return headingIds.get(textStr) || headingIds.get(stripMarkdown(textStr)) ||
+           `heading-${textStr.toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g, '-')}`;
+  };
+
   return (
     <div className="article-page" style={{
       width: '100%',
@@ -75,6 +126,9 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
         )}
       </header>
 
+      {/* Table of Contents */}
+      <TableOfContents content={content} />
+
       {/* Article Content */}
       <article className="prose prose-lg" style={{
         fontSize: '1rem',
@@ -86,21 +140,54 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeRaw]}
           components={{
-            h1: ({ children }) => (
-              <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginTop: '48px', marginBottom: '24px' }}>
-                {children}
-              </h1>
-            ),
-            h2: ({ children }) => (
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '40px', marginBottom: '20px' }}>
-                {children}
-              </h2>
-            ),
-            h3: ({ children }) => (
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginTop: '32px', marginBottom: '16px' }}>
-                {children}
-              </h3>
-            ),
+            h1: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h1 id={id} style={{ fontSize: '2rem', fontWeight: 'bold', marginTop: '48px', marginBottom: '24px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h1>
+              );
+            },
+            h2: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h2 id={id} style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '40px', marginBottom: '20px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h2>
+              );
+            },
+            h3: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h3 id={id} style={{ fontSize: '1.25rem', fontWeight: 'bold', marginTop: '32px', marginBottom: '16px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h3>
+              );
+            },
+            h4: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h4 id={id} style={{ fontSize: '1.125rem', fontWeight: 'bold', marginTop: '24px', marginBottom: '12px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h4>
+              );
+            },
+            h5: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h5 id={id} style={{ fontSize: '1rem', fontWeight: 'bold', marginTop: '20px', marginBottom: '10px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h5>
+              );
+            },
+            h6: ({ children }) => {
+              const id = getHeadingId(children);
+              return (
+                <h6 id={id} style={{ fontSize: '0.875rem', fontWeight: 'bold', marginTop: '16px', marginBottom: '8px', scrollMarginTop: '20px' }}>
+                  {children}
+                </h6>
+              );
+            },
             p: ({ children }) => (
               <p style={{ marginBottom: '16px' }}>{children}</p>
             ),
