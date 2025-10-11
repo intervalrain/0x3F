@@ -9,8 +9,8 @@ tags:
   - Slope Optimization
   - Dynamic Programming
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-12'
+draft: false
 ---
 
 # Li Chao Segment Tree（李超線段樹）
