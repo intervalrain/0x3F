@@ -9,8 +9,8 @@ tags:
   - 插入
   - 刪除
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-12'
+draft: false
 ---
 
 # Linked List 操作與變體
@@ -675,7 +675,7 @@ public:
 ### Linked List 操作
 - [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/)
 - [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-- [Insert into a Sorted Circular Linked List](https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/)
+- [Insert into a Sorted Circular Linked List](https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/) (premium)
 
 ### Doubly Linked List
 - [Design Linked List](https://leetcode.com/problems/design-linked-list/)

@@ -9,8 +9,8 @@ tags:
   - 負載因子
   - Amortized
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-12'
+draft: false
 ---
 
 # HashMap 原理
@@ -306,13 +306,15 @@ void resize() {
 ## 實作完整 HashMap
 
 ```cpp
-class HashMap {
+cclass HashMap {
 private:
     struct Node {
         string key;
         int value;
         Node* next;
+        Node(string k, int v, Node* n) : key(k), value(v), next(n) {}
         Node(string k, int v) : key(k), value(v), next(nullptr) {}
+        Node() : key(""), value(-1), next(nullptr) {}
     };
 
     vector<Node*> table;
@@ -321,7 +323,6 @@ private:
     float loadFactor;
 
     int hash(const string& key) {
-        // 簡單的哈希函數
         int h = 0;
         for (char c : key) {
             h = h * 31 + c;
@@ -331,37 +332,51 @@ private:
 
     void resize() {
         int oldCapacity = capacity;
-        capacity *= 2;
+        capacity <<= 1;
 
         vector<Node*> oldTable = table;
         table = vector<Node*>(capacity, nullptr);
         size = 0;
 
         for (int i = 0; i < oldCapacity; i++) {
-            for (Node* curr = oldTable[i]; curr; ) {
+            if (oldTable[i] == nullptr) continue;
+            Node* dummy1 = new Node();
+            Node* dummy2 = new Node();
+            Node* curr1 = dummy1;
+            Node* curr2 = dummy2;
+            for (Node* curr = oldTable[i]; curr;) {
                 Node* next = curr->next;
-                put(curr->key, curr->value);
-                delete curr;
+                int index = hash(curr->key);
+                Node*& tail = index == i ? curr1 : curr2;
+                tail->next = curr;
+                tail = tail->next;
+                tail->next = nullptr;
+                size++;
                 curr = next;
             }
+            table[i] = dummy1->next;
+            table[i + oldCapacity] = dummy2->next;
+            delete dummy1;
+            delete dummy2;
         }
-    }
+    } 
 
 public:
-    HashMap(int cap = 16, float lf = 0.75)
-        : capacity(cap), loadFactor(lf), size(0) {
-        table.resize(capacity, nullptr);
+    HashMap(int cap = 16, float lf = 0.75): loadFactor(lf), size(0) {
+        int m;
+        for (m = 1; m < cap; m <<= 1);
+        capacity = m;
+        table.assign(capacity, nullptr);
     }
 
     void put(string key, int value) {
-        if ((float)size / capacity >= loadFactor) {
+        if ((float)(size + 1) / capacity >= loadFactor) {
             resize();
         }
 
         int index = hash(key);
         Node* head = table[index];
 
-        // 檢查是否已存在
         for (Node* curr = head; curr; curr = curr->next) {
             if (curr->key == key) {
                 curr->value = value;
@@ -369,7 +384,6 @@ public:
             }
         }
 
-        // 插入新節點
         Node* newNode = new Node(key, value);
         newNode->next = head;
         table[index] = newNode;
@@ -388,21 +402,17 @@ public:
 
     bool remove(string key) {
         int index = hash(key);
-        Node* curr = table[index];
-        Node* prev = nullptr;
-
-        while (curr) {
-            if (curr->key == key) {
-                if (prev) {
-                    prev->next = curr->next;
-                } else {
-                    table[index] = curr->next;
-                }
-                delete curr;
+        Node* dummy = new Node("", -1, table[index]);
+        Node* curr = dummy;
+        
+        while (curr && curr->next) {
+            if (curr->next->key == key) {
+                Node* tmp = curr->next;
+                curr->next = curr->next->next;
+                delete tmp;
                 size--;
                 return true;
             }
-            prev = curr;
             curr = curr->next;
         }
         return false;

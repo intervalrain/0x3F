@@ -8,8 +8,8 @@ tags:
   - 擴容
   - Amortized
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-12'
+draft: false
 ---
 
 # 動態陣列 (Dynamic Array)
