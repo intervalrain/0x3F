@@ -7,7 +7,7 @@ import { isAdmin } from '@/lib/syncPolicy';
 export async function GET() {
   try {
     // 檢查是否為 admin
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions) as any;
     const userEmail = session?.user?.email;
     const includeDrafts = isAdmin(userEmail);
 
