@@ -1,5 +1,8 @@
 import { getArticle, getAllArticlePaths, getGlobalArticleNavigation } from '@/lib/articles';
 import { notFound } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth';
+import { isAdmin } from '@/lib/syncPolicy';
 import ArticlePageClient from './ArticlePageClient';
 
 interface ArticlePageProps {
@@ -25,8 +28,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  // 檢查是否為 draft，且使用者不是 admin
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const session = await getServerSession(authOptions) as any;
+  const userEmail = session?.user?.email;
+  if (article.metadata.draft && !isAdmin(userEmail)) {
+    notFound();
+  }
+
   // 獲取文章導航（跨資料夾）
-  const navigation = getGlobalArticleNavigation(folder, slug);
+  const includeDrafts = isAdmin(userEmail);
+  const navigation = getGlobalArticleNavigation(folder, slug, includeDrafts);
 
   return (
     <ArticlePageClient

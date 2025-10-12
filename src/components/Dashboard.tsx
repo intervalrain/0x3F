@@ -245,69 +245,102 @@ const Dashboard: React.FC<DashboardProps> = ({ topics, topicProgress }) => {
         {recentProblems.length > 0 ? (
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 2 }}>
             {recentProblems.map((problem, index) => (
-              <Box key={`${problem.id}-${index}`}>
-                <Card
-                  elevation={0}
-                  sx={{
-                    backgroundColor: 'rgba(88, 166, 255, 0.03)',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    '&:hover': {
-                      borderColor: 'primary.main',
-                      backgroundColor: 'rgba(88, 166, 255, 0.08)',
-                    },
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  <CardContent>
-                    <Box sx={{ display: 'flex', gap: 0.5, mb: 1.5, flexWrap: 'wrap' }}>
-                      <Chip
-                        label={`#${String(problem.number)}`}
-                        size="small"
-                        sx={{
-                          backgroundColor: 'rgba(88, 166, 255, 0.15)',
-                          color: 'primary.main',
-                          fontWeight: 700,
-                          fontSize: '0.65rem',
-                          fontFamily: 'monospace',
-                          height: 20,
-                        }}
-                      />
-                      <Chip
-                        label={problem.topicTitle.split('（')[0]}
-                        size="small"
-                        sx={{
-                          fontSize: '0.65rem',
-                          height: 20,
-                        }}
-                      />
-                    </Box>
-                    <Typography
-                      variant="body2"
+              <Card
+                key={`${problem.id}-${index}`}
+                elevation={0}
+                sx={{
+                  backgroundColor: 'rgba(88, 166, 255, 0.03)',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  '&:hover': {
+                    borderColor: 'primary.main',
+                    backgroundColor: 'rgba(88, 166, 255, 0.08)',
+                  },
+                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                  minWidth: 0,
+                }}
+              >
+                <CardContent sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minWidth: 0,
+                  overflow: 'hidden',
+                }}>
+                  <Box sx={{ display: 'flex', gap: 0.5, mb: 1.5, flexWrap: 'wrap', minWidth: 0 }}>
+                    <Chip
+                      label={`#${String(problem.number)}`}
+                      size="small"
                       sx={{
-                        fontWeight: 500,
-                        mb: 1,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
+                        backgroundColor: 'rgba(88, 166, 255, 0.15)',
+                        color: 'primary.main',
+                        fontWeight: 700,
+                        fontSize: '0.65rem',
+                        fontFamily: 'monospace',
+                        height: 20,
+                        maxWidth: '100%',
                       }}
-                    >
-                      {problem.title}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                      <CheckCircleIcon sx={{ fontSize: 12, color: 'success.main' }} />
+                    />
+                    <Chip
+                      label={problem.topicTitle.split('（')[0]}
+                      size="small"
+                      sx={{
+                        fontSize: '0.65rem',
+                        height: 20,
+                        maxWidth: '100%',
+                        '& .MuiChip-label': {
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontWeight: 500,
+                      mb: 1,
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      wordBreak: 'break-word',
+                      minWidth: 0,
+                    }}
+                  >
+                    {problem.title}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 0.5,
+                      mt: 'auto',
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    <CheckCircleIcon sx={{ fontSize: 12, color: 'success.main', flexShrink: 0 }} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {new Date(problem.completedAt!).toLocaleDateString('zh-TW', {
                         month: 'short',
                         day: 'numeric',
                         hour: '2-digit',
                         minute: '2-digit'
                       })}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
+                    </span>
+                  </Typography>
+                </CardContent>
+              </Card>
             ))}
           </Box>
         ) : (

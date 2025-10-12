@@ -471,67 +471,95 @@ const Analytics: React.FC<AnalyticsProps> = ({ topics, topicProgress }) => {
           <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>Recent Completions</Typography>
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }, gap: 2 }}>
             {filteredProblems.slice(-12).reverse().map((problem, index) => (
-              <Box key={`${problem.id}-${index}`}>
-                <Card
-                  elevation={0}
-                  sx={{
-                    backgroundColor: 'rgba(88, 166, 255, 0.03)',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    '&:hover': {
-                      borderColor: 'primary.main',
-                      backgroundColor: 'rgba(88, 166, 255, 0.08)',
-                    },
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  <CardContent>
-                    <Box sx={{ display: 'flex', gap: 0.5, mb: 1, flexWrap: 'wrap' }}>
-                      <Chip
-                        label={`#${String(problem.number)}`}
-                        size="small"
-                        sx={{
-                          backgroundColor: 'rgba(88, 166, 255, 0.15)',
-                          color: 'primary.main',
-                          fontWeight: 700,
-                          fontSize: '0.65rem',
-                          fontFamily: 'monospace',
-                          height: 18,
-                        }}
-                      />
-                      <Chip
-                        label={topics.find(t => t.id === problem.topicId)?.title.split('（')[0] || 'Unknown'}
-                        size="small"
-                        sx={{
-                          fontSize: '0.65rem',
-                          height: 18,
-                        }}
-                      />
-                    </Box>
-                    <Typography
-                      variant="caption"
+              <Card
+                key={`${problem.id}-${index}`}
+                elevation={0}
+                sx={{
+                  backgroundColor: 'rgba(88, 166, 255, 0.03)',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  '&:hover': {
+                    borderColor: 'primary.main',
+                    backgroundColor: 'rgba(88, 166, 255, 0.08)',
+                  },
+                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                  minWidth: 0,
+                }}
+              >
+                <CardContent sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minWidth: 0,
+                  overflow: 'hidden',
+                }}>
+                  <Box sx={{ display: 'flex', gap: 0.5, mb: 1, flexWrap: 'wrap', minWidth: 0 }}>
+                    <Chip
+                      label={`#${String(problem.number)}`}
+                      size="small"
                       sx={{
-                        fontWeight: 500,
-                        mb: 0.5,
-                        display: 'block',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
+                        backgroundColor: 'rgba(88, 166, 255, 0.15)',
+                        color: 'primary.main',
+                        fontWeight: 700,
+                        fontSize: '0.65rem',
+                        fontFamily: 'monospace',
+                        height: 18,
+                        maxWidth: '100%',
                       }}
-                    >
-                      {problem.title}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                      {new Date(problem.completedAt!).toLocaleDateString('zh-TW', {
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
+                    />
+                    <Chip
+                      label={topics.find(t => t.id === problem.topicId)?.title.split('（')[0] || 'Unknown'}
+                      size="small"
+                      sx={{
+                        fontSize: '0.65rem',
+                        height: 18,
+                        maxWidth: '100%',
+                        '& .MuiChip-label': {
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontWeight: 500,
+                      mb: 0.5,
+                      display: 'block',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      minWidth: 0,
+                    }}
+                  >
+                    {problem.title}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{
+                      fontSize: '0.7rem',
+                      mt: 'auto',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      minWidth: 0,
+                    }}
+                  >
+                    {new Date(problem.completedAt!).toLocaleDateString('zh-TW', {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </Typography>
+                </CardContent>
+              </Card>
             ))}
           </Box>
         </Paper>

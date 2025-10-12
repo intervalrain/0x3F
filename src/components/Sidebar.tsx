@@ -21,6 +21,7 @@ import {
   ExpandMore,
   ChevronRight,
   ChevronLeft,
+  Close as CloseIcon,
 } from '@mui/icons-material';
 import { Topic } from '../data/topics';
 import { TopicProgress } from '../types';
@@ -197,25 +198,22 @@ const Sidebar: React.FC<SidebarProps> = ({
         <Box sx={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           p: 2,
           borderBottom: '1px solid',
           borderColor: 'divider',
-          position: 'relative'
         }}>
-          <Box
-            sx={{
-              width: 40,
-              height: 4,
-              backgroundColor: 'divider',
-              borderRadius: 2,
-              position: 'absolute',
-              top: 8,
-            }}
-          />
-          <Typography variant="h6" sx={{ fontWeight: 600, mt: 1 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600 }}>
             選單
           </Typography>
+          <IconButton
+            onClick={handleDrawerToggle}
+            size="small"
+            sx={{ color: 'text.secondary' }}
+            aria-label="關閉選單"
+          >
+            <CloseIcon />
+          </IconButton>
         </Box>
       ) : (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1, borderBottom: '1px solid', borderColor: 'divider' }}>

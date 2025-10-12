@@ -1,5 +1,8 @@
 import { getArticlesByFolder, parseMarkdownFile } from '@/lib/articles';
 import { notFound } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth';
+import { isAdmin } from '@/lib/syncPolicy';
 import fs from 'fs';
 import path from 'path';
 import FolderPageClient from './FolderPageClient';
@@ -19,7 +22,13 @@ export default async function FolderPage({ params }: FolderPageProps) {
     notFound();
   }
 
-  const articles = getArticlesByFolder(folder);
+  // 檢查是否為 admin
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const session = await getServerSession(authOptions) as any;
+  const userEmail = session?.user?.email;
+  const includeDrafts = isAdmin(userEmail);
+
+  const articles = getArticlesByFolder(folder, includeDrafts);
 
   // 讀取 Config.md 獲取資料夾資訊
   const configPath = path.join(process.cwd(), 'articles', folder, 'Config.md');
