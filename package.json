@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/generate-search-index.js",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-search": "node scripts/generate-search-index.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
@@ -17,6 +19,7 @@
     "@mui/x-tree-view": "^8.14.0",
     "@neondatabase/serverless": "^1.0.1",
     "@prisma/client": "^6.16.2",
+    "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
     "next": "15.5.2",
     "next-auth": "^4.24.11",

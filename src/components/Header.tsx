@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import {
   AppBar,
@@ -14,6 +14,8 @@ import {
   Chip,
   useMediaQuery,
   useTheme,
+  InputBase,
+  alpha,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -21,8 +23,10 @@ import {
   Analytics as AnalyticsIcon,
   AccountCircle,
   CloudSync,
+  Search as SearchIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../hooks/useAuth';
+import SearchBar from './SearchBar';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -36,11 +40,21 @@ const Header: React.FC<HeaderProps> = ({
   onNavigate,
 }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // 添加 noSsr 選項避免 hydration 問題
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
+    noSsr: true,
+  });
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, login, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // 確保客戶端已掛載
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -63,6 +77,19 @@ const Header: React.FC<HeaderProps> = ({
     // Set activeTab to 'home'
     onNavigate?.('home');
   };
+
+  // 快捷鍵：Cmd/Ctrl + K 打開搜尋
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <AppBar position="sticky" elevation={0}>
@@ -123,6 +150,60 @@ const Header: React.FC<HeaderProps> = ({
             />
           )}
         </Box>
+
+        {/* Search Bar - Only render after mount to avoid hydration mismatch */}
+        {mounted && !isMobile && (
+          <Box
+            onClick={() => setSearchOpen(true)}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: alpha(theme.palette.common.white, 0.08),
+              borderRadius: 1,
+              px: 2,
+              py: 0.75,
+              mr: 2,
+              cursor: 'pointer',
+              minWidth: 200,
+              transition: 'all 0.2s',
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.common.white, 0.12),
+              },
+            }}
+          >
+            <SearchIcon sx={{ color: 'text.secondary', mr: 1, fontSize: 20 }} />
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+                flexGrow: 1,
+              }}
+            >
+              搜尋文章...
+            </Typography>
+            <Chip
+              label="⌘K"
+              size="small"
+              sx={{
+                height: 20,
+                fontSize: '0.7rem',
+                backgroundColor: alpha(theme.palette.common.white, 0.1),
+                color: 'text.secondary',
+              }}
+            />
+          </Box>
+        )}
+
+        {/* Mobile Search Icon - Only render after mount */}
+        {mounted && isMobile && (
+          <IconButton
+            color="inherit"
+            onClick={() => setSearchOpen(true)}
+            sx={{ mr: 1 }}
+          >
+            <SearchIcon />
+          </IconButton>
+        )}
 
         {/* LeetCode Link */}
         <IconButton
@@ -224,6 +305,9 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </Box>
       </Toolbar>
+
+      {/* Search Dialog */}
+      <SearchBar open={searchOpen} onClose={() => setSearchOpen(false)} />
     </AppBar>
   );
 };
