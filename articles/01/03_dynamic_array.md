@@ -8,8 +8,8 @@ tags:
   - 擴容
   - Amortized
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-12'
+draft: false
 ---
 
 # 動態陣列 (Dynamic Array)
@@ -390,7 +390,6 @@ void backtrack(vector<int>& nums, vector<int>& path) {
 
 ## LeetCode 練習題
 
-- [Design Dynamic Array](https://leetcode.com/problems/design-dynamic-array/) (類似題)
 - [Implement Stack using Array](https://leetcode.com/problems/implement-stack-using-queues/)
 
 ---

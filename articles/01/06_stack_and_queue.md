@@ -8,8 +8,8 @@ tags:
   - LIFO
   - FIFO
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-13'
+draft: false
 ---
 
 # Stack 與 Queue
@@ -721,7 +721,7 @@ pop(): 返回 3, q = [2, 1]
 - [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
 - [Min Stack](https://leetcode.com/problems/min-stack/)
 - [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
-- [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+- [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) (必做)
 
 ### Queue
 - [Design Circular Queue](https://leetcode.com/problems/design-circular-queue/)
