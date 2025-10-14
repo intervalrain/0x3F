@@ -7,7 +7,9 @@
       "Bash(timeout 10s npm run dev)",
       "Bash(npx prisma migrate dev:*)",
       "Bash(npx prisma generate:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run lint:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
