@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0d1117;
   min-height: 100vh;
 }
 
@@ -520,7 +520,7 @@ body {
 
 .toggle-form-btn {
   padding: 8px 16px;
-  background: #4f46e5;
+  background: #58a6ff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -531,7 +531,7 @@ body {
 }
 
 .toggle-form-btn:hover {
-  background: #4338ca;
+  background: #1f6feb;
 }
 
 /* Chapter View Styles */
@@ -558,7 +558,7 @@ body {
   font-weight: 500;
   margin-bottom: 15px;
   padding-left: 10px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #58a6ff;
 }
 
 .problems-grid {
@@ -590,7 +590,7 @@ body {
 }
 
 .problem-number {
-  color: #667eea;
+  color: #58a6ff;
   font-weight: 600;
   font-size: 14px;
   min-width: 40px;
@@ -606,7 +606,7 @@ body {
 }
 
 .problem-title-link:hover {
-  color: #667eea;
+  color: #58a6ff;
   text-decoration: underline;
 }
 
@@ -680,9 +680,9 @@ body {
 }
 
 .mode-btn.active {
-  background: #667eea;
+  background: #58a6ff;
   color: white;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .add-form {
@@ -709,7 +709,7 @@ body {
 
 .select-field:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #58a6ff;
 }
 
 .submit-btn {
@@ -952,20 +952,21 @@ body {
     right: 20px;
     width: 56px;
     height: 56px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #58a6ff;
     border: none;
     border-radius: 50%;
     z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 16px rgba(88, 166, 255, 0.4);
     transition: all 0.3s ease;
   }
 
   .sidebar-toggle:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 6px 20px rgba(88, 166, 255, 0.6);
+    background: #79c0ff;
   }
 
   .sidebar-toggle:active {
@@ -1213,7 +1214,7 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, #4f46e5 var(--percentage, 0%), #e5e7eb var(--percentage, 0%));
+  background: conic-gradient(from 0deg, #58a6ff var(--percentage, 0%), #e5e7eb var(--percentage, 0%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1287,7 +1288,7 @@ body {
 }
 
 .topic-number {
-  background: #4f46e5;
+  background: #58a6ff;
   color: white;
   border-radius: 50%;
   width: 24px;
@@ -1359,7 +1360,7 @@ body {
 }
 
 .recent-problem-number {
-  background: #4f46e5;
+  background: #58a6ff;
   color: white;
   border-radius: 6px;
   padding: 4px 10px;
@@ -1429,7 +1430,7 @@ body {
 }
 
 .problem-number {
-  background: #4f46e5;
+  background: #58a6ff;
   color: white;
   border-radius: 4px;
   padding: 2px 6px;
@@ -1504,9 +1505,9 @@ body {
 }
 
 .time-range-selector button.active {
-  background: #4f46e5;
+  background: #58a6ff;
   color: white;
-  border-color: #4f46e5;
+  border-color: #58a6ff;
 }
 
 .analytics-summary {
@@ -1550,7 +1551,7 @@ body {
 }
 
 .chart-bar {
-  background: linear-gradient(to top, #4f46e5, #7c3aed);
+  background: linear-gradient(to top, #58a6ff, #79c0ff);
   border-radius: 2px 2px 0 0;
   width: 100%;
   max-width: 30px;
