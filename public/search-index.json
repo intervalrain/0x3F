@@ -48,7 +48,7 @@
       "path": "/articles/01/03_dynamic_array",
       "excerpt": "動態陣列 (Dynamic Array) 前言 靜態陣列的大小在編譯時就已經確定，無法動態調整。而動態陣列（如 C++ 的 `vector`）可以在執行時動態擴展或縮減容量。 --- 動態擴容 (Dynamic Expansion) 為什麼需要擴容？ 當元素數量超過陣列容量時，需要： 1. 分配一塊更大的連續記憶體空間 2. 將舊資料複製到新空間 3. 釋放舊記憶體 擴容策略 不同語言/實作有不同",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-04_hashmap",
@@ -66,7 +66,7 @@
       "path": "/articles/01/04_hashmap",
       "excerpt": "HashMap 原理 前言 HashMap (哈希表) 是最常用的資料結構之一，能在 O(1) 時間內完成查找、插入、刪除操作。 核心問題：為什麼 HashMap 的查找是 O(1)？ --- HashMap 的原理 基本概念 HashMap 的核心思想： 1. 使用哈希函數將 key 轉換為陣列索引 2. 直接透過索引存取資料（O(1)） 為什麼是 O(1)？ 因為 HashMap 底層是陣列，",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-05_linked_list_operations",
@@ -84,7 +84,7 @@
       "path": "/articles/01/05_linked_list_operations",
       "excerpt": "Linked List 操作與變體 前言 Linked List 是最基本的動態資料結構之一。理解其操作細節，對於解決 LeetCode 題目至關重要。 --- Singly Linked List 基本操作 1. 插入操作 (Insertion) 在頭部插入 (Insert at Head) 時間複雜度: O(1) 步驟: 在尾部插入 (Insert at Tail) 時間複雜度: O(n) -",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-06_stack_and_queue",
@@ -101,7 +101,7 @@
       "path": "/articles/01/06_stack_and_queue",
       "excerpt": "Stack 與 Queue 前言 Stack 和 Queue 是兩種最基本的線性資料結構，它們的差別在於元素的存取順序。 --- Stack (堆疊) 基本概念 Stack 遵循 LIFO (Last In, First Out) 原則：後進先出。 基本操作 時間複雜度 | 操作 | 時間複雜度 | |-----|----------| | push | O(1) | | pop | O(1) |",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-07_heap",
@@ -602,24 +602,6 @@
       "path": "/articles/05/06_tree_backtracking",
       "excerpt": "Tree + Backtracking (樹 + 回溯) 1. 基本概念 樹的回溯問題通常涉及： - 尋找從根到葉的所有路徑 - 尋找滿足特定條件的路徑 - 路徑和問題 - 組合問題 回溯模板： 2. 路徑和問題 2.1 路徑總和 II 找出所有從根到葉且節點值之和等於目標和的路徑。 時間複雜度: O(n²)，最壞情況需要複製 n 條路徑，每條路徑長度為 O(n) 空間複雜度: O(n)，遞迴調用",
       "order": 6,
-      "draft": true
-    },
-    {
-      "id": "05-07_segment_tree",
-      "title": "05-7. Segment Tree",
-      "description": "學習線段樹的構建與應用，解決區間查詢與更新問題。掌握區間和、區間最值、懶惰標記等進階技巧，實現高效的範圍操作與動態查詢。",
-      "tags": [
-        "Segment Tree",
-        "Range Query",
-        "Lazy Propagation",
-        "線段樹",
-        "區間查詢"
-      ],
-      "folder": "05",
-      "slug": "07_segment_tree",
-      "path": "/articles/05/07_segment_tree",
-      "excerpt": "Segment Tree (線段樹) 1. 基本概念 1.1 什麼是線段樹？ 線段樹是一種二元樹，用於高效處理區間查詢和修改問題。每個節點代表一個區間，葉節點代表單個元素。 1.2 核心操作 - Build: O(n) - 構建線段樹 - Query: O(log n) - 查詢區間 - Update: O(log n) - 更新元素 1.3 應用場景 - 區間和查詢 - 區間最大/最小值查詢 -",
-      "order": 7,
       "draft": true
     },
     {
@@ -1453,38 +1435,58 @@
       "draft": true
     },
     {
-      "id": "11-06_fenwick_tree",
-      "title": "11-6. Fenwick Tree (Binary Indexed Tree)",
-      "description": "樹狀陣列：動態維護前綴和的高效結構",
+      "id": "11-06_fenwick_tree_and_segment_tree",
+      "title": "11-6. Fenwick Tree & Segment Tree",
+      "description": "區間資料結構：從權衡取捨到最佳化方案",
       "tags": [
         "Fenwick Tree",
-        "BIT",
+        "Segment Tree",
         "Binary Indexed Tree",
-        "Prefix Sum"
+        "Range Query",
+        "Dynamic Programming"
       ],
       "folder": "11",
-      "slug": "06_fenwick_tree",
-      "path": "/articles/11/06_fenwick_tree",
-      "excerpt": "Fenwick Tree (Binary Indexed Tree) 核心概念 Fenwick Tree（樹狀陣列），也稱為 Binary Indexed Tree (BIT)，是一種用於動態維護前綴和的資料結構。 核心優勢： - 支援單點修改 + 區間查詢，都是 O(log n) - 實現簡單，代碼量少 - 空間開銷小，只需 O(n) 對比： - Prefix Sum：O(1) 查詢，但不支援修",
+      "slug": "06_fenwick_tree_and_segment_tree",
+      "path": "/articles/11/06_fenwick_tree_and_segment_tree",
+      "excerpt": "Fenwick Tree & Segment Tree 前言：Query vs Update 的權衡取捨 問題的本質 對於動態序列，我們需要支援兩種基本操作： - Query（查詢）：取得區間信息（和、最值等） - Update（修改）：修改單點或區間 在實際應用中，這兩種操作的頻率決定了最佳資料結構的選擇。 --- 基礎方案的權衡 場景 1：Immutable Container / Low F",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-07_segment_tree",
-      "title": "11-7. Segment Tree",
-      "description": "線段樹：最強大的區間資料結構",
+      "title": "11-7. Segment Tree Advanced",
+      "description": "線段樹進階：Lazy Propagation 與動態開點",
       "tags": [
         "Segment Tree",
         "Lazy Propagation",
         "Range Query",
-        "Range Update"
+        "Range Update",
+        "Dynamic Segment Tree"
       ],
       "folder": "11",
       "slug": "07_segment_tree",
       "path": "/articles/11/07_segment_tree",
-      "excerpt": "Segment Tree（線段樹） 核心概念 Segment Tree（線段樹）是一種功能最強大的區間資料結構，支援： - 區間查詢：O(log n)（區間和、最值、GCD 等） - 單點修改：O(log n) - 區間修改：O(log n)（配合 Lazy Propagation） 核心思想： - 每個節點代表一個區間 - 父節點的區間是子節點區間的合併 - 使用分治思想處理區間操作 --- 一",
+      "excerpt": "Segment Tree Advanced（線段樹進階） 前言 本章節為線段樹的進階內容，主要涵蓋： - Lazy Propagation（懶惰標記）：高效處理區間修改 - 動態開點：處理大範圍稀疏數據 - 複雜應用：多種可結合操作的實現 建議：請先閱讀 11-6. Fenwick Tree & Segment Tree 瞭解基礎概念。 --- 一、Lazy Propagation（懶惰標記） 二",
       "order": 7,
-      "draft": true
+      "draft": false
+    },
+    {
+      "id": "11-08_li_chao_segment_tree",
+      "title": "11-8. Li Chao Segment Tree",
+      "description": "李超線段樹：動態維護線段集合的利器",
+      "tags": [
+        "Li Chao Tree",
+        "Segment Tree",
+        "Convex Hull Trick",
+        "Slope Optimization",
+        "Dynamic Programming"
+      ],
+      "folder": "11",
+      "slug": "08_li_chao_segment_tree",
+      "path": "/articles/11/08_li_chao_segment_tree",
+      "excerpt": "Li Chao Segment Tree（李超線段樹） 前言：問題引入 經典問題 給定一個空的線段集合，支援以下操作： 1. 插入線段：添加一條線段 `y = kx + b`（定義域為整個數軸或某個區間） 2. 查詢最大值：查詢在 `x = x₀` 處，所有線段中 `y` 值最大的是多少 範例： --- 暴力做法的瓶頸 問題： - 插入：O(1)  - 查詢：O(n) （n 為線段數量） 如果有 ",
+      "order": 8,
+      "draft": false
     },
     {
       "id": "11-00_introduction",

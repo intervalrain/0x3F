@@ -66,6 +66,9 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        html: {
+          backgroundColor: '#0d1117',
+        },
         body: {
           backgroundColor: '#0d1117',
         },
