@@ -9,7 +9,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
   Box,
   Typography,
   InputAdornment,
@@ -24,10 +23,10 @@ import {
   Close as CloseIcon,
   Article as ArticleIcon,
 } from '@mui/icons-material';
-import Fuse from 'fuse.js';
-import type { SearchArticle, SearchResult as SearchResultType, SearchIndex } from '@/types/search';
+import Fuse, { type FuseResult } from 'fuse.js';
+import type { SearchArticle, SearchIndex } from '@/types/search';
 
-type SearchResult = Fuse.FuseResult<SearchArticle>;
+type SearchResult = FuseResult<SearchArticle>;
 
 interface SearchBarProps {
   open: boolean;
@@ -44,7 +43,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [searchIndex, setSearchIndex] = useState<SearchArticle[]>([]);
   const [fuse, setFuse] = useState<Fuse<SearchArticle> | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,7 +55,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
       .then((data: SearchIndex) => {
         // 包含所有文章（含草稿）以提供完整搜尋結果
         const articles = data.articles;
-        setSearchIndex(articles);
 
         // 初始化 Fuse.js
         const fuseInstance = new Fuse(articles, {
@@ -115,6 +112,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
     }
   }, [open]);
 
+  const handleNavigate = useCallback((article: SearchArticle) => {
+    router.push(article.path);
+    onClose();
+  }, [router, onClose]);
+
   // 鍵盤導航
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (results.length === 0) return;
@@ -139,7 +141,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
         onClose();
         break;
     }
-  }, [results, selectedIndex, onClose]);
+  }, [results, selectedIndex, onClose, handleNavigate]);
 
   // 滾動選中的項目到可視範圍
   useEffect(() => {
@@ -154,23 +156,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
     }
   }, [selectedIndex]);
 
-  const handleNavigate = (article: SearchArticle) => {
-    router.push(article.path);
-    onClose();
-  };
-
   const handleClose = () => {
     onClose();
   };
 
-  // 高亮匹配的文字
-  const highlightMatch = (text: string, matches?: any[]) => {
-    if (!matches || matches.length === 0) return text;
-
-    // 簡化版：直接返回原文
-    // 可以根據 matches 實現更複雜的高亮邏輯
-    return text;
-  };
 
   return (
     <Dialog

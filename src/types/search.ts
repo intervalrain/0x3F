@@ -17,8 +17,15 @@ export interface SearchIndex {
   articles: SearchArticle[];
 }
 
+export interface SearchResultMatch {
+  indices: number[][];
+  value?: string;
+  key?: string;
+  arrayIndex?: number;
+}
+
 export interface SearchResult {
   item: SearchArticle;
   score?: number;
-  matches?: any[];
+  matches?: SearchResultMatch[];
 }

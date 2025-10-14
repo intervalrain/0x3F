@@ -14,7 +14,6 @@ import {
   Chip,
   useMediaQuery,
   useTheme,
-  InputBase,
   alpha,
 } from '@mui/material';
 import {
