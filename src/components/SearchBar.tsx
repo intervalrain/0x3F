@@ -46,7 +46,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
   const [fuse, setFuse] = useState<Fuse<SearchArticle> | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   // 載入搜尋索引
   useEffect(() => {
@@ -224,7 +224,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
 
         {/* 搜尋結果 */}
         <Box
-          ref={listRef}
           sx={{
             maxHeight: 'calc(80vh - 100px)',
             overflow: 'auto',
@@ -254,7 +253,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ open, onClose }) => {
           )}
 
           {results.length > 0 && (
-            <List sx={{ p: 0 }}>
+            <List ref={listRef} sx={{ p: 0 }}>
               {results.map((result, index) => (
                 <ListItem
                   key={result.item.id}
