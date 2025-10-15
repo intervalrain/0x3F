@@ -198,7 +198,6 @@ const Sidebar: React.FC<SidebarProps> = ({
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: 'background.paper',
-      overflow: 'hidden',
     }}>
       {isMobile ? (
         <Box sx={{
