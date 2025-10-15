@@ -48,3 +48,6 @@ next-env.d.ts
 # docs
 /tickets
 **/.*.md
+
+# claude
+.claude
