@@ -133,7 +133,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     }));
 
     // SSR 時直接返回預設資料，避免 hydration 錯誤
-    if (typeof window === "undefined" || !isClient) {
+    if (typeof window === "undefined") {
       return defaultData;
     }
 
@@ -395,20 +395,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     setConflictData(null);
   }, [conflictData, syncToCloud, mergeProgress, setTopicProgress]);
 
-  // 避免 SSR hydration 錯誤，客戶端載入前顯示 loading
-  if (!isClient) {
-    return (
-      <div className="app-layout">
-        <header className="app-header">
-          <h1>0x3F LeetCode 刷題追蹤器 (LeetCode Problem Tracker)</h1>
-        </header>
-        <div className="app-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-          <div>載入中...</div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <Header
@@ -418,13 +404,21 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       />
 
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
-        <Sidebar
-          topics={topics}
-          topicProgress={topicProgress}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          articleTree={articleTree}
-        />
+        <Box
+          sx={{
+            opacity: isClient ? 1 : 0,
+            pointerEvents: isClient ? 'auto' : 'none',
+            transition: 'opacity 0.2s',
+          }}
+        >
+          <Sidebar
+            topics={topics}
+            topicProgress={topicProgress}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            articleTree={articleTree}
+          />
+        </Box>
 
         <Box
           component="main"
