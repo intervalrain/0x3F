@@ -29,9 +29,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   // 檢查是否為 draft，且使用者不是 admin
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const session = await getServerSession(authOptions) as any;
-  const userEmail = session?.user?.email;
+  let userEmail: string | undefined;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session = await getServerSession(authOptions) as any;
+    userEmail = session?.user?.email;
+  } catch (error) {
+    console.warn('Failed to get session, assuming non-admin user:', error);
+    userEmail = undefined;
+  }
+
   if (article.metadata.draft && !isAdmin(userEmail)) {
     notFound();
   }

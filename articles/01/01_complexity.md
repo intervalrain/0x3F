@@ -17,6 +17,8 @@ draft: false
 
 時間複雜度用來衡量演算法執行所需的時間，通常使用大 O 記號 (Big O Notation) 來表示。
 
+![complexity](https://miro.medium.com/v2/resize:fit:1358/0*sHLx8GgoVye4Ku2c.png)
+
 ### 常見的時間複雜度
 
 - **O(1)** - 常數時間：不論輸入大小，執行時間固定
@@ -128,8 +130,6 @@ int mid = (left + right) / 2;  // 溢位!
 
 // 正確寫法
 int mid = left + (right - left) / 2;
-// 或
-int mid = (left + right) >> 1;  // 注意: 僅適用於非負數
 ```
 
 **LeetCode 常用取模數與原因:**
@@ -193,16 +193,16 @@ int combination(int n, int k) {
 **常見錯誤:**
 
 ```cpp
-// ❌ 錯誤: 先計算再取模，可能溢位
+// 錯誤: 先計算再取模，可能溢位
 int result = (a * b * c) % MOD;
 
-// ✓ 正確: 每步都取模
+// 正確: 每步都取模
 int result = ((long long)a * b % MOD) * c % MOD;
 
-// ❌ 錯誤: 減法可能產生負數
+// 錯誤: 減法可能產生負數
 int result = (a - b) % MOD;
 
-// ✓ 正確: 加上 MOD 再取模
+// 正確: 加上 MOD 再取模
 int result = ((a - b) % MOD + MOD) % MOD;
 ```
 

@@ -76,30 +76,24 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
 
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
         {/* Floating Menu Button - shown when sidebar is collapsed */}
-        <Fab
-          color="primary"
-          size="small"
-          onClick={() => setSidebarCollapsed(false)}
-          sx={{
-            position: 'fixed',
-            left: 16,
-            top: 80,
-            zIndex: 1400,
-            display: sidebarCollapsed ? 'flex' : 'none',
-            opacity: isClient ? 1 : 0,
-            pointerEvents: isClient ? 'auto' : 'none',
-          }}
-        >
-          <MenuIcon />
-        </Fab>
+        {isClient && (
+          <Fab
+            color="primary"
+            size="small"
+            onClick={() => setSidebarCollapsed(false)}
+            sx={{
+              position: 'fixed',
+              left: 16,
+              top: 80,
+              zIndex: 1400,
+              display: sidebarCollapsed ? 'flex' : 'none',
+            }}
+          >
+            <MenuIcon />
+          </Fab>
+        )}
 
-        <Box
-          sx={{
-            opacity: isClient ? 1 : 0,
-            pointerEvents: isClient ? 'auto' : 'none',
-            transition: 'opacity 0.2s',
-          }}
-        >
+        {isClient && (
           <Sidebar
             topics={topics}
             topicProgress={topicProgress}
@@ -107,7 +101,7 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
             onTabChange={setActiveTab}
             articleTree={articleTree}
           />
-        </Box>
+        )}
 
         <Box
           component="main"
