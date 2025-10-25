@@ -9,8 +9,8 @@ tags:
   - AVL
   - Red-Black Tree
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-23'
+draft: false
 ---
 
 # Tree (樹)

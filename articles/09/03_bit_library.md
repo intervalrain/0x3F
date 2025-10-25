@@ -8,8 +8,8 @@ tags:
   - STL
   - GCC builtin
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-26'
+draft: false
 ---
 
 # 3. Bit Library - STL
