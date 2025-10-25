@@ -8,8 +8,8 @@ tags:
   - Binary Heap
   - 堆積
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-23'
+draft: false
 ---
 
 # Heap 與 Priority Queue
