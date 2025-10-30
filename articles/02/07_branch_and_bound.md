@@ -7,8 +7,8 @@ tags:
   - 分支定界
   - 最優化
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Branch and Bound (分支定界法)

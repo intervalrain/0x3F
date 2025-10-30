@@ -11,8 +11,8 @@ tags:
   - 鄰接矩陣
   - 鄰接串列
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Graph (圖)

@@ -8,8 +8,8 @@ tags:
   - trie
   - advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 11. AC Automation, Subsequence Automation

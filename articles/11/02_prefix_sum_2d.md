@@ -7,8 +7,8 @@ tags:
   - Matrix
   - Inclusion-Exclusion
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 2D Prefix Sum（二維前綴和）

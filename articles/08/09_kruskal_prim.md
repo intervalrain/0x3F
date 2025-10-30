@@ -10,8 +10,8 @@ tags:
   - greedy
   - union find
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 最小生成樹 (Minimum Spanning Tree, MST)

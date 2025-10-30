@@ -4,8 +4,8 @@ order: 3
 description: '探索跳躍串列的設計原理與實作細節。理解多層索引結構如何實現 O(log n) 的搜尋、插入、刪除操作，以及隨機化層數的機率分析與實際應用場景。'
 tags: ['Skip List', 'Data Structure', '跳躍串列', '資料結構', 'Probabilistic']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Skip List (跳表)

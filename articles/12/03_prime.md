@@ -8,8 +8,8 @@ tags:
   - Sieve
   - Factorization
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 3. Prime - 質數

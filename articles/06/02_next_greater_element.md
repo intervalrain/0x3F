@@ -4,8 +4,8 @@ order: 2
 description: '掌握單調棧解決 Next Greater Element 問題的核心技巧。從暴力解法到 O(n) 優化，理解單調遞減棧的工作原理，並應用於循環陣列、溫度預測、股票跨度等經典題型。'
 tags: ['Monotonic Stack', 'Next Greater Element', 'LeetCode', '單調棧', '陣列']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 下一個更大元素 (Next Greater Element)

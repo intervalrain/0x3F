@@ -8,8 +8,8 @@ tags:
   - DAG
   - Kahn algorithm
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 拓撲排序 (Topological Sort)

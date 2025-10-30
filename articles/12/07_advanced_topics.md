@@ -9,8 +9,8 @@ tags:
   - Miller-Rabin
   - Advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 7. 進階主題 - Möbius / Segmented Sieve (**)

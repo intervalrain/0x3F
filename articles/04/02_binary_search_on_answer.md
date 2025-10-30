@@ -7,8 +7,8 @@ tags:
   - Binary Search on Answer
   - 二分猜答案
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 二分猜答案 (Binary Search on Answer)

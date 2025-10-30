@@ -10,6 +10,7 @@ import './ArticleContent.css';
 import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 import ArticleNavigationComponent from './ArticleNavigation';
 import TableOfContents from './TableOfContents';
+import CopyButton from './CopyButton';
 
 interface ArticleContentProps {
   metadata: ArticleMetadata;
@@ -226,21 +227,64 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
                 </code>
               );
             },
-            pre: ({ children }) => (
-              <pre style={{
-                backgroundColor: '#b0b0b0',
-                border: '1px solid #d0d0d0',
-                padding: '2px',
-                borderRadius: '8px',
-                overflowX: 'auto',
-                marginBottom: '24px',
-                fontSize: '0.875rem',
-                lineHeight: '1.6',
-                fontFamily: 'Consolas, Monaco, "Courier New", monospace'
-              }}>
-                {children}
-              </pre>
-            ),
+            pre: ({ children }) => {
+              // Extract plain text content from code element recursively
+              const extractTextContent = (node: React.ReactNode): string => {
+                if (typeof node === 'string') {
+                  return node;
+                }
+                if (typeof node === 'number') {
+                  return String(node);
+                }
+                if (Array.isArray(node)) {
+                  return node.map(extractTextContent).join('');
+                }
+                if (React.isValidElement(node)) {
+                  const props = node.props as { children?: React.ReactNode };
+                  if (props.children) {
+                    return extractTextContent(props.children);
+                  }
+                }
+                return '';
+              };
+
+              // Find the code element
+              const codeElement = React.Children.toArray(children).find(
+                (child): child is React.ReactElement<{ children?: React.ReactNode }> =>
+                  React.isValidElement(child) && child.type === 'code'
+              );
+
+              // Extract all text content from the code element
+              const codeContent = codeElement
+                ? extractTextContent(codeElement.props.children)
+                : extractTextContent(children);
+
+              return (
+                <div style={{ position: 'relative', marginBottom: '24px' }}>
+                  <pre style={{
+                    backgroundColor: '#b0b0b0',
+                    border: '1px solid #d0d0d0',
+                    padding: '20px',
+                    paddingTop: '48px',
+                    borderRadius: '8px',
+                    overflowX: 'auto',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.6',
+                    fontFamily: 'Consolas, Monaco, "Courier New", monospace'
+                  }}>
+                    {children}
+                  </pre>
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    zIndex: 10
+                  }}>
+                    <CopyButton code={codeContent} />
+                  </div>
+                </div>
+              );
+            },
             blockquote: ({ children }) => (
               <blockquote style={{
                 borderLeft: '4px solid #e5e7eb',

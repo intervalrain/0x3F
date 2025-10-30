@@ -8,8 +8,8 @@ tags:
   - Euler's Theorem
   - Advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 5. 歐拉函數 - Euler's Phi Function (**)

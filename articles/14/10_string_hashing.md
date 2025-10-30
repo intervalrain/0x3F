@@ -7,8 +7,8 @@ tags:
   - rolling-hash
   - prefix-hash
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 10. String Hashing

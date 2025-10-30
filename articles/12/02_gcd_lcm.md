@@ -8,8 +8,8 @@ tags:
   - LCM
   - Euclidean Algorithm
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 2. GCD/LCM - 最大公因數與最小公倍數

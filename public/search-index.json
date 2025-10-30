@@ -12,7 +12,7 @@
       "folder": "01",
       "slug": "01_complexity",
       "path": "/articles/01/01_complexity",
-      "excerpt": "複雜度 (Complexity) 時間複雜度 (Time Complexity) 時間複雜度用來衡量演算法執行所需的時間，通常使用大 O 記號 (Big O Notation) 來表示。 常見的時間複雜度 - O(1) - 常數時間：不論輸入大小，執行時間固定 - O(log n) - 對數時間：如二分搜尋 - O(n) - 線性時間：需要遍歷所有元素一次 - O(n log n) - 線性對數時",
+      "excerpt": "複雜度 (Complexity) 時間複雜度 (Time Complexity) 時間複雜度用來衡量演算法執行所需的時間，通常使用大 O 記號 (Big O Notation) 來表示。 !complexity 常見的時間複雜度 - O(1) - 常數時間：不論輸入大小，執行時間固定 - O(log n) - 對數時間：如二分搜尋 - O(n) - 線性時間：需要遍歷所有元素一次 - O(n lo",
       "order": 1,
       "draft": false
     },
@@ -118,7 +118,7 @@
       "path": "/articles/01/07_heap",
       "excerpt": "Heap 與 Priority Queue 前言 Heap (堆積) 是一種特殊的完全二元樹，常用於實作 Priority Queue (優先隊列)。 --- Heap 的概念 定義 Heap 是一棵完全二元樹，滿足以下性質： - Max Heap (大根堆)：每個節點的值 ≥ 其子節點的值 - Min Heap (小根堆)：每個節點的值 ≤ 其子節點的值 完全二元樹 完全二元樹：除了最後一層外，",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-08_tree",
@@ -136,7 +136,7 @@
       "path": "/articles/01/08_tree",
       "excerpt": "Tree (樹) 前言 Tree (樹) 是一種非線性的資料結構，由節點 (Node) 和邊 (Edge) 組成，廣泛應用於檔案系統、資料庫索引、編譯器等。 --- 基本概念 術語 --- Binary Tree (二元樹) 定義 每個節點最多有兩個子節點的樹。 類型 1. Full Binary Tree (滿二元樹) 每個節點都有 0 或 2 個子節點。 2. Complete Binary ",
       "order": 8,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-09_graph",
@@ -156,7 +156,7 @@
       "path": "/articles/01/09_graph",
       "excerpt": "Graph (圖) 前言 Graph (圖) 是一種由節點 (Vertex) 和邊 (Edge) 組成的資料結構，用於表示複雜的關係網路。 --- 基本概念 術語 --- 圖的分類 1. 有向圖 (Directed Graph) 邊有方向性。 應用: 任務依賴、網頁連結、社交媒體追蹤 2. 無向圖 (Undirected Graph) 邊無方向性。 應用: 社交網路好友關係、道路網路 3. 有權圖",
       "order": 9,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-10_stl_containers",
@@ -175,7 +175,7 @@
       "path": "/articles/01/10_stl_containers",
       "excerpt": "C++ STL 容器 前言 STL (Standard Template Library) 提供了豐富的容器和演算法，是 C++ 程式設計的重要工具。 --- 序列容器 (Sequence Containers) vector 動態陣列。 | 操作 | 時間複雜度 | |-----|----------| | push_back | 攤銷 O(1) | | pop_back | O(1) | | ",
       "order": 10,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-11_advanced_structures",
@@ -193,7 +193,7 @@
       "path": "/articles/01/11_advanced_structures",
       "excerpt": "進階資料結構 前言 除了 STL 提供的基本容器外，LeetCode 中還會用到一些特殊的資料結構。本章介紹這些進階結構的原理與應用。 --- Trie (字典樹) 概念 Trie 是一種樹狀結構，用於高效儲存和查詢字串集合。 實作 時間複雜度 | 操作 | 時間複雜度 | |-----|----------| | insert | O(m) - m 為字串長度 | | search | O(m)",
       "order": 11,
-      "draft": true
+      "draft": false
     },
     {
       "id": "01-00_introduction",
@@ -226,7 +226,7 @@
       "path": "/articles/02/01_sorting",
       "excerpt": "排序演算法 前言 排序是最基本且重要的演算法之一。了解各種排序演算法的特性，有助於在不同場景選擇最合適的方法。 --- 排序的基本概念 穩定性 (Stability) 定義: 相同值的元素，排序後保持原有的相對順序。 為什麼重要？ 原地排序 (In-place) 定義: 只使用 O(1) 額外空間的排序。 --- 簡單排序 (O(n²)) 1. Bubble Sort (冒泡排序) 原理: 重複比",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-02_brute_force",
@@ -242,7 +242,7 @@
       "path": "/articles/02/02_brute_force",
       "excerpt": "Brute Force (暴力法) 前言 Brute Force (暴力法) 是最直接的解題策略：嘗試所有可能的解法，直到找到答案。 --- 基本概念 定義 暴力法透過窮舉所有可能性來解決問題。 ###特性 - ✓ 一定能找到答案（如果存在） - ✓ 容易理解和實作 - ✗ 時間複雜度高 - ✗ 不適合大資料 --- 經典範例 1. Two Sum (暴力解) 時間複雜度: O(n²) 空間複雜度",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-03_divide_and_conquer",
@@ -258,7 +258,7 @@
       "path": "/articles/02/03_divide_and_conquer",
       "excerpt": "Divide and Conquer (分治法) 前言 Divide and Conquer (分治法) 是一種重要的演算法設計策略，將大問題分割成小問題，分別解決後再合併結果。 --- 核心思想 三步驟 1. Divide (分割): 將問題分成若干子問題 2. Conquer (解決): 遞迴解決子問題 3. Combine (合併): 將子問題的解合併成原問題的解 遞迴結構 --- 經典範例",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-04_dynamic_programming",
@@ -275,7 +275,7 @@
       "path": "/articles/02/04_dynamic_programming",
       "excerpt": "Dynamic Programming (動態規劃) 前言 Dynamic Programming (DP) 是一種透過將問題分解成子問題，並儲存子問題的解來避免重複計算的演算法策略。 --- 核心思想 兩個關鍵特性 1. 重疊子問題 (Overlapping Subproblems)    - 子問題會被重複計算 2. 最優子結構 (Optimal Substructure)    - 最優解包",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-05_greedy",
@@ -291,7 +291,7 @@
       "path": "/articles/02/05_greedy",
       "excerpt": "Greedy (貪心法) 前言 Greedy (貪心法) 是一種在每一步都選擇當前最優解的演算法策略，期望透過局部最優達到全域最優。 --- 核心思想 定義 每一步都做出當下看起來最好的選擇，不回頭修改。 貪心 vs DP | 特性 | 貪心法 | DP | |-----|-------|---| | 決策 | 局部最優 | 考慮所有子問題 | | 回溯 | 不回溯 | 可能需要 | | 正確性 ",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-06_backtracking",
@@ -308,7 +308,7 @@
       "path": "/articles/02/06_backtracking",
       "excerpt": "Backtracking (回溯法) 前言 Backtracking (回溯法) 是一種透過嘗試所有可能性，在發現當前路徑不可行時回退的演算法策略。 --- 核心思想 定義 回溯法 = DFS + 剪枝 + 回退 模板 --- 經典問題 1. 全排列 (Permutations) 問題: 生成所有排列 決策樹: --- 2. 組合 (Combinations) 問題: 從 n 個數中選 k 個 剪",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-07_branch_and_bound",
@@ -324,7 +324,7 @@
       "path": "/articles/02/07_branch_and_bound",
       "excerpt": "Branch and Bound (分支定界法) 前言 Branch and Bound (分支定界法) 是一種用於求解最優化問題的演算法，透過界限函數來剪枝，避免搜尋無用的分支。 --- 核心思想 定義 分支定界 = 回溯法 + 界限函數 + 最優解追蹤 vs 回溯法 | 特性 | 回溯法 | 分支定界 | |-----|-------|---------| | 目標 | 找所有解 | 找最優解",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "02-00_algorithm_overview",
@@ -357,7 +357,7 @@
       "path": "/articles/03/01_fixed_length_window",
       "excerpt": "定長滑動視窗 (Fixed-Length Sliding Window) 核心概念 定長滑動視窗指的是窗口大小固定為 k 的滑動視窗問題。 特點 - 窗口大小固定不變 - 每次移動：右邊加入新元素，左邊移除舊元素 - 時間複雜度：O(n) - 適合求「每個大小為 k 的子陣列的某個屬性」 --- 通用模板 模板說明 1. 建立窗口：先建立大小為 k 的初始窗口 `[0, k-1]` 2. 更新答案",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "03-02_variable_length_window",
@@ -373,7 +373,7 @@
       "path": "/articles/03/02_variable_length_window",
       "excerpt": "不定長滑動視窗 (Variable-Length Sliding Window) 核心概念 不定長滑動視窗指的是窗口大小可變，根據條件動態調整左右邊界。 特點 - 窗口大小動態變化 - 使用 `left` 和 `right` 兩個指針 - `right` 向右擴展，`left` 向右收縮 - 時間複雜度：O(n) - 適合求「滿足某條件的最長/最短子陣列」 --- 通用模板 模板說明 1. 右指針",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "03-03_opposite_two_pointers",
@@ -390,7 +390,7 @@
       "path": "/articles/03/03_opposite_two_pointers",
       "excerpt": "雙向雙指針 (Opposite Direction Two Pointers) 核心概念 雙向雙指針（又稱對撞指針）是指兩個指針從陣列兩端出發，相向移動，直到相遇。 特點 - 兩個指針：`left` 從左端，`right` 從右端 - 相向移動：`left++`、`right--` - 終止條件：`left < right` 或 `left <= right` - 時間複雜度：O(n) - 通常需",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "03-04_same_direction_two_pointers",
@@ -407,7 +407,7 @@
       "path": "/articles/03/04_same_direction_two_pointers",
       "excerpt": "同向雙指針 (Same Direction Two Pointers) 核心概念 同向雙指針（又稱快慢指針）是指兩個指針從同一端出發，同向移動，但移動速度或條件不同。 特點 - 兩個指針：`slow` 和 `fast` - 同向移動：都向右（或都向左） - 移動速度：fast 通常比 slow 快 - 時間複雜度：O(n) - 適合原地修改、鏈表問題 --- 通用模板 模板 1：原地修改陣列 模板",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "03-00_introduction",
@@ -440,7 +440,7 @@
       "path": "/articles/04/01_basic_search",
       "excerpt": "基礎查找 (Basic Search) 核心概念 基礎查找是二分搜尋最直接的應用，包括： 1. 查找確切的元素 2. 查找插入位置 3. 查找左右邊界 --- 場景 1：查找元素是否存在 問題：Binary Search 題目：LeetCode 704 在升序陣列中查找 target，存在返回索引，不存在返回 -1。 時間複雜度：O(log n) 空間複雜度：O(1) --- 場景 2：查找插入位",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "04-02_binary_search_on_answer",
@@ -456,7 +456,7 @@
       "path": "/articles/04/02_binary_search_on_answer",
       "excerpt": "二分猜答案 (Binary Search on Answer) 核心概念 二分猜答案是指：當問題的答案具有單調性時，可以通過二分搜尋來「猜測」答案，並驗證其可行性。 基本思路 1. 確定答案範圍 [left, right] 2. 猜測答案 mid 3. 驗證可行性 check(mid) 4. 縮小範圍：    - 可行 → 嘗試更優解    - 不可行 → 調整範圍 適用條件 1. 答案有範圍：最",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "04-03_kth_element",
@@ -473,7 +473,7 @@
       "path": "/articles/04/03_kth_element",
       "excerpt": "第 K 小/大元素 (Kth Element) 核心概念 找第 K 小/大元素是經典問題，有多種解法： 1. 排序：O(n log n) 2. 堆 (Heap)：O(n log k) 3. 快速選擇 (Quick Select)：O(n) 平均，O(n²) 最差 4. 二分搜尋：O(n log(範圍)) --- 方法 1：排序 最直接的方法 時間複雜度：O(n log n) 空間複雜度：O(1) ",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "04-00_introduction",
@@ -507,7 +507,7 @@
       "path": "/articles/05/01_basic_operations",
       "excerpt": "Linked List 基礎操作 1. Reverse Linked List 1.1 迭代法 反轉鏈表的核心思想是改變每個節點的指向。 時間複雜度: O(n) 空間複雜度: O(1) 1.2 遞迴法 時間複雜度: O(n) 空間複雜度: O(n) - 遞迴調用棧 1.3 反轉區間 [m, n] 2. Node Deletion 2.1 刪除指定值的節點 2.2 刪除倒數第 N 個節點 2.3 刪",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-02_lru_lfu_cache",
@@ -527,7 +527,7 @@
       "path": "/articles/05/02_lru_lfu_cache",
       "excerpt": "LRU/LFU Cache 1. LRU Cache (Least Recently Used) 1.1 原理 LRU Cache 淘汰最久未使用的數據。需要支持： - O(1) 時間獲取數據 - O(1) 時間插入/更新數據 - 當容量滿時，刪除最久未使用的數據 數據結構： - HashMap：存儲 key 到節點的映射 - Doubly Linked List：維護使用順序（最近使用的在頭部，",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-03_skip_list",
@@ -545,7 +545,7 @@
       "path": "/articles/05/03_skip_list",
       "excerpt": "Skip List (跳表) 1. 基本概念 Skip List 是一種隨機化的數據結構，可以在 O(log n) 時間內完成查找、插入和刪除操作。它是平衡樹的一種替代方案，實現更簡單但性能相當。 1.1 為什麼需要 Skip List？ 有序鏈表的問題： 查找元素需要 O(n) 時間。 Skip List 的解決方案： 通過建立多層索引，實現類似二分查找的效果。 1.2 核心思想 1. 多層鏈表",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-04_binary_tree",
@@ -564,7 +564,7 @@
       "path": "/articles/05/04_binary_tree",
       "excerpt": "Binary Tree (二元樹) 1. 基本概念 1.1 定義 二元樹是每個節點最多有兩個子節點的樹結構。 1.2 基本術語 - 根節點 (Root): 1 - 葉節點 (Leaf): 4, 5, 6 - 深度 (Depth): 節點到根的路徑長度 - 高度 (Height): 節點到最深葉節點的路徑長度 - 層級 (Level): 深度 + 1 2. 樹的遍歷 2.1 前序遍歷 (Preord",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-05_tree",
@@ -583,7 +583,7 @@
       "path": "/articles/05/05_tree",
       "excerpt": "Tree (樹) 1. General Tree (一般樹) 1.1 N-ary Tree (N 叉樹) 每個節點可以有任意數量的子節點。 N 叉樹的遍歷 N 叉樹的最大深度 2. Binary Search Tree (BST) 2.1 BST 性質 對於 BST 中的每個節點： - 左子樹所有節點的值 < 當前節點的值 - 右子樹所有節點的值 > 當前節點的值 - 左右子樹也都是 BST 2.",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-06_tree_backtracking",
@@ -602,7 +602,7 @@
       "path": "/articles/05/06_tree_backtracking",
       "excerpt": "Tree + Backtracking (樹 + 回溯) 1. 基本概念 樹的回溯問題通常涉及： - 尋找從根到葉的所有路徑 - 尋找滿足特定條件的路徑 - 路徑和問題 - 組合問題 回溯模板： 2. 路徑和問題 2.1 路徑總和 II 找出所有從根到葉且節點值之和等於目標和的路徑。 時間複雜度: O(n²)，最壞情況需要複製 n 條路徑，每條路徑長度為 O(n) 空間複雜度: O(n)，遞迴調用",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "05-00_introduction",
@@ -638,7 +638,7 @@
       "path": "/articles/06/01_iterative_dfs",
       "excerpt": "Iteration DFS (Stack) 概述 深度優先搜尋（DFS）通常使用遞迴實作，但也可以使用 Stack 來實現非遞迴版本。使用 Stack 的迭代式 DFS 在某些情況下更有優勢： 1. 避免棧溢出：遞迴深度太大時會導致 Stack Overflow 2. 更靈活的控制：可以隨時暫停、恢復搜尋 3. 易於理解：顯式地使用 Stack，更清晰地看到調用過程 遞迴 DFS vs 迭代 DF",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "06-02_next_greater_element",
@@ -656,7 +656,7 @@
       "path": "/articles/06/02_next_greater_element",
       "excerpt": "下一個更大元素 (Next Greater Element) 核心概念 Next Greater Element (NGE) 問題：給定一個陣列，對於每個元素，找到它右邊第一個比它大的元素。 暴力解法的問題 問題： 時間複雜度 O(n²)，效率太低。 單調棧優化 使用單調遞減棧可以將時間複雜度優化到 O(n)。 核心思想： - 維護一個從棧底到棧頂遞減的棧 - 當遇到一個更大的元素時，棧中所有小於",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "06-03_rectangle_area",
@@ -676,7 +676,7 @@
       "path": "/articles/06/03_rectangle_area",
       "excerpt": "矩形面積 (Rectangle Area) 概述 單調棧在計算矩形面積問題中有重要應用，特別是： 1. 柱狀圖中最大矩形 2. 二維矩陣中最大矩形 3. 最大正方形 這些問題都可以通過單調棧高效解決。 --- LeetCode 84: Largest Rectangle in Histogram 問題： 給定 n 個非負整數表示柱狀圖中各個柱子的高度，每個柱子寬度為 1，求柱狀圖中最大矩形的面積。",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "06-04_lru_lfu_design",
@@ -756,7 +756,7 @@
       "path": "/articles/07/01_dfs_bfs_basics",
       "excerpt": "DFS/BFS 基礎 網格圖的 DFS 和 BFS 是最基礎也最重要的技巧，主要用於： - 連通區域的搜索（Flood Fill） - 島嶼問題（Number of Islands） - 面積計算（Max Area of Island） - 邊界處理（Surrounded Regions） 核心概念 DFS（深度優先搜索） - 特點：一條路走到底，回溯繼續 - 實現：遞迴或堆疊 - 適用：連通性判",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "07-02_backtracking",
@@ -776,7 +776,7 @@
       "path": "/articles/07/02_backtracking",
       "excerpt": "Backtracking 回溯（Backtracking）是在網格圖中搜索所有可能路徑的重要技巧。與普通的 DFS 不同，回溯需要： 1. 嘗試所有可能的選擇 2. 在遞迴返回時恢復狀態（撤銷選擇） 3. 通常需要找到所有解或最優解 核心模板 LeetCode 79: Word Search 題目描述 給定一個 m × n 的字符網格和一個字符串 word，判斷 word 是否存在於網格中。單詞必",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "07-03_multi_source_bfs",
@@ -795,7 +795,7 @@
       "path": "/articles/07/03_multi_source_bfs",
       "excerpt": "Multi-source BFS, 狀態空間 BFS 多源 BFS（Multi-source BFS） 核心思想 普通 BFS 從單一源點開始擴展，而多源 BFS 同時從多個源點開始擴展。這在計算「到最近源點的距離」時特別有用。 技巧 將所有源點同時加入初始隊列，然後執行標準 BFS。這樣每個點到達的時間就是它到最近源點的距離。 模板 --- LeetCode 542: 01 Matrix 題目描",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "07-04_shortest_path",
@@ -815,7 +815,7 @@
       "path": "/articles/07/04_shortest_path",
       "excerpt": "最短路徑 (Shortest Path) 網格圖的最短路徑問題是圖論中的經典問題。根據邊的權重不同，需要使用不同的算法： - 無權圖或等權圖：BFS - 帶權圖（非負權重）：Dijkstra - 帶權圖（可能有負權重）：Bellman-Ford（網格圖中較少見） BFS 求最短路徑 原理 在無權圖或等權圖中，BFS 保證第一次到達目標點時的路徑就是最短路徑。 模板 --- LeetCode 109",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "07-00_introduction",
@@ -851,7 +851,7 @@
       "path": "/articles/08/01_dfs_bfs_cycle",
       "excerpt": "DFS/BFS 與環檢測 圖的遍歷是圖論中最基本也最重要的操作。本章將介紹兩種主要的遍歷方法：深度優先搜尋 (DFS) 和廣度優先搜尋 (BFS)，以及如何使用它們來檢測圖中的環。 深度優先搜尋 (DFS) DFS 沿著一條路徑盡可能深入，直到無法繼續時回溯。 DFS 特性 - 策略：一直往深處走，走不通再回頭 - 數據結構：Stack（或遞迴調用棧） - 應用：路徑搜尋、環檢測、拓撲排序、連通分",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-02_union_find",
@@ -867,7 +867,7 @@
       "path": "/articles/08/02_union_find",
       "excerpt": "並查集 (Union Find) 並查集 (Union Find)，也稱為 Disjoint Set Union (DSU)，是一種用於處理不相交集合的合併和查詢問題的資料結構。 核心概念 問題場景 並查集主要解決以下問題： 1. 合併 (Union)：將兩個集合合併為一個 2. 查詢 (Find)：判斷兩個元素是否在同一個集合中 應用場景 - 連通性問題：判斷圖中兩點是否連通 - 環檢測：檢測無",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-03_topological_sort",
@@ -884,7 +884,7 @@
       "path": "/articles/08/03_topological_sort",
       "excerpt": "拓撲排序 (Topological Sort) 拓撲排序是將有向無環圖 (DAG) 的所有頂點排成一個線性序列，使得對於任意有向邊 (u, v)，u 都排在 v 之前。 基本概念 什麼是拓撲排序？ 拓撲排序是 DAG 的一種線性排序，滿足： - 如果存在邊 u → v，則 u 在 v 前面 - 只有 DAG 才有拓撲排序（有環則無解） - 拓撲排序可能不唯一 應用場景 1. 任務排程：確定任務的執",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-04_dijkstra",
@@ -902,7 +902,7 @@
       "path": "/articles/08/04_dijkstra",
       "excerpt": "Dijkstra 最短路徑演算法 Dijkstra 演算法是解決單源最短路徑 (Single-Source Shortest Path) 問題的經典貪心演算法，由荷蘭計算機科學家 Edsger Dijkstra 於 1956 年提出。 核心概念 問題定義 給定帶權重的有向圖，找出從源點 (source) 到所有其他頂點的最短路徑。 限制：邊的權重必須非負 (≥ 0)。 基本思想 採用貪心策略： 1",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-05_bellman_ford",
@@ -920,7 +920,7 @@
       "path": "/articles/08/05_bellman_ford",
       "excerpt": "Bellman-Ford 演算法 Bellman-Ford 演算法是另一種解決單源最短路徑問題的演算法，與 Dijkstra 的主要區別在於它可以處理負權邊，並且能夠檢測負環。 核心概念 問題定義 給定帶權重的有向圖（可能有負權邊），找出從源點到所有其他頂點的最短路徑。 優勢： - 支持負權邊 - 可以檢測負環（存在負環時無最短路徑） 劣勢： - 時間複雜度較高：O(VE) 基本思想 採用動態規劃",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-06_spfa",
@@ -937,7 +937,7 @@
       "path": "/articles/08/06_spfa",
       "excerpt": "SPFA (Shortest Path Faster Algorithm) SPFA (Shortest Path Faster Algorithm) 是 Bellman-Ford 演算法的隊列優化版本，由中國學者段凡丁於 1994 年提出。它在平均情況下比 Bellman-Ford 快得多，但最壞時間複雜度仍為 O(VE)。 核心概念 與 Bellman-Ford 的關係 Bellman-For",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-07_floyd_warshall",
@@ -955,7 +955,7 @@
       "path": "/articles/08/07_floyd_warshall",
       "excerpt": "Floyd-Warshall 演算法 Floyd-Warshall 演算法是解決全源最短路徑 (All-Pairs Shortest Path) 問題的經典動態規劃演算法,可以一次計算出圖中任意兩點之間的最短距離。 核心概念 問題定義 給定帶權重的有向圖（可能有負權邊），找出所有節點對之間的最短路徑。 輸入：圖的鄰接矩陣 輸出：dist[i][j] 表示從節點 i 到節點 j 的最短距離 基本思想",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-08_tarjan",
@@ -974,7 +974,7 @@
       "path": "/articles/08/08_tarjan",
       "excerpt": "Tarjan 演算法 Tarjan 演算法是由 Robert Tarjan 提出的一系列基於 DFS 的圖論演算法,主要用於解決強連通分量 (SCC)、橋 (Bridge) 和割點 (Articulation Point) 問題。 核心概念 1. 強連通分量 (Strongly Connected Component, SCC) 定義：有向圖中的極大強連通子圖。 - 強連通：任意兩個頂點之間都有路",
       "order": 8,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-09_kruskal_prim",
@@ -993,7 +993,7 @@
       "path": "/articles/08/09_kruskal_prim",
       "excerpt": "最小生成樹 (Minimum Spanning Tree, MST) 最小生成樹是圖論中的經典問題，目標是找到連接圖中所有節點的最小權重樹。 核心概念 什麼是生成樹？ 生成樹 (Spanning Tree)： - 包含圖中所有頂點的樹 - 恰好有 V-1 條邊（V 為頂點數） - 連通且無環 最小生成樹 (MST)： - 所有生成樹中，邊權重和最小的那棵 視覺化範例 性質 1. 唯一性：權重不同時",
       "order": 9,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-10_max_flow",
@@ -1012,7 +1012,7 @@
       "path": "/articles/08/10_max_flow",
       "excerpt": "最大流演算法 (Maximum Flow) 最大流問題是圖論中的經典問題，用於計算從源點到匯點可以傳輸的最大流量。本章介紹兩種經典演算法：Edmonds-Karp 和 Dinic。 > 注意：這是進階主題，在 LeetCode 中較少出現。本章著重於概念介紹和基本實現。 核心概念 網路流 (Network Flow) 流網路由以下元素組成： - 有向圖 G = (V, E) - 容量 c(u, v",
       "order": 10,
-      "draft": true
+      "draft": false
     },
     {
       "id": "08-11_bipartite_matching",
@@ -1031,7 +1031,27 @@
       "path": "/articles/08/11_bipartite_matching",
       "excerpt": "二分圖最大匹配 二分圖最大匹配是圖論中的經典問題，用於尋找二分圖中最多的不相交匹配邊。本章介紹二分圖的基本概念、判定方法和匹配演算法。 > 注意：這是進階主題，最大匹配演算法在 LeetCode 較少出現，但二分圖判定是常見題型。 核心概念 二分圖 (Bipartite Graph) 定義：頂點可以分為兩個集合 U 和 V，使得： - 同一集合內的頂點之間沒有邊 - 所有邊都連接 U 和 V 中的",
       "order": 11,
-      "draft": true
+      "draft": false
+    },
+    {
+      "id": "08-12_shortest_path_comparison",
+      "title": "08-12. 最短路徑算法比較：四種解法實戰",
+      "description": "透過 LeetCode 1334 題比較 Floyd-Warshall、Dijkstra、SPFA、Bellman-Ford 四種最短路徑算法的性能差異",
+      "tags": [
+        "graph",
+        "shortest path",
+        "floyd-warshall",
+        "dijkstra",
+        "spfa",
+        "bellman-ford",
+        "comparison"
+      ],
+      "folder": "08",
+      "slug": "12_shortest_path_comparison",
+      "path": "/articles/08/12_shortest_path_comparison",
+      "excerpt": "最短路徑算法比較：四種解法實戰 題目：Find the City With the Smallest Number of Neighbors at a Threshold Distance LeetCode 1334 給定 `n` 個城市和一些邊,找出在距離閾值內可到達城市數量最少的城市。如果有多個答案,返回編號最大的城市。 解題思路 這道題需要計算所有城市對之間的最短距離,然後統計每個城市在閾值",
+      "order": 12,
+      "draft": false
     },
     {
       "id": "08-00_introduction",
@@ -1062,7 +1082,7 @@
       "path": "/articles/09/01_bitwise_operations",
       "excerpt": "1. Bitwise Operations (基本位元運算) 位元運算子是直接對二進制位元進行操作的運算子，是所有位元操作的基礎。 基本運算子 1. AND 運算子 (`&`) 規則：兩個位元都是 1 時，結果才是 1。 範例： 常見用途： - 提取特定位元 - 清除特定位元 - 檢查位元是否為 1 2. OR 運算子 (`|`) 規則：兩個位元中有一個是 1 時，結果就是 1。 範例： 常見用途",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "09-02_advanced_bitwise",
@@ -1079,7 +1099,7 @@
       "path": "/articles/09/02_advanced_bitwise",
       "excerpt": "2. Advanced Bitwise Operations (進階位元運算) 在掌握基本位元運算後，我們來學習更進階的技巧，包括位元遮罩、漢明距離和子集枚舉。 Bit Masking (位元遮罩) 位元遮罩是使用特定的位元模式來操作或檢查特定位元的技術。 基本操作 1. 設定特定位元 (Set Bit) 將第 `i` 位元設定為 1： 簡寫形式： 2. 清除特定位元 (Clear Bit) 將第",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "09-03_bit_library",
@@ -1096,7 +1116,7 @@
       "path": "/articles/09/03_bit_library",
       "excerpt": "3. Bit Library - STL C++ 標準函式庫和編譯器提供了許多方便的位元操作工具，能夠大幅簡化位元運算的程式碼。 bitset<N> 容器 `bitset` 是 C++ STL 提供的固定大小的位元集合，提供了豐富的位元操作介面。 宣告與初始化 基本操作 1. set() - 設定位元 2. reset() - 清除位元 3. flip() - 翻轉位元 4. test() - 檢",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "09-04_bitwise_tricks",
@@ -1113,7 +1133,7 @@
       "path": "/articles/09/04_bitwise_tricks",
       "excerpt": "4. Bitwise Tricks (位元運算技巧) 本章介紹一些經典且實用的位元運算技巧，這些技巧在演算法競賽和實際開發中都非常有用。 1. Number of 1 Bits (Brian Kernighan 演算法) 原理 Brian Kernighan 演算法是一種高效計算整數中 1 的個數的方法，其核心是利用 `x & (x - 1)` 可以移除最低位的 1。 實作 詳細過程 時間複雜度 ",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "09-05_bit_dp",
@@ -1131,7 +1151,7 @@
       "path": "/articles/09/05_bit_dp",
       "excerpt": "5. Bit DP (位元動態規劃) 位元 DP（Bitmask DP）是一種使用位元來表示狀態的動態規劃技術，特別適合處理集合相關的問題。 Bitmask DP (狀態壓縮 DP) 基本概念 當問題的狀態可以用一個小集合的子集來表示時，我們可以使用位元來編碼這些狀態，這樣可以： 1. 節省空間 2. 加速狀態轉移 3. 簡化程式碼 適用場景 - 集合元素數量較小（通常 n ≤ 20） - 需要枚",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "09-00_introduction",
@@ -1163,7 +1183,7 @@
       "path": "/articles/10/01_one_dimensional_dp",
       "excerpt": "1 維 DP 1 維動態規劃是最基礎也是最常見的 DP 類型。在這類問題中，狀態通常只需要一個維度來表示，通常是 `dp[i]`，表示「到第 i 個位置」或「考慮前 i 個元素」時的最優解。 問題特徵 1. 問題涉及線性序列（數組、字符串等） 2. 決策只依賴於前面的狀態 3. 通常求解「前 i 個元素」的某種最優值或計數 4. 狀態轉移只需要考慮常數個前驅狀態 狀態定義模式 | 定義方式 | 含",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-02_interval_dp",
@@ -1179,7 +1199,7 @@
       "path": "/articles/10/02_interval_dp",
       "excerpt": "區間 DP (Interval DP) 區間 DP 是一種在區間 [i, j] 上進行決策的動態規劃問題。這類問題的核心思想是：將大區間的問題分解為小區間的子問題，通過枚舉分割點來合併子區間的解。 問題特徵 1. 問題涉及連續區間的最優解 2. 大區間的解可以由小區間的解合併得到 3. 需要枚舉分割點來決定如何劃分區間 4. 通常涉及區間合併、區間分割、回文串等概念 狀態定義 其中： - `i` ",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-03_knapsack_01",
@@ -1195,7 +1215,7 @@
       "path": "/articles/10/03_knapsack_01",
       "excerpt": "0-1 背包 DP (0-1 Knapsack) 0-1 背包問題是動態規劃中最經典、最重要的問題之一。它不僅本身是一個重要的問題類型,更是許多 DP 問題的基礎模型。 問題描述 有 N 件物品和一個容量為 W 的背包。第 i 件物品的重量是 `w[i]`,價值是 `v[i]`。每件物品只能選擇一次(要麼拿,要麼不拿),求在不超過背包容量的前提下,能獲得的最大價值。 範例: 核心特徵 1. 每個物",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-04_knapsack_unbounded",
@@ -1212,7 +1232,7 @@
       "path": "/articles/10/04_knapsack_unbounded",
       "excerpt": "完全背包 (Unbounded Knapsack) 完全背包是背包問題的另一個重要變形。與 0-1 背包的區別在於:每個物品可以選擇無限次。 問題描述 有 N 種物品和一個容量為 W 的背包。第 i 種物品的重量是 `w[i]`,價值是 `v[i]`。每種物品可以選擇任意多次,求在不超過背包容量的前提下,能獲得的最大價值。 範例: 核心特徵 1. 每個物品可以選無限次 2. 有容量限制 3. 求最",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-05_sequence_dp",
@@ -1230,7 +1250,7 @@
       "path": "/articles/10/05_sequence_dp",
       "excerpt": "序列 DP (Sequence DP) 序列 DP 是處理序列(數組、字符串)匹配、比較、查找子序列等問題的重要技術。這類問題通常涉及一個或兩個序列,需要找出它們的某種最優子序列或轉換方式。 核心問題類型 1. 最長遞增子序列 (LIS - Longest Increasing Subsequence) 2. 最長公共子序列 (LCS - Longest Common Subsequence) 3",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-06_grid_matrix_dp",
@@ -1247,7 +1267,7 @@
       "path": "/articles/10/06_grid_matrix_dp",
       "excerpt": "Grid/Matrix DP 網格 DP 是處理二維網格或矩陣上路徑、區域問題的重要技術。這類問題通常涉及在網格上移動、計數路徑、或找出滿足特定條件的最優子矩陣。 問題特徵 1. 在二維網格上進行操作 2. 通常只能向右、向下移動 3. 求路徑數量、最優路徑、或最大子矩陣 4. 狀態通常是 `dp[i][j]` 表示到達 (i,j) 的某種最優值 狀態定義 轉移方程模板 --- 問題 1: 不同路",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-07_bitmask_dp",
@@ -1264,7 +1284,7 @@
       "path": "/articles/10/07_bitmask_dp",
       "excerpt": "狀態壓縮 DP / Bitmask DP 狀態壓縮 DP 是一種使用位元 (bit) 來表示狀態集合的動態規劃技術。當問題涉及的集合元素數量較小(通常 n ≤ 20)時,可以用一個整數的二進制位來表示集合的狀態,從而大幅簡化狀態表示和轉移。 核心概念 什麼時候使用狀態壓縮? 1. 問題涉及集合或子集 2. 集合大小較小: n ≤ 20 (因為 2²⁰ ≈ 10⁶ 可接受) 3. 需要記錄\"哪些元素",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-08_tree_dp",
@@ -1281,7 +1301,7 @@
       "path": "/articles/10/08_tree_dp",
       "excerpt": "Tree DP Tree DP 是在樹結構上進行的動態規劃。樹的遞迴結構使得動態規劃非常自然:通過後序遍歷,我們可以先計算子樹的 DP 值,再計算當前節點的 DP 值。 核心概念 樹 DP 的特點 1. 遞迴結構: 樹天然具有遞迴結構 2. 後序遍歷: 先處理子節點,再處理父節點 3. 狀態定義: 通常 `dp[u]` 表示以 u 為根的子樹的最優解 4. 轉移方向: 從子節點向父節點轉移 基本模",
       "order": 8,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-09_state_machine_dp",
@@ -1297,7 +1317,7 @@
       "path": "/articles/10/09_state_machine_dp",
       "excerpt": "State Machine DP (狀態機 DP) 狀態機 DP 是一種將問題建模為狀態機,然後用動態規劃求解的方法。這類問題的特點是:存在多個狀態,狀態之間可以相互轉換,每次轉換可能有代價或收益。 核心概念 什麼是狀態機? 狀態機是一個包含以下要素的模型: 1. 狀態集合: 系統可能處於的所有狀態 2. 狀態轉移: 從一個狀態到另一個狀態的規則 3. 初始狀態: 起始時的狀態 4. 終止狀態: ",
       "order": 9,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-10_dp_with_sliding_window",
@@ -1314,7 +1334,7 @@
       "path": "/articles/10/10_dp_with_sliding_window",
       "excerpt": "DP + Sliding Window DP + 滑動窗口是一種將動態規劃與滑動窗口技巧結合的優化方法。當 DP 的轉移方程涉及一個區間範圍內的最值時,可以使用滑動窗口(通常是單調隊列)來優化時間複雜度。 核心概念 什麼時候需要滑動窗口優化? 當 DP 轉移方程是以下形式時: 樸素做法: 時間複雜度: O(n × k) 使用單調隊列優化後: 時間複雜度: O(n) 單調隊列 單調隊列是一種特殊的雙",
       "order": 10,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-11_dp_optimization",
@@ -1331,7 +1351,7 @@
       "path": "/articles/10/11_dp_optimization",
       "excerpt": "DP 優化技巧 動態規劃的優化是將高時間複雜度的 DP 降低到更可接受的範圍。常見的優化技巧包括:二分搜索、貪心結合、決策單調性等。 優化技巧分類 1. 空間優化: 滾動數組、狀態壓縮 2. 時間優化: 二分搜索、單調隊列、決策單調性 3. 算法結合: DP + 貪心、DP + 二分 --- 技巧 1: 最長遞增子序列的二分優化 (LIS) LeetCode 300. Longest Increa",
       "order": 11,
-      "draft": true
+      "draft": false
     },
     {
       "id": "10-00_introduction",
@@ -1365,7 +1385,7 @@
       "path": "/articles/11/01_prefix_sum",
       "excerpt": "Prefix Sum & Difference Array 核心概念 Prefix Sum（前綴和）和 Difference Array（差分陣列）是一對互補的技巧： - Prefix Sum：優化區間查詢，將 O(n) 降至 O(1) - Difference Array：優化區間修改，將 O(n) 降至 O(1) 兩者都是用 O(n) 空間 換取 O(1) 時間 的經典範例。 --- 一、Pr",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-02_prefix_sum_2d",
@@ -1381,7 +1401,7 @@
       "path": "/articles/11/02_prefix_sum_2d",
       "excerpt": "2D Prefix Sum（二維前綴和） 核心概念 二維前綴和是一維前綴和的擴展，用於快速查詢矩陣中任意子矩形區域的和。 核心思想：預處理 O(m·n)，查詢 O(1) --- 一、原理與公式 定義 對於 `m × n` 矩陣 `matrix`，定義二維前綴和 `prefix[i][j]`： 圖解： 計算公式（預處理） 圖解： 查詢公式（區間和） 查詢子矩陣 `(r1, c1)` 到 `(r2, ",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-03_heap_intro",
@@ -1398,7 +1418,7 @@
       "path": "/articles/11/03_heap_intro",
       "excerpt": "Heap (Priority Queue) 核心概念 Heap（堆）是一種完全二叉樹，滿足堆性質： - Max Heap（大頂堆）：父節點 ≥ 子節點 - Min Heap（小頂堆）：父節點 ≤ 子節點 核心優勢：在 O(log n) 時間內動態維護最大值或最小值。 --- 一、Heap 的結構與性質 完全二叉樹 Heap 是一棵完全二叉樹（Complete Binary Tree）： - 除了最",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-04_union_find",
@@ -1415,7 +1435,7 @@
       "path": "/articles/11/04_union_find",
       "excerpt": "Union Find (Disjoint Set Union) 核心概念 Union Find（並查集），也稱為 Disjoint Set Union (DSU)，是一種用於維護互斥集合（Disjoint Sets）的資料結構。 核心功能： - `find(x)`：找到元素 x 所在集合的代表元素（根節點） - `union(x, y)`：合併 x 和 y 所在的集合 時間複雜度：經過優化後，兩個",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-05_trie",
@@ -1432,7 +1452,7 @@
       "path": "/articles/11/05_trie",
       "excerpt": "Trie (Prefix Tree) 核心概念 Trie（字典樹/前綴樹）是一種專門用於字串查詢的樹狀資料結構。 核心特性： - 共享公共前綴，節省空間 - 插入、查詢時間：O(L)，L 為字串長度 - 支援前綴匹配，這是 Hash Map 做不到的！ 典型應用： - 字典查詢 - 自動補全 - 拼寫檢查 - IP 路由表 - XOR 最大值（Bitwise Trie） --- 一、Trie 的結",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "11-06_fenwick_tree_and_segment_tree",
@@ -1518,7 +1538,7 @@
       "path": "/articles/12/01_modular_arithmetic",
       "excerpt": "1. 同餘性質 - Modular Arithmetic 模運算基礎 定義 對於整數 a 和正整數 m，a mod m 表示 a 除以 m 的餘數。 範例： - `17 mod 5 = 2`（17 = 3 × 5 + 2） - `23 mod 7 = 2`（23 = 3 × 7 + 2） 同餘的定義 若兩個整數 a 和 b 除以 m 的餘數相同，則稱 a 和 b 模 m 同餘，記作： 等價條件： ",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-02_gcd_lcm",
@@ -1535,7 +1555,7 @@
       "path": "/articles/12/02_gcd_lcm",
       "excerpt": "2. GCD/LCM - 最大公因數與最小公倍數 最大公因數（GCD） 定義 兩個整數 a 和 b 的最大公因數（Greatest Common Divisor）是能同時整除 a 和 b 的最大正整數，記作 `gcd(a, b)`。 範例： - gcd(12, 18) = 6 - gcd(15, 25) = 5 - gcd(7, 13) = 1（互質） 基本性質 1. 交換律：gcd(a, b) ",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-03_prime",
@@ -1552,7 +1572,7 @@
       "path": "/articles/12/03_prime",
       "excerpt": "3. Prime - 質數 質數的定義與性質 定義 質數（Prime Number）：大於 1 的自然數，只能被 1 和自己整除。 範例：2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, ... 合數（Composite Number）：大於 1 且不是質數的自然數。 基本性質 1. 2 是唯一的偶質數 2. 所有大於 2 的質數都是奇數 3. 1 既不是質數也不是合",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-04_fast_power",
@@ -1569,7 +1589,7 @@
       "path": "/articles/12/04_fast_power",
       "excerpt": "4. 快速冪 - Modular Exponentiation 問題引入 基礎問題：計算 a^n（a 的 n 次方） 樸素方法： 時間複雜度：O(n) 問題： - n 很大時（如 10^9），太慢 - 結果容易溢位 解決方案：快速冪算法（Binary Exponentiation） 快速冪原理 分治思想 核心觀察： 範例：計算 3^13 只需 6 次乘法（而非 12 次）！ 二進制表示法 將指數用",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-05_euler_phi",
@@ -1586,7 +1606,7 @@
       "path": "/articles/12/05_euler_phi",
       "excerpt": "5. 歐拉函數 - Euler's Phi Function () > 註：本章節為進階主題，重點在概念理解。 歐拉函數的定義 歐拉函數 φ(n)（Euler's Totient Function）表示小於或等於 n 的正整數中，與 n 互質的數的個數。 數學定義： 範例： 基本性質 1. 質數的歐拉函數 若 p 是質數： 證明：1, 2, 3, ..., p-1 都與 p 互質（p 只被 1 和",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-06_extended_euclidean",
@@ -1604,7 +1624,7 @@
       "path": "/articles/12/06_extended_euclidean",
       "excerpt": "6. 擴展歐幾里得 - Extended Euclidean Algorithm () > 註：本章節為進階主題，重點在概念理解與基本應用。 擴展歐幾里得算法（Extended GCD） 回顧：貝祖等式 貝祖等式（Bézout's Identity）：對於任意整數 a 和 b，存在整數 x 和 y 使得： 擴展歐幾里得算法就是用來求解這個方程的算法。 算法原理 基礎情況：當 b = 0 時 顯然 ",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-07_advanced_topics",
@@ -1622,7 +1642,7 @@
       "path": "/articles/12/07_advanced_topics",
       "excerpt": "7. 進階主題 - Möbius / Segmented Sieve () > 註：本章節為進階主題，主要提供概念介紹，不深入實現細節。 莫比烏斯函數（Möbius Function） 定義 莫比烏斯函數 μ(n) 定義如下： 範例： 計算方法 單個數 μ(n)： 時間複雜度：O(√n) 批量計算（線性篩）： 時間複雜度：O(n) 重要性質 1. 莫比烏斯反演公式 若 f(n) = Σ(d|n) ",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "12-00_introduction",
@@ -1654,7 +1674,7 @@
       "path": "/articles/13/01_interval_problems",
       "excerpt": "1. 區間問題 區間問題是貪心法最經典的應用場景之一。這類問題通常涉及時間區間、數字區間或其他形式的區間，需要選擇、合併或分組區間以達到某種最優目標。 核心思想 區間問題的貪心策略通常基於以下排序標準之一： 1. 按結束時間排序：選擇最多不重疊區間 2. 按起始時間排序：合併區間、插入區間 3. 按長度或其他屬性排序：特定問題的特殊需求 問題類型一：區間調度 (Activity Selection",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "13-02_sequence_greedy",
@@ -1671,7 +1691,7 @@
       "path": "/articles/13/02_sequence_greedy",
       "excerpt": "2. 序列貪心 序列貪心是指在數組、字符串等序列結構上應用貪心策略。這類問題通常需要： 1. 排序後貪心：先對序列排序，然後按順序做決策 2. 狀態維護：維護一個或多個變量表示當前狀態，貪心地更新 3. 字典序貪心：使用單調棧等結構維護字典序最優 問題類型一：排序 + 貪心 核心思想 通過排序建立處理順序，然後按順序貪心決策。 LeetCode 455: Assign Cookies 問題描述 有",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "13-03_heap_greedy",
@@ -1688,7 +1708,7 @@
       "path": "/articles/13/03_heap_greedy",
       "excerpt": "3. Heap + 貪心 優先隊列（堆）是貪心算法中最常用的數據結構之一。它能高效地維護「當前最優」的元素，非常適合需要動態選擇最優元素的貪心問題。 核心思想 為什麼使用堆？ - 需要動態地選擇最大/最小元素 - O(log n) 的插入和刪除操作 - O(1) 的查看最值操作 典型場景： 1. Huffman 編碼：每次合併頻率最小的兩個節點 2. 任務調度：每次選擇優先級最高的任務 3. 會議",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "13-04_astar",
@@ -1705,7 +1725,7 @@
       "path": "/articles/13/04_astar",
       "excerpt": "4. A 算法 () 註：本章為進階主題，重點在於概念理解和基本應用。A 算法結合了貪心法的局部最優選擇和最短路徑算法的全局最優保證。 什麼是 A 算法？ A (A-Star) 是一種啟發式搜索算法，用於在圖中找到從起點到終點的最短路徑。它是 Dijkstra 算法的改進版本，通過引入啟發函數來加速搜索。 核心思想 評估函數： 貪心策略：每次選擇 f(n) 最小的節點進行擴展。 A vs Dijk",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "13-00_introduction",
@@ -1736,7 +1756,7 @@
       "path": "/articles/14/01_string_manipulation",
       "excerpt": "1. String Manipulation 字串操作是最基礎也是最常見的問題類型。本章將介紹各種基本操作、字元統計、以及字串比較的技巧。 基本操作 1. 反轉字串（Reverse String） 方法 1：雙指針 方法 2：使用標準函數 視覺化過程 2. 大小寫轉換 3. 字串分割（Split） C++ 沒有內建的 split 函數，但可以自己實現： 4. 字串連接（Join） 5. 去除空格（",
       "order": 1,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-02_palindrome",
@@ -1753,7 +1773,7 @@
       "path": "/articles/14/02_palindrome",
       "excerpt": "2. 回文 - Palindrome 回文（Palindrome）是指正讀和反讀都相同的字串，如 \"aba\"、\"racecar\"。回文問題是字串演算法中的經典問題，涉及多種解法技巧。 回文的定義與判定 定義 一個字串 s 是回文，當且僅當： - `s[i] == s[n-1-i]` 對所有 `0 <= i < n/2` 成立 基本判定 忽略非字母數字字元的回文判定 中心擴展法（Expand Aro",
       "order": 2,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-03_suffix_tree",
@@ -1769,7 +1789,7 @@
       "path": "/articles/14/03_suffix_tree",
       "excerpt": "3. Suffix Tree, Suffix Array 後綴樹（Suffix Tree）和後綴陣列（Suffix Array）是處理字串問題的強大工具，適用於子串搜尋、最長公共子串等問題。本章重點介紹概念和實用的後綴陣列。 > 標註 ()： 本章為進階主題，重點在於理解概念和應用，完整實現較為複雜。 後綴（Suffix）的定義 字串 s 的後綴是指從某個位置 i 到結尾的子串。 後綴陣列（Suf",
       "order": 3,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-04_edit_distance",
@@ -1785,7 +1805,7 @@
       "path": "/articles/14/04_edit_distance",
       "excerpt": "4. Approximate String Matching 編輯距離（Edit Distance）是衡量兩個字串相似度的重要指標，廣泛應用於拼寫檢查、DNA 序列比對、模糊搜尋等領域。 編輯距離（Edit Distance / Levenshtein Distance） 定義 編輯距離是將一個字串轉換為另一個字串所需的最少單字元編輯操作次數。 三種操作 1. 插入（Insert）： 插入一個字元",
       "order": 4,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-05_kmp",
@@ -1801,7 +1821,7 @@
       "path": "/articles/14/05_kmp",
       "excerpt": "5. KMP - Knuth-Morris-Pratt KMP 算法是經典的字串匹配算法，由 Knuth、Morris 和 Pratt 於 1977 年提出。它通過預處理模式串，避免重複比較，將時間複雜度從 O(nm) 優化到 O(n+m)。 字串匹配問題 問題定義 給定文本串 text 和模式串 pattern，找到 pattern 在 text 中所有出現的位置。 樸素算法 問題： 當不匹配時",
       "order": 5,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-06_rabin_karp",
@@ -1817,7 +1837,7 @@
       "path": "/articles/14/06_rabin_karp",
       "excerpt": "6. Rabin-Karp Rabin-Karp 算法是一種基於雜湊的字串匹配算法,通過 Rolling Hash (滾動雜湊) 技術實現高效匹配。特別適合多模式匹配和重複子串檢測。 > 標註 (): 本章為進階主題,重點介紹概念和實用技巧。 Rabin-Karp 算法原理 核心思想 1. 雜湊比較: 不直接比較字串,而是比較雜湊值 2. 滾動更新: O(1) 時間更新滑動窗口的雜湊值 3. 衝突",
       "order": 6,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-07_boyer_moore",
@@ -1833,7 +1853,7 @@
       "path": "/articles/14/07_boyer_moore",
       "excerpt": "7. Boyer-Moore Boyer-Moore 算法是一種高效的字串匹配算法,通過從右向左匹配和智能跳躍,在實務中表現優異,被廣泛應用於文本編輯器和搜尋工具。 > 標註 (): 本章為進階主題,重點介紹概念和核心思想,完整實現較為複雜。 Boyer-Moore 算法原理 核心思想 與 KMP 從左向右不同,Boyer-Moore 從右向左匹配: 兩條規則 1. 壞字元規則 (Bad Char",
       "order": 7,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-08_z_function",
@@ -1849,7 +1869,7 @@
       "path": "/articles/14/08_z_function",
       "excerpt": "8. Z-function Z-function 是一種強大的字串處理工具,與 KMP 類似但更簡潔。Z-algorithm 可以在 O(n) 時間內計算 Z-function,並用於高效的字串匹配。 > 標註 (): 本章為進階主題,重點介紹核心概念和應用。 Z-function 定義 對於字串 s,Z-function z[i] 定義為: 注意: z[0] 通常定義為 0 或 n (無意義,因",
       "order": 8,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-09_manacher",
@@ -1865,7 +1885,7 @@
       "path": "/articles/14/09_manacher",
       "excerpt": "9. Manacher Manacher 算法是解決最長回文子串問題的最優算法,時間複雜度為 O(n)。它通過巧妙地利用回文的對稱性,避免了中心擴展法的重複計算。 > 標註 (): 本章為進階主題,Manacher 算法思想精妙,適合深入學習。 問題回顧 最長回文子串問題: - 輸入: 字串 s - 輸出: s 中最長的回文子串 之前的方法: - 暴力: O(n³) - 中心擴展: O(n²) -",
       "order": 9,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-10_string_hashing",
@@ -1881,7 +1901,7 @@
       "path": "/articles/14/10_string_hashing",
       "excerpt": "10. String Hashing 字串雜湊是一種將字串映射為整數的技術,允許 O(1) 時間比較子串,廣泛應用於字串匹配、重複檢測等問題。 字串雜湊原理 多項式雜湊 最常用的雜湊函數: 示例 基本實現 前綴雜湊陣列 核心思想 預處理字串的所有前綴雜湊值,實現 O(1) 查詢任意子串雜湊。 構建 子串雜湊計算 雙重雜湊 使用兩個不同的雜湊函數降低碰撞機率。 應用場景 1. 快速子串比較 2. 重",
       "order": 10,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-11_ac_automation",
@@ -1898,7 +1918,7 @@
       "path": "/articles/14/11_ac_automation",
       "excerpt": "11. AC Automation, Subsequence Automation AC 自動機 (Aho-Corasick Automaton) 是一種高效的多模式匹配算法,結合了 Trie 和 KMP 的思想,可以同時匹配多個模式串。 > 標註 (): 本章為進階主題,重點介紹概念和應用場景,完整實現較為複雜。 AC 自動機簡介 問題定義 多模式匹配問題: - 輸入: 文本串 text, 模式",
       "order": 11,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-12_string_compression",
@@ -1916,7 +1936,7 @@
       "path": "/articles/14/12_string_compression",
       "excerpt": "12. String Compression 字串壓縮是數據壓縮的重要分支,通過減少數據冗餘來節省存儲空間和傳輸帶寬。本章介紹常見的字串壓縮算法。 > 標註 (): 本章為進階主題,重點介紹概念和基本實現,完整的壓縮算法較為複雜。 Run-Length Encoding (RLE) 原理 將連續重複的字元編碼為 (字元, 重複次數)。 基本實現 優化版本 只在重複次數 > 1 時編碼: 適用場景 ",
       "order": 12,
-      "draft": true
+      "draft": false
     },
     {
       "id": "14-00_introduction",
