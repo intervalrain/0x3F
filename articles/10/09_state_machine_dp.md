@@ -7,8 +7,8 @@ tags:
   - 狀態機 DP
   - 股票問題
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # State Machine DP (狀態機 DP)

@@ -7,8 +7,8 @@ tags:
   - Variable Length
   - 不定長視窗
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 不定長滑動視窗 (Variable-Length Sliding Window)

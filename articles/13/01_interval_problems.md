@@ -7,8 +7,8 @@ tags:
   - interval
   - sorting
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 1. 區間問題

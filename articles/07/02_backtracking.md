@@ -4,8 +4,8 @@ order: 2
 description: '結合網格圖與回溯算法，解決單詞搜索、路徑規劃等複雜問題。學習狀態恢復、剪枝優化、Trie 樹加速等進階技巧，掌握在網格中搜索所有可能解的方法。'
 tags: ['Backtracking', 'Grid', 'Word Search', 'DFS', 'Trie', '回溯', '網格圖']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Backtracking

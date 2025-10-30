@@ -8,8 +8,8 @@ tags:
   - SPFA
   - queue optimization
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # SPFA (Shortest Path Faster Algorithm)

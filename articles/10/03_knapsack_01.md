@@ -7,8 +7,8 @@ tags:
   - 背包問題
   - 0-1 Knapsack
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 0-1 背包 DP (0-1 Knapsack)

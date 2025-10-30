@@ -4,8 +4,8 @@ order: 2
 description: '完整解析 LRU 與 LFU 緩存淘汰策略的實作方法。使用雙向鏈表與哈希表實現 O(1) 時間複雜度的緩存操作，深入理解 get、put 操作的設計原理與優化技巧。'
 tags: ['LRU', 'LFU', 'Cache', 'Hash Map', 'Doubly Linked List', '緩存', '哈希表']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # LRU/LFU Cache

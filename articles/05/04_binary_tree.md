@@ -4,8 +4,8 @@ order: 4
 description: '全面掌握二元樹的基礎知識與遍歷技巧。包含前序、中序、後序遍歷的遞迴與迭代實作，以及層序遍歷、路徑問題、樹的構造等經典題型解析。'
 tags: ['Binary Tree', 'Tree Traversal', 'DFS', 'BFS', '二元樹', '樹遍歷']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Binary Tree (二元樹)

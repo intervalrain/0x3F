@@ -7,8 +7,8 @@ tags:
   - 暴力法
   - 窮舉
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Brute Force (暴力法)

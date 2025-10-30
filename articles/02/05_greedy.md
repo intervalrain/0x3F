@@ -7,8 +7,8 @@ tags:
   - 貪心法
   - 局部最優
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Greedy (貪心法)

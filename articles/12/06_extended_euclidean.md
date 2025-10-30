@@ -9,8 +9,8 @@ tags:
   - Linear Congruence
   - Advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 6. 擴展歐幾里得 - Extended Euclidean Algorithm (**)

@@ -7,8 +7,8 @@ tags:
   - string-matching
   - pattern-matching
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 5. KMP - Knuth-Morris-Pratt

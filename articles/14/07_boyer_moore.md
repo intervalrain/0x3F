@@ -7,8 +7,8 @@ tags:
   - string-matching
   - advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 7. Boyer-Moore

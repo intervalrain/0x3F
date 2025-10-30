@@ -4,8 +4,8 @@ order: 1
 description: '使用堆疊實現迭代式深度優先搜尋（DFS），避免遞迴造成的堆疊溢出問題。學習前序、中序、後序遍歷的迭代實作，以及在圖與樹中應用迭代 DFS 的技巧。'
 tags: ['Stack', 'DFS', 'Iterative', 'Tree Traversal', '堆疊', '深度優先搜尋']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Iteration DFS (Stack)

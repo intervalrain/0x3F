@@ -8,8 +8,8 @@ tags:
   - dp
   - expand-around-center
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 2. 回文 - Palindrome

@@ -4,8 +4,8 @@ order: 1
 description: '深入介紹鏈表的基本操作，包含新增、刪除、反轉、合併等核心技巧。透過 LeetCode 經典題目學習雙指針、快慢指針、虛擬節點等實用技巧，掌握鏈表操作的時間與空間複雜度分析。'
 tags: ['Linked List', 'Two Pointers', '鏈表', '雙指針', 'LeetCode']
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Linked List 基礎操作

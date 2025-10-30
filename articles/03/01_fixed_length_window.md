@@ -7,8 +7,8 @@ tags:
   - Fixed Length
   - 定長視窗
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 定長滑動視窗 (Fixed-Length Sliding Window)

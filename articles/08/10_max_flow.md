@@ -10,8 +10,8 @@ tags:
   - dinic
   - advanced
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 最大流演算法 (Maximum Flow)

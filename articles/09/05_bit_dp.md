@@ -9,8 +9,8 @@ tags:
   - trie
   - 進階
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # 5. Bit DP (位元動態規劃)

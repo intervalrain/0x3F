@@ -8,8 +8,8 @@ tags:
   - 路徑問題
   - 矩陣
 author: Rain Hu
-date: ''
-draft: true
+date: '2025-10-30'
+draft: false
 ---
 
 # Grid/Matrix DP
