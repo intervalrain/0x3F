@@ -8,11 +8,12 @@ interface ArticlePageClientProps {
   metadata: ArticleMetadata;
   content: string;
   navigation: ArticleNavigation;
+  slug?: string;
 }
 
-const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ metadata, content, navigation }) => {
+const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ metadata, content, navigation, slug }) => {
   return (
-    <ArticleContent metadata={metadata} content={content} navigation={navigation} />
+    <ArticleContent metadata={metadata} content={content} navigation={navigation} slug={slug} />
   );
 };
 
