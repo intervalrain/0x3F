@@ -27,6 +27,10 @@ memset(dist, 0x3f, sizeof(dist));
 ## Change Log
 
 ### 2025-11-24
+- **新增** 文章留言功能（基於 Giscus / GitHub Discussions）
+- **新增** GitHub OAuth 登入選項（支援 Google + GitHub 雙登入）
+- **新增** 已登入用戶可綁定 GitHub 帳號以啟用留言功能
+- **更新** 品牌名稱為「0x3F NeedCode 溺扣」
 - **新增** 文章支援 LaTeX 數學公式渲染（使用 KaTeX）
 - **新增** 文章訂閱權限系統（`subscription: member` 需登入才能閱讀）
 - **新增** Sidebar 文章列表顯示鎖頭圖示（標示需要登入的文章）
