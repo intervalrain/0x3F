@@ -644,6 +644,172 @@ public:
 
 ---
 
+## 經典問題 7：範圍內數字的總波動度
+
+[LeetCode 3753. Total Waviness of Numbers in Range II](https://leetcode.com/problems/total-waviness-of-numbers-in-range-ii/)
+
+### 問題描述
+
+給定兩個整數 `num1` 和 `num2`，表示閉區間 `[num1, num2]`。
+
+**波動度 (Waviness) 定義：**
+- 一個數字的波動度是其**波峰 (peak)** 和**波谷 (valley)** 的總數
+- **波峰**：某一位數字**嚴格大於**其左右相鄰的兩位數字
+- **波谷**：某一位數字**嚴格小於**其左右相鄰的兩位數字
+- 數字的第一位和最後一位不能是波峰或波谷
+- 少於 3 位的數字波動度為 0
+
+返回範圍 `[num1, num2]` 內所有數字的波動度總和。
+
+**範例 1：**
+```
+輸入: num1 = 120, num2 = 130
+輸出: 3
+解釋:
+- 120: 中間數字 2 是波峰 (1 < 2 > 0)，波動度 = 1
+- 121: 中間數字 2 是波峰 (1 < 2 > 1)，波動度 = 1
+- 130: 中間數字 3 是波峰 (1 < 3 > 0)，波動度 = 1
+- 其他數字 (122~129) 波動度為 0
+總波動度 = 1 + 1 + 1 = 3
+```
+
+**範例 2：**
+```
+輸入: num1 = 1000, num2 = 1010
+輸出: 0
+解釋: 這個範圍內沒有數字包含波峰或波谷
+```
+
+### 問題分析
+
+這是一道進階 Digit DP 問題，難點在於：
+1. 需要追蹤「前兩位數字」來判斷趨勢變化
+2. 需要同時返回「數字個數」和「波動度總和」
+
+**波峰/波谷判斷邏輯：**
+```
+數字序列: ... a, b, c ...
+
+波峰條件: a < b 且 b > c
+- 即前一趨勢是「上升」，當前趨勢變為「下降」
+
+波谷條件: a > b 且 b < c
+- 即前一趨勢是「下降」，當前趨勢變為「上升」
+```
+
+**狀態定義：**
+- `pos`: 當前數位位置 (0 到 18)
+- `p`: 前兩位數字 (0-9，用 10 表示 0 且有 leading zero)
+- `q`: 前一位數字 (0-9，用 10 表示 0 且有 leading zero) 
+- `tight`: 是否緊貼上界
+
+**返回值：**
+返回 `pair<waviness, count>`：數字個數和波動度總和
+
+**關鍵觀察：**
+當我們在位置 `pos` 放置數字 `digit` 時，如果形成波峰/波谷，這個波峰/波谷會為**所有**從這裡延伸的後綴數字貢獻 1 點波動度。因此貢獻量是 `1 × 後綴數字個數`。
+
+### 解法實現
+
+```cpp
+cclass Solution {
+private:
+    struct Result {
+        long long waviness;
+        long long valid;
+        Result(int w, int v): waviness(w), valid(v) {}
+        Result(): waviness(0LL), valid(0LL) {}
+    };
+    long long helper(long long num) {
+        string s = to_string(num);
+        Result dp[16][2][11][11]; // dp[pos][tight][prev2][prev1], use 10 to represents 0 with leading zeros.
+        memset(dp, -1, sizeof(dp));  // -1 represents unvisited.
+
+        // return {waviness, suffix number count}
+        function<Result(int,int,int,int)> dfs = [&](int pos, int tight, int p, int q) {
+            if (pos == s.size()) return Result(0, 1);
+            auto& res = dp[pos][tight][p][q];
+            if (res.waviness != -1) return res;
+            res.waviness = res.valid = 0;
+
+            int limit = tight ? s[pos] - '0' : 9;
+            
+            for (int d = 0; d <= limit; d++) {
+                int ntight = tight && d == limit;
+                bool is_leading_zero = p == 10 && q == 10 && d == 0;
+                int np = is_leading_zero ? 10 : q;
+                int nq = is_leading_zero ? 10 : d;
+
+                auto [w, v] = dfs(pos + 1, ntight, np, nq);
+                res.waviness += w;
+                res.valid += v;
+
+                if (p != 10 && q != 10) {
+                    if ((p < q && q > d) || (p > q && q < d)) {
+                        res.waviness += v;
+                    }
+                }
+            }
+            return res;
+        };
+        return dfs(0, 1, 10, 10).waviness;
+    }
+public:
+    long long totalWaviness(long long num1, long long num2) {
+        return helper(num2) - helper(num1 - 1);
+    }
+};
+```
+
+### 複雜度分析
+
+**時間複雜度：** $O(D × 2 × 11 × 11) = O(D)$ 
+- $D=\log_{10}(\text{num}) <= 16$
+- 每個狀態只計算一次
+- 狀態總數約為 15 × 2 × 3 × 2 × 2 ≈ 2500
+
+**空間複雜度：** $O(D × 2 × 11 × 11) = O(D)$
+
+### 核心技巧解析
+
+#### 1. 返回 pair 的必要性
+
+這題不能只返回波動度總和，因為當某位形成波峰/波谷時，其貢獻取決於「從該位延伸出去的數字有多少個」。
+
+```cpp
+// 當前位形成波峰/波谷時
+total_waviness += current_contribution * res.valid;
+//                                       ↑ 後綴數字的個數
+```
+
+#### 2. 前導零的處理
+
+前導零需要特別處理：
+- 前導零不應該參與趨勢計算
+- 遇到前導零時，重置 `p = 10` 和 `q = 10`
+
+```cpp
+if (new_leading_zeros) {
+    auto res = dp(idx + 1, new_tight, 10, 10);
+    //                                ↑   ↑
+    //                          0 且仍有 leading_zeros
+}
+```
+
+#### 3. 波峰/波谷的判斷時機
+
+波峰/波谷是在「前一位」形成的，但我們在處理「當前位」時才能確認：
+
+```
+... [前前一位] [前一位] [當前位] ...
+        p        q       d
+
+當 p > q 時， d 必須 > q，代表 q 是波峰；(先降後升)
+當 p < q 時， d 必須 < q，代表 q 是波谷。(先升後降)
+```
+
+---
+
 ## 進階技巧
 
 ### 1. 處理前導零 (Leading Zero)
@@ -653,34 +819,25 @@ public:
 - 計算數位和時，前導零不應計入
 
 ```cpp
-int dfs(int pos, int state, bool tight, bool started) {
+int dfs(int pos, int tight, int p, int q) {
     // started = false 表示還在前導零階段
     for (int d = 0; d <= limit; d++) {
-        if (!started && d == 0) {
-            // 繼續前導零，不更新 state
-            res += dfs(pos + 1, state, false, false);
-        } else {
-            // 開始真正的數字
-            res += dfs(pos + 1, newState, tight && (d == limit), true);
+        int ntight = tight && (d == limit);
+        bool has_leading_zeros = (p == 10 && q == 10 && d == 0);
+        
+        int np = has_leading_zeros ? 10 : q;
+        int nq = has_leading_zeros ? 10 : d;
+
+        auto [w, v] = dfs(pos + 1, ntight, np, nq);
+        if (p != 10 && q != 10) {
+            if (p < q && q > d) res.waviness += v;
+            else if (p > q && q < d) res.waviness += v;
         }
     }
 }
 ```
 
-### 2. 記憶化條件
-
-只有當 `tight = false` 時才能記憶化，因為：
-- tight = true 時，結果取決於上界的具體數字
-- tight = false 時，後面的位可以任選 0~9，結果是固定的
-
-有時 `started` 也需要考慮：
-```cpp
-if (!tight && started) {
-    memo[pos][state] = res;
-}
-```
-
-### 3. 返回多個值
+### 2. 返回多個值
 
 有時需要同時返回「數字個數」和「某種統計值」（如 1 的總次數）：
 
@@ -696,7 +853,7 @@ pair<long long, long long> dfs(...) {
 }
 ```
 
-### 4. 大數處理
+### 3. 大數處理
 
 當 n 是字串形式的大數（如 10^200）時，直接用字串處理：
 
@@ -756,6 +913,7 @@ int count(const string& n) {
 | Hard | LC 1012 - Numbers With Repeated Digits | bitmask |
 | Hard | LC 2376 - Count Special Integers | bitmask + 去重 |
 | Hard | LC 2719 - Count of Integers | 區間 + 數位和 |
+| Hard | LC 3753 - Total Waviness | 趨勢追蹤 + 返回 pair |
 
 ---
 
