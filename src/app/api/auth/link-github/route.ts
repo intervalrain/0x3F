@@ -1,11 +1,24 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+
+interface ExtendedUser {
+  id?: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  hasGitHub?: boolean;
+  githubUsername?: string | null;
+}
+
+interface ExtendedSession {
+  user?: ExtendedUser;
+}
 
 // 這個 API 用於生成 GitHub OAuth 連結
 // 已登入的 Google 用戶可以通過這個連結綁定 GitHub 帳號
 export async function GET() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions) as ExtendedSession | null;
 
   if (!session?.user?.id) {
     return NextResponse.json(
