@@ -96,10 +96,10 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
       }
     }
 
-    // Load article tree
-    fetch('/api/article-tree')
+    // Load article tree from pre-generated static JSON
+    fetch('/article-tree.json')
       .then(res => res.json())
-      .then(data => setArticleTree(data.tree || []))
+      .then(data => setArticleTree(data || []))
       .catch(err => console.error('Failed to load article tree:', err));
   }, []);
 

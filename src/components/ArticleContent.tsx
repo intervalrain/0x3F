@@ -3,9 +3,12 @@
 import React, { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
+import rehypeKatex from 'rehype-katex';
 import 'highlight.js/styles/vs.css';
+import 'katex/dist/katex.min.css';
 import './ArticleContent.css';
 import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 import ArticleNavigationComponent from './ArticleNavigation';
@@ -138,8 +141,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
         maxWidth: '100%'
       }}>
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeHighlight, rehypeRaw]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeKatex]}
           components={{
             h1: ({ children }) => {
               const id = getHeadingId(children);

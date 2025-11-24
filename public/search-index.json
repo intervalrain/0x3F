@@ -1,6 +1,21 @@
 {
   "articles": [
     {
+      "id": "01-00_introduction",
+      "title": "01-0. 演算法與資料結構心法",
+      "description": "學習演算法與資料結構的基本概念與心法",
+      "tags": [
+        "基礎",
+        "入門"
+      ],
+      "folder": "01",
+      "slug": "00_introduction",
+      "path": "/articles/01/00_introduction",
+      "excerpt": "演算法與資料結構心法 什麼是演算法？ 演算法是解決問題的步驟和方法。一個好的演算法應該具備以下特性： - 正確性：能夠正確解決問題 - 效率性：時間和空間複雜度合理 - 可讀性：代碼清晰易懂 - 可維護性：容易修改和擴展 學習心法 1. 理解問題本質：在開始寫代碼前，先確保完全理解問題 2. 從簡單開始：先解決簡單的情況，再擴展到複雜場景 3. 多畫圖：視覺化能幫助理解演算法的運作 4. 刻意練習",
+      "order": 0,
+      "draft": false
+    },
+    {
       "id": "01-01_complexity",
       "title": "01-1. 複雜度分析",
       "description": "時間複雜度與空間複雜度的基本概念，以及如何根據 Constraints 分析最佳演算法",
@@ -196,18 +211,20 @@
       "draft": false
     },
     {
-      "id": "01-00_introduction",
-      "title": "01-0. 演算法與資料結構心法",
-      "description": "學習演算法與資料結構的基本概念與心法",
+      "id": "02-00_algorithm_overview",
+      "title": "02-0. 演算法概述",
+      "description": "演算法的選擇策略：以找某值為例，探討時間與空間的權衡",
       "tags": [
-        "基礎",
-        "入門"
+        "演算法",
+        "複雜度",
+        "Hash Table",
+        "Binary Search"
       ],
-      "folder": "01",
-      "slug": "00_introduction",
-      "path": "/articles/01/00_introduction",
-      "excerpt": "演算法與資料結構心法 什麼是演算法？ 演算法是解決問題的步驟和方法。一個好的演算法應該具備以下特性： - 正確性：能夠正確解決問題 - 效率性：時間和空間複雜度合理 - 可讀性：代碼清晰易懂 - 可維護性：容易修改和擴展 學習心法 1. 理解問題本質：在開始寫代碼前，先確保完全理解問題 2. 從簡單開始：先解決簡單的情況，再擴展到複雜場景 3. 多畫圖：視覺化能幫助理解演算法的運作 4. 刻意練習",
-      "order": 999,
+      "folder": "02",
+      "slug": "00_algorithm_overview",
+      "path": "/articles/02/00_algorithm_overview",
+      "excerpt": "演算法概述 前言 選擇合適的演算法，取決於資料特性和使用場景。本章以「找某值」為例，說明不同情況下的最佳策略。 --- 問題：在陣列中查找某個值 場景 1: 亂序陣列，單次查詢 資料: `[3, 7, 1, 9, 2, 5]` 需求: 查找 `target = 9` 是否存在 解法：線性遍歷 (Linear Search) 時間複雜度: O(n) 空間複雜度: O(1) 結論: 亂序陣列必須遍歷，",
+      "order": 0,
       "draft": false
     },
     {
@@ -327,20 +344,20 @@
       "draft": false
     },
     {
-      "id": "02-00_algorithm_overview",
-      "title": "02-0. 演算法概述",
-      "description": "演算法的選擇策略：以找某值為例，探討時間與空間的權衡",
+      "id": "03-00_introduction",
+      "title": "03-0. 滑動視窗與雙指針介紹",
+      "description": "滑動視窗與雙指針的核心概念、使用場景與解題模板",
       "tags": [
-        "演算法",
-        "複雜度",
-        "Hash Table",
-        "Binary Search"
+        "Sliding Window",
+        "Two Pointers",
+        "滑動視窗",
+        "雙指針"
       ],
-      "folder": "02",
-      "slug": "00_algorithm_overview",
-      "path": "/articles/02/00_algorithm_overview",
-      "excerpt": "演算法概述 前言 選擇合適的演算法，取決於資料特性和使用場景。本章以「找某值」為例，說明不同情況下的最佳策略。 --- 問題：在陣列中查找某個值 場景 1: 亂序陣列，單次查詢 資料: `[3, 7, 1, 9, 2, 5]` 需求: 查找 `target = 9` 是否存在 解法：線性遍歷 (Linear Search) 時間複雜度: O(n) 空間複雜度: O(1) 結論: 亂序陣列必須遍歷，",
-      "order": 999,
+      "folder": "03",
+      "slug": "00_introduction",
+      "path": "/articles/03/00_introduction",
+      "excerpt": "滑動視窗與雙指針 前言 滑動視窗 (Sliding Window) 和 雙指針 (Two Pointers) 是處理陣列/字串問題最常用的技巧，能將 O(n²) 的暴力解優化到 O(n)。 --- 核心概念 滑動視窗 定義: 在陣列上維護一個「窗口」，透過移動窗口的左右邊界來尋找答案。 特點: - 窗口在陣列上「滑動」 - 只需遍歷一次 O(n) - 適合連續子陣列問題 雙指針 定義: 使用兩個指",
+      "order": 0,
       "draft": false
     },
     {
@@ -410,20 +427,19 @@
       "draft": false
     },
     {
-      "id": "03-00_introduction",
-      "title": "03-0. 滑動視窗與雙指針介紹",
-      "description": "滑動視窗與雙指針的核心概念、使用場景與解題模板",
+      "id": "04-00_introduction",
+      "title": "04-0. 二分法介紹",
+      "description": "二分搜尋的核心概念、模板與應用場景",
       "tags": [
-        "Sliding Window",
-        "Two Pointers",
-        "滑動視窗",
-        "雙指針"
+        "Binary Search",
+        "二分搜尋",
+        "二分法"
       ],
-      "folder": "03",
+      "folder": "04",
       "slug": "00_introduction",
-      "path": "/articles/03/00_introduction",
-      "excerpt": "滑動視窗與雙指針 前言 滑動視窗 (Sliding Window) 和 雙指針 (Two Pointers) 是處理陣列/字串問題最常用的技巧，能將 O(n²) 的暴力解優化到 O(n)。 --- 核心概念 滑動視窗 定義: 在陣列上維護一個「窗口」，透過移動窗口的左右邊界來尋找答案。 特點: - 窗口在陣列上「滑動」 - 只需遍歷一次 O(n) - 適合連續子陣列問題 雙指針 定義: 使用兩個指",
-      "order": 999,
+      "path": "/articles/04/00_introduction",
+      "excerpt": "二分法介紹 核心概念 二分搜尋 (Binary Search) 是一種在有序資料中快速查找目標值的演算法。 基本原理 每次將搜尋範圍縮小一半，直到找到目標或確定不存在。 時間複雜度 - 最佳：O(1)（第一次就找到） - 平均：O(log n) - 最差：O(log n) 為什麼是 O(log n)？ - 每次範圍減半：n → n/2 → n/4 → ... → 1 - 需要 log₂(n) 次操",
+      "order": 0,
       "draft": false
     },
     {
@@ -476,19 +492,20 @@
       "draft": false
     },
     {
-      "id": "04-00_introduction",
-      "title": "04-0. 二分法介紹",
-      "description": "二分搜尋的核心概念、模板與應用場景",
+      "id": "05-00_introduction",
+      "title": "05-0. LinkedList, Binary Tree, Tree 介紹",
+      "description": "鏈表與樹的基本概念、術語與結構類型",
       "tags": [
-        "Binary Search",
-        "二分搜尋",
-        "二分法"
+        "LinkedList",
+        "Binary Tree",
+        "Tree",
+        "基礎概念"
       ],
-      "folder": "04",
+      "folder": "05",
       "slug": "00_introduction",
-      "path": "/articles/04/00_introduction",
-      "excerpt": "二分法介紹 核心概念 二分搜尋 (Binary Search) 是一種在有序資料中快速查找目標值的演算法。 基本原理 每次將搜尋範圍縮小一半，直到找到目標或確定不存在。 時間複雜度 - 最佳：O(1)（第一次就找到） - 平均：O(log n) - 最差：O(log n) 為什麼是 O(log n)？ - 每次範圍減半：n → n/2 → n/4 → ... → 1 - 需要 log₂(n) 次操",
-      "order": 999,
+      "path": "/articles/05/00_introduction",
+      "excerpt": "LinkedList, Binary Tree, Tree 介紹 前言 LinkedList（鏈表） 和 Tree（樹） 是兩種最重要的非連續儲存結構，與陣列的連續儲存不同，它們通過指針連接節點。 --- 鏈表基本概念 節點 (Node) 鏈表的基本單位，包含資料和指針。 鏈表類型 1. 單向鏈表 (Singly Linked List) 特點： - 只能單向遍歷 - 節點只有 next 指針 -",
+      "order": 0,
       "draft": false
     },
     {
@@ -605,20 +622,23 @@
       "draft": false
     },
     {
-      "id": "05-00_introduction",
-      "title": "05-0. LinkedList, Binary Tree, Tree 介紹",
-      "description": "鏈表與樹的基本概念、術語與結構類型",
+      "id": "06-00_introduction",
+      "title": "06-0. Stack, Queue, Deque, 單調棧介紹",
+      "description": "完整介紹堆疊、佇列、雙端佇列與單調棧的概念與實作。從基本操作到進階應用，理解 LIFO、FIFO 特性，掌握單調棧解決 Next Greater Element 等經典問題的核心技巧。",
       "tags": [
-        "LinkedList",
-        "Binary Tree",
-        "Tree",
-        "基礎概念"
+        "Stack",
+        "Queue",
+        "Deque",
+        "Monotonic Stack",
+        "堆疊",
+        "佇列",
+        "單調棧"
       ],
-      "folder": "05",
+      "folder": "06",
       "slug": "00_introduction",
-      "path": "/articles/05/00_introduction",
-      "excerpt": "LinkedList, Binary Tree, Tree 介紹 前言 LinkedList（鏈表） 和 Tree（樹） 是兩種最重要的非連續儲存結構，與陣列的連續儲存不同，它們通過指針連接節點。 --- 鏈表基本概念 節點 (Node) 鏈表的基本單位，包含資料和指針。 鏈表類型 1. 單向鏈表 (Singly Linked List) 特點： - 只能單向遍歷 - 節點只有 next 指針 -",
-      "order": 999,
+      "path": "/articles/06/00_introduction",
+      "excerpt": "Stack, Queue, Deque, 單調棧介紹 Stack（棧） 基本概念 Stack 是一種 LIFO (Last In First Out) 資料結構，最後放入的元素最先被取出。 STL `std::stack` 用法 Stack 的實作方式 1. 基於陣列的實作 時間複雜度： - Push: O(1) amortized - Pop: O(1) - Top: O(1) 2. 基於鏈表的",
+      "order": 0,
       "draft": false
     },
     {
@@ -719,23 +739,22 @@
       "draft": false
     },
     {
-      "id": "06-00_introduction",
-      "title": "06-0. Stack, Queue, Deque, 單調棧介紹",
-      "description": "完整介紹堆疊、佇列、雙端佇列與單調棧的概念與實作。從基本操作到進階應用，理解 LIFO、FIFO 特性，掌握單調棧解決 Next Greater Element 等經典問題的核心技巧。",
+      "id": "07-00_introduction",
+      "title": "07-0. 網格圖的介紹",
+      "description": "全面介紹網格圖的基本概念與遍歷技巧。學習四向/八向移動、邊界檢查、visited 陣列的使用，掌握 DFS 與 BFS 在網格圖中的應用模板與最佳實踐。",
       "tags": [
-        "Stack",
-        "Queue",
-        "Deque",
-        "Monotonic Stack",
-        "堆疊",
-        "佇列",
-        "單調棧"
+        "Grid",
+        "Graph",
+        "DFS",
+        "BFS",
+        "網格圖",
+        "圖論"
       ],
-      "folder": "06",
+      "folder": "07",
       "slug": "00_introduction",
-      "path": "/articles/06/00_introduction",
-      "excerpt": "Stack, Queue, Deque, 單調棧介紹 Stack（棧） 基本概念 Stack 是一種 LIFO (Last In First Out) 資料結構，最後放入的元素最先被取出。 STL `std::stack` 用法 Stack 的實作方式 1. 基於陣列的實作 時間複雜度： - Push: O(1) amortized - Pop: O(1) - Top: O(1) 2. 基於鏈表的",
-      "order": 999,
+      "path": "/articles/07/00_introduction",
+      "excerpt": "網格圖的介紹 什麼是網格圖？ 網格圖（Grid Graph）是一種特殊的圖結構，通常用二維陣列表示。每個格子代表一個節點，相鄰的格子之間有邊相連。網格圖在演算法題目中非常常見，特別是在路徑搜尋、區域填充、島嶼問題等場景中。 與一般圖的區別 | 特性 | 一般圖 | 網格圖 | |------|--------|--------| | 表示方式 | 鄰接表、鄰接矩陣 | 二維陣列 | | 節點數量 ",
+      "order": 0,
       "draft": false
     },
     {
@@ -818,22 +837,18 @@
       "draft": false
     },
     {
-      "id": "07-00_introduction",
-      "title": "07-0. 網格圖的介紹",
-      "description": "全面介紹網格圖的基本概念與遍歷技巧。學習四向/八向移動、邊界檢查、visited 陣列的使用，掌握 DFS 與 BFS 在網格圖中的應用模板與最佳實踐。",
+      "id": "08-00_introduction",
+      "title": "08-0. 圖論介紹",
+      "description": "圖的基本概念、表示方式與術語",
       "tags": [
-        "Grid",
-        "Graph",
-        "DFS",
-        "BFS",
-        "網格圖",
-        "圖論"
+        "graph",
+        "基礎概念"
       ],
-      "folder": "07",
+      "folder": "08",
       "slug": "00_introduction",
-      "path": "/articles/07/00_introduction",
-      "excerpt": "網格圖的介紹 什麼是網格圖？ 網格圖（Grid Graph）是一種特殊的圖結構，通常用二維陣列表示。每個格子代表一個節點，相鄰的格子之間有邊相連。網格圖在演算法題目中非常常見，特別是在路徑搜尋、區域填充、島嶼問題等場景中。 與一般圖的區別 | 特性 | 一般圖 | 網格圖 | |------|--------|--------| | 表示方式 | 鄰接表、鄰接矩陣 | 二維陣列 | | 節點數量 ",
-      "order": 999,
+      "path": "/articles/08/00_introduction",
+      "excerpt": "圖論介紹 圖論 (Graph Theory) 是研究圖 (Graph) 及其性質的數學分支，在計算機科學中有廣泛應用，包括社交網路分析、路徑規劃、網路流量優化等。 基本概念 什麼是圖？ 圖 (Graph) 是由頂點 (Vertex/Node) 和邊 (Edge) 組成的數據結構，記作 `G = (V, E)`： - `V`: 頂點集合 - `E`: 邊集合 圖的分類 1. 有向圖 vs 無向圖 無",
+      "order": 0,
       "draft": false
     },
     {
@@ -1054,18 +1069,19 @@
       "draft": false
     },
     {
-      "id": "08-00_introduction",
-      "title": "08-0. 圖論介紹",
-      "description": "圖的基本概念、表示方式與術語",
+      "id": "09-00_introduction",
+      "title": "09-0. 位元運算介紹",
+      "description": "位元運算的基礎概念與術語",
       "tags": [
-        "graph",
-        "基礎概念"
+        "bit manipulation",
+        "binary",
+        "基礎"
       ],
-      "folder": "08",
+      "folder": "09",
       "slug": "00_introduction",
-      "path": "/articles/08/00_introduction",
-      "excerpt": "圖論介紹 圖論 (Graph Theory) 是研究圖 (Graph) 及其性質的數學分支，在計算機科學中有廣泛應用，包括社交網路分析、路徑規劃、網路流量優化等。 基本概念 什麼是圖？ 圖 (Graph) 是由頂點 (Vertex/Node) 和邊 (Edge) 組成的數據結構，記作 `G = (V, E)`： - `V`: 頂點集合 - `E`: 邊集合 圖的分類 1. 有向圖 vs 無向圖 無",
-      "order": 999,
+      "path": "/articles/09/00_introduction",
+      "excerpt": "0. 位元運算介紹 位元運算 (Bit Manipulation) 是直接在二進制位元層級上進行的運算，是電腦科學中最基礎且高效的運算方式之一。 Byte 介紹 在電腦中，資料的最小單位是 bit（位元），而 byte（位元組）是由 8 個 bits 組成： 常見的資料型態大小： - `char`: 1 byte (8 bits) - `short`: 2 bytes (16 bits) - `i",
+      "order": 0,
       "draft": false
     },
     {
@@ -1154,19 +1170,20 @@
       "draft": false
     },
     {
-      "id": "09-00_introduction",
-      "title": "09-0. 位元運算介紹",
-      "description": "位元運算的基礎概念與術語",
+      "id": "10-00_introduction",
+      "title": "10-0. 動態規劃介紹",
+      "description": "動態規劃的核心概念與基礎原理",
       "tags": [
-        "bit manipulation",
-        "binary",
-        "基礎"
+        "動態規劃",
+        "DP",
+        "狀態轉移",
+        "記憶化搜索"
       ],
-      "folder": "09",
+      "folder": "10",
       "slug": "00_introduction",
-      "path": "/articles/09/00_introduction",
-      "excerpt": "0. 位元運算介紹 位元運算 (Bit Manipulation) 是直接在二進制位元層級上進行的運算，是電腦科學中最基礎且高效的運算方式之一。 Byte 介紹 在電腦中，資料的最小單位是 bit（位元），而 byte（位元組）是由 8 個 bits 組成： 常見的資料型態大小： - `char`: 1 byte (8 bits) - `short`: 2 bytes (16 bits) - `i",
-      "order": 999,
+      "path": "/articles/10/00_introduction",
+      "excerpt": "動態規劃介紹 動態規劃（Dynamic Programming，簡稱 DP）是一種通過將複雜問題分解為更簡單的子問題來解決問題的算法設計技術。它是演算法設計中最重要且最常用的技巧之一。 什麼是動態規劃？ 動態規劃的核心思想是：避免重複計算，將中間結果保存起來，以空間換時間。 > \"Those who cannot remember the past are condemned to repeat ",
+      "order": 0,
       "draft": false
     },
     {
@@ -1354,20 +1371,36 @@
       "draft": false
     },
     {
-      "id": "10-00_introduction",
-      "title": "10-0. 動態規劃介紹",
-      "description": "動態規劃的核心概念與基礎原理",
+      "id": "10-12_digit_dp",
+      "title": "10-12. 數位 DP / Digit DP",
+      "description": "使用數位動態規劃處理大範圍數字統計問題",
       "tags": [
         "動態規劃",
-        "DP",
-        "狀態轉移",
+        "數位 DP",
+        "Digit DP",
         "記憶化搜索"
       ],
       "folder": "10",
+      "slug": "12_digit_dp",
+      "path": "/articles/10/12_digit_dp",
+      "excerpt": "數位 DP / Digit DP 數位 DP (Digit Dynamic Programming) 是一種專門用來解決大範圍數字統計問題的動態規劃技術。當數字範圍非常大（如 10^18）但需要統計符合某種「數位性質」的數字個數時，Digit DP 是最有效的方法。 核心概念 什麼時候使用 Digit DP？ 1. 數字範圍非常大：n 可能到 10^18，無法暴力枚舉 2. 統計 [0, n] 或",
+      "order": 12,
+      "draft": false
+    },
+    {
+      "id": "11-00_introduction",
+      "title": "11-0. 進階資料結構概論",
+      "description": "理解時間與空間的權衡，選擇合適的資料結構",
+      "tags": [
+        "Data Structure",
+        "Time Complexity",
+        "Space Complexity"
+      ],
+      "folder": "11",
       "slug": "00_introduction",
-      "path": "/articles/10/00_introduction",
-      "excerpt": "動態規劃介紹 動態規劃（Dynamic Programming，簡稱 DP）是一種通過將複雜問題分解為更簡單的子問題來解決問題的算法設計技術。它是演算法設計中最重要且最常用的技巧之一。 什麼是動態規劃？ 動態規劃的核心思想是：避免重複計算，將中間結果保存起來，以空間換時間。 > \"Those who cannot remember the past are condemned to repeat ",
-      "order": 999,
+      "path": "/articles/11/00_introduction",
+      "excerpt": "進階資料結構概論 核心思想：Time-Space Trade-off 在演算法設計中，最重要的概念之一就是時間與空間的權衡（Time-Space Trade-off）。我們經常面臨一個選擇： - 犧牲空間換取時間：透過預處理和額外的儲存空間，加速查詢操作 - 犧牲時間換取空間：減少記憶體使用，但可能需要更多的計算時間 經典範例：查詢區間和 假設有一個陣列 `arr = [2, 4, 1, 5, 3",
+      "order": 0,
       "draft": false
     },
     {
@@ -1509,19 +1542,19 @@
       "draft": false
     },
     {
-      "id": "11-00_introduction",
-      "title": "11-0. 進階資料結構概論",
-      "description": "理解時間與空間的權衡，選擇合適的資料結構",
+      "id": "12-00_introduction",
+      "title": "12-0. 數論介紹",
+      "description": "數論的基本概念與在算法競賽中的應用",
       "tags": [
-        "Data Structure",
-        "Time Complexity",
-        "Space Complexity"
+        "Number Theory",
+        "Mathematics",
+        "Introduction"
       ],
-      "folder": "11",
+      "folder": "12",
       "slug": "00_introduction",
-      "path": "/articles/11/00_introduction",
-      "excerpt": "進階資料結構概論 核心思想：Time-Space Trade-off 在演算法設計中，最重要的概念之一就是時間與空間的權衡（Time-Space Trade-off）。我們經常面臨一個選擇： - 犧牲空間換取時間：透過預處理和額外的儲存空間，加速查詢操作 - 犧牲時間換取空間：減少記憶體使用，但可能需要更多的計算時間 經典範例：查詢區間和 假設有一個陣列 `arr = [2, 4, 1, 5, 3",
-      "order": 999,
+      "path": "/articles/12/00_introduction",
+      "excerpt": "0. 數論介紹 什麼是數論？ 數論（Number Theory）是研究整數性質的數學分支，被譽為「數學的皇后」。在算法競賽與實際應用中，數論提供了強大的數學工具，用於解決各種計算問題。 數論在算法競賽中的重要性 數論在程式設計競賽中扮演關鍵角色，主要原因包括： 1. 密碼學基礎：RSA 加密、數字簽名等現代密碼系統的核心 2. 常見題型：競賽中頻繁出現的質數、GCD/LCM、模運算問題 3. 算法",
+      "order": 0,
       "draft": false
     },
     {
@@ -1645,19 +1678,18 @@
       "draft": false
     },
     {
-      "id": "12-00_introduction",
-      "title": "12-0. 數論介紹",
-      "description": "數論的基本概念與在算法競賽中的應用",
+      "id": "13-00_introduction",
+      "title": "13-0. 貪心法介紹",
+      "description": "貪心法的核心思想、可行性條件與證明方法",
       "tags": [
-        "Number Theory",
-        "Mathematics",
-        "Introduction"
+        "greedy",
+        "algorithm-design"
       ],
-      "folder": "12",
+      "folder": "13",
       "slug": "00_introduction",
-      "path": "/articles/12/00_introduction",
-      "excerpt": "0. 數論介紹 什麼是數論？ 數論（Number Theory）是研究整數性質的數學分支，被譽為「數學的皇后」。在算法競賽與實際應用中，數論提供了強大的數學工具，用於解決各種計算問題。 數論在算法競賽中的重要性 數論在程式設計競賽中扮演關鍵角色，主要原因包括： 1. 密碼學基礎：RSA 加密、數字簽名等現代密碼系統的核心 2. 常見題型：競賽中頻繁出現的質數、GCD/LCM、模運算問題 3. 算法",
-      "order": 999,
+      "path": "/articles/13/00_introduction",
+      "excerpt": "0. 貪心法介紹 什麼是貪心法？ 貪心法 (Greedy Algorithm) 是一種算法設計策略，其核心思想是：在每一步決策中，都選擇當前看起來最優的選擇，從而希望導致全局最優解。 與動態規劃需要考慮所有可能的決策路徑不同，貪心法只關注「當下最好的選擇」，具有以下特點： - 局部最優決策：每一步都做出在當前狀態下最好的選擇 - 不回溯：一旦做出選擇就不再改變 - 無後效性：當前的選擇不依賴於未來",
+      "order": 0,
       "draft": false
     },
     {
@@ -1728,18 +1760,18 @@
       "draft": false
     },
     {
-      "id": "13-00_introduction",
-      "title": "13-0. 貪心法介紹",
-      "description": "貪心法的核心思想、可行性條件與證明方法",
+      "id": "14-00_introduction",
+      "title": "14-0. String 介紹",
+      "description": "C++ 字串基礎與常用技巧",
       "tags": [
-        "greedy",
-        "algorithm-design"
+        "string",
+        "基礎"
       ],
-      "folder": "13",
+      "folder": "14",
       "slug": "00_introduction",
-      "path": "/articles/13/00_introduction",
-      "excerpt": "0. 貪心法介紹 什麼是貪心法？ 貪心法 (Greedy Algorithm) 是一種算法設計策略，其核心思想是：在每一步決策中，都選擇當前看起來最優的選擇，從而希望導致全局最優解。 與動態規劃需要考慮所有可能的決策路徑不同，貪心法只關注「當下最好的選擇」，具有以下特點： - 局部最優決策：每一步都做出在當前狀態下最好的選擇 - 不回溯：一旦做出選擇就不再改變 - 無後效性：當前的選擇不依賴於未來",
-      "order": 999,
+      "path": "/articles/14/00_introduction",
+      "excerpt": "0. String 介紹 字串（String）是程式設計中最常見的資料結構之一，幾乎所有的程式都會處理文字資料。本章將介紹 C++ 中的字串基礎知識與常用技巧。 C++ 字串基礎 1. `char[]` vs `string` 類別 C++ 提供兩種主要的字串表示方式： C-style 字串（char 陣列） C++ string 類別 選擇建議： - 競賽/演算法題：優先使用 `string`，",
+      "order": 0,
       "draft": false
     },
     {
@@ -1939,18 +1971,22 @@
       "draft": false
     },
     {
-      "id": "14-00_introduction",
-      "title": "14-0. String 介紹",
-      "description": "C++ 字串基礎與常用技巧",
+      "id": "15-01_subsets",
+      "title": "15-1. LeetCode 78. Subsets - 九種解法詳解與效能分析",
+      "description": "深入探討子集生成問題的九種不同實作方式，包含 DFS、位元運算、BFS、DP 等，並進行效能基準測試",
       "tags": [
-        "string",
-        "基礎"
+        "backtracking",
+        "bit-manipulation",
+        "dfs",
+        "bfs",
+        "dynamic-programming",
+        "divide-and-conquer"
       ],
-      "folder": "14",
-      "slug": "00_introduction",
-      "path": "/articles/14/00_introduction",
-      "excerpt": "0. String 介紹 字串（String）是程式設計中最常見的資料結構之一，幾乎所有的程式都會處理文字資料。本章將介紹 C++ 中的字串基礎知識與常用技巧。 C++ 字串基礎 1. `char[]` vs `string` 類別 C++ 提供兩種主要的字串表示方式： C-style 字串（char 陣列） C++ string 類別 選擇建議： - 競賽/演算法題：優先使用 `string`，",
-      "order": 999,
+      "folder": "15",
+      "slug": "01_subsets",
+      "path": "/articles/15/01_subsets",
+      "excerpt": "15-1. LeetCode 78. Subsets - 九種解法詳解與效能分析 問題描述 給定一個不含重複元素的整數陣列 `nums`，返回該陣列所有可能的子集（冪集）。 注意： 解集不能包含重複的子集。可以按任意順序返回解集。 範例： 對於長度為 n 的陣列，子集總數為 2^n 個（包含空集合）。 --- 核心概念 子集生成問題是組合問題的經典案例，可以從多個角度思考： 1. 選擇視角：對每個",
+      "order": 1,
       "draft": false
     }
   ]

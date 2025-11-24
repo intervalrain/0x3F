@@ -1,5 +1,5 @@
 {
-  "name": "0x3f2",
+  "name": "0x3f-needcode",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "generate-search": "node scripts/generate-search-index.js"
+    "generate-static-data": "node scripts/generate-search-index.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
@@ -30,8 +30,10 @@
     "react-markdown": "^10.1.0",
     "react-resizable-panels": "^3.0.6",
     "rehype-highlight": "^7.0.2",
+    "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "vercel": "^46.1.1"
   },
   "devDependencies": {

@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+export type SubscriptionLevel = 'free' | 'member' | 'premium';
+
 export interface ArticleMetadata {
   title: string;
   order: number;
@@ -10,6 +12,7 @@ export interface ArticleMetadata {
   author?: string;
   date?: string;
   draft?: boolean;
+  subscription?: SubscriptionLevel; // 'free' = 公開, 'member' = 需登入, 'premium' = 付費會員（未來擴充）
 }
 
 export interface ArticleNavigation {
@@ -36,6 +39,7 @@ export interface ArticleNode {
   order: number;
   children?: ArticleNode[];
   isFolder?: boolean;
+  subscription?: SubscriptionLevel;
 }
 
 const articlesDirectory = path.join(process.cwd(), 'articles');

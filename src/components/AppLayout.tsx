@@ -190,12 +190,12 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     setIsClient(true);
   }, []);
 
-  // 載入文章樹狀結構
+  // 載入文章樹狀結構（使用預先生成的靜態 JSON）
   useEffect(() => {
     if (isClient) {
-      fetch('/api/articles/tree')
+      fetch('/article-tree.json')
         .then(res => res.json())
-        .then(data => setArticleTree(data))
+        .then(data => setArticleTree(data || []))
         .catch(err => console.error('Failed to load article tree:', err));
     }
   }, [isClient]);

@@ -10,6 +10,7 @@ tags:
 author: Rain Hu
 date: '2025-11-23'
 draft: false
+subscription: member
 ---
 
 # 數位 DP / Digit DP

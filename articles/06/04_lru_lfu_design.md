@@ -6,6 +6,7 @@ tags: ['LRU', 'LFU', 'Cache', 'Design', 'Hash Map', 'Doubly Linked List', '緩�
 author: Rain Hu
 date: '2025-10-15'
 draft: false
+subscription: member
 ---
 
 # LRU 與 LFU Cache 設計

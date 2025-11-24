@@ -64,6 +64,10 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const handleMenuItemClick = (tab: string) => {
+    // Navigate to home page if not already there, then set the tab
+    if (pathname !== '/') {
+      router.push('/');
+    }
     onNavigate?.(tab);
     handleClose();
   };
@@ -109,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({
           <Box
             component="img"
             src="/favicon.svg"
-            alt="0x3F Logo"
+            alt="0x3F NeedCode 溺扣"
             onClick={handleLogoClick}
             sx={{
               width: 32,
@@ -128,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({
               color: theme.palette.text.primary,
             }}
           >
-            {isMobile ? 'Tracker' : 'LeetCode Tracker'}
+            {isMobile ? '溺扣' : 'NeedCode 溺扣'}
           </Typography>
 
           {/* Syncing Indicator */}

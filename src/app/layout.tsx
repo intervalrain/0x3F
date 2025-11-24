@@ -18,11 +18,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "0x3F LeetCode 刷題追蹤器",
-  description: "LeetCode Problem Tracker - Track your progress through 0x3F algorithm problems",
+  title: "0x3F NeedCode 溺扣 - 演算法刷題筆記",
+  description: "沉溺於 Code 的演算法學習筆記與 LeetCode 刷題追蹤器，系統化學習資料結構與演算法",
   icons: {
     icon: '/favicon.svg',
     apple: '/apple-touch-icon.svg',
+  },
+  keywords: ["LeetCode", "演算法", "資料結構", "刷題", "NeedCode", "溺扣", "0x3F", "程式設計", "面試準備"],
+  openGraph: {
+    title: "0x3F NeedCode 溺扣",
+    description: "沉溺於 Code 的演算法學習筆記與 LeetCode 刷題追蹤器",
+    type: "website",
   },
 };
 

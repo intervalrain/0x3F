@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { isAdmin } from '@/lib/syncPolicy';
 import ArticlePageClient from './ArticlePageClient';
+import SubscriptionGate from '@/components/SubscriptionGate';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -41,6 +42,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   if (article.metadata.draft && !isAdmin(userEmail)) {
     notFound();
+  }
+
+  // 檢查訂閱權限
+  const subscriptionLevel = article.metadata.subscription || 'free';
+  const isLoggedIn = !!userEmail;
+
+  // 如果文章需要會員權限且用戶未登入
+  if (subscriptionLevel === 'member' && !isLoggedIn) {
+    return <SubscriptionGate articleTitle={article.metadata.title} />;
   }
 
   // 獲取文章導航（跨資料夾）

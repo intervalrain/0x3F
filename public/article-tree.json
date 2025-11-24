@@ -1,0 +1,812 @@
+[
+  {
+    "title": "01. 資料結構與演算法介紹 Introduction to Data Structure & Algorithm",
+    "path": "/articles/01",
+    "order": 1,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "01-0. 演算法與資料結構心法",
+        "path": "/articles/01/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "01-1. 複雜度分析",
+        "path": "/articles/01/01_complexity",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "01-2. 基本資料結構",
+        "path": "/articles/01/02_data_structures",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "01-3. 動態陣列",
+        "path": "/articles/01/03_dynamic_array",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "01-4. HashMap 原理",
+        "path": "/articles/01/04_hashmap",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "01-5. Linked List 操作與變體",
+        "path": "/articles/01/05_linked_list_operations",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "01-6. Stack 與 Queue",
+        "path": "/articles/01/06_stack_and_queue",
+        "order": 6,
+        "subscription": "free"
+      },
+      {
+        "title": "01-7. Heap 與 Priority Queue",
+        "path": "/articles/01/07_heap",
+        "order": 7,
+        "subscription": "free"
+      },
+      {
+        "title": "01-8. Tree (樹)",
+        "path": "/articles/01/08_tree",
+        "order": 8,
+        "subscription": "free"
+      },
+      {
+        "title": "01-9. Graph (圖)",
+        "path": "/articles/01/09_graph",
+        "order": 9,
+        "subscription": "free"
+      },
+      {
+        "title": "01-10. C++ STL 容器",
+        "path": "/articles/01/10_stl_containers",
+        "order": 10,
+        "subscription": "free"
+      },
+      {
+        "title": "01-11. 進階資料結構",
+        "path": "/articles/01/11_advanced_structures",
+        "order": 11,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "02. 演算法概念與策略 Algorithm Concepts and Strategies",
+    "path": "/articles/02",
+    "order": 2,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "02-0. 演算法概述",
+        "path": "/articles/02/00_algorithm_overview",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "02-1. 排序演算法",
+        "path": "/articles/02/01_sorting",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "02-2. Brute Force (暴力法)",
+        "path": "/articles/02/02_brute_force",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "02-3. Divide and Conquer (分治法)",
+        "path": "/articles/02/03_divide_and_conquer",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "02-4. Dynamic Programming (動態規劃)",
+        "path": "/articles/02/04_dynamic_programming",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "02-5. Greedy (貪心法)",
+        "path": "/articles/02/05_greedy",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "02-6. Backtracking (回溯法)",
+        "path": "/articles/02/06_backtracking",
+        "order": 6,
+        "subscription": "free"
+      },
+      {
+        "title": "02-7. Branch and Bound (分支定界法)",
+        "path": "/articles/02/07_branch_and_bound",
+        "order": 7,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "03. 滑動視窗與雙指針 Sliding Window & Two Pointers",
+    "path": "/articles/03",
+    "order": 3,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "03-0. 滑動視窗與雙指針介紹",
+        "path": "/articles/03/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "03-1. 定長滑動視窗",
+        "path": "/articles/03/01_fixed_length_window",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "03-2. 不定長滑動視窗",
+        "path": "/articles/03/02_variable_length_window",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "03-3. 雙向雙指針",
+        "path": "/articles/03/03_opposite_two_pointers",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "03-4. 同向雙指針",
+        "path": "/articles/03/04_same_direction_two_pointers",
+        "order": 4,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "04. 二分搜尋法 Binary Search",
+    "path": "/articles/04",
+    "order": 4,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "04-0. 二分法介紹",
+        "path": "/articles/04/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "04-1. 基礎查找",
+        "path": "/articles/04/01_basic_search",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "04-2. 二分猜答案",
+        "path": "/articles/04/02_binary_search_on_answer",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "04-3. 第 K 小/大元素",
+        "path": "/articles/04/03_kth_element",
+        "order": 3,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "05. 鏈表與樹 LinkedList & Tree",
+    "path": "/articles/05",
+    "order": 5,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "05-0. LinkedList, Binary Tree, Tree 介紹",
+        "path": "/articles/05/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "05-1. 基礎操作",
+        "path": "/articles/05/01_basic_operations",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "05-2. LRU/LFU Cache",
+        "path": "/articles/05/02_lru_lfu_cache",
+        "order": 2,
+        "subscription": "member"
+      },
+      {
+        "title": "05-3. Skip List",
+        "path": "/articles/05/03_skip_list",
+        "order": 3,
+        "subscription": "member"
+      },
+      {
+        "title": "05-4. Binary Tree",
+        "path": "/articles/05/04_binary_tree",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "05-5. Tree",
+        "path": "/articles/05/05_tree",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "05-6. Tree + Backtracking",
+        "path": "/articles/05/06_tree_backtracking",
+        "order": 6,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "06. 堆疊與佇列 Stack & Queue",
+    "path": "/articles/06",
+    "order": 6,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "06-0. Stack, Queue, Deque, 單調棧介紹",
+        "path": "/articles/06/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "06-1. Iteration DFS (stack)",
+        "path": "/articles/06/01_iterative_dfs",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "06-2. 下一個更大元素 (Next Greater Element)",
+        "path": "/articles/06/02_next_greater_element",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "06-3. 矩形面積 (Rectangle Area)",
+        "path": "/articles/06/03_rectangle_area",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "06-4. LRU 與 LFU Cache 設計",
+        "path": "/articles/06/04_lru_lfu_design",
+        "order": 4,
+        "subscription": "member"
+      },
+      {
+        "title": "06-5. 其他常見設計題",
+        "path": "/articles/06/05_design_problems",
+        "order": 5,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "07. 網格圖 Grid Graph",
+    "path": "/articles/07",
+    "order": 7,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "07-0. 網格圖的介紹",
+        "path": "/articles/07/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "07-1. DFS/BFS 基礎 (DFS/BFS Basics)",
+        "path": "/articles/07/01_dfs_bfs_basics",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "07-2. Backtracking",
+        "path": "/articles/07/02_backtracking",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "07-3. Multi-source BFS, 狀態空間 BFS",
+        "path": "/articles/07/03_multi_source_bfs",
+        "order": 3,
+        "subscription": "member"
+      },
+      {
+        "title": "07-4. 最短路徑 (Shortest Path)",
+        "path": "/articles/07/04_shortest_path",
+        "order": 4,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "08. 圖論 Graph Theory",
+    "path": "/articles/08",
+    "order": 8,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "08-0. 圖論介紹",
+        "path": "/articles/08/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "08-1. DFS/BFS 與環檢測",
+        "path": "/articles/08/01_dfs_bfs_cycle",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "08-2. 並查集 (Union Find)",
+        "path": "/articles/08/02_union_find",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "08-3. 拓撲排序 (Topological Sort)",
+        "path": "/articles/08/03_topological_sort",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "08-4. Dijkstra 最短路徑演算法",
+        "path": "/articles/08/04_dijkstra",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "08-5. Bellman-Ford 演算法",
+        "path": "/articles/08/05_bellman_ford",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "08-6. SPFA 演算法",
+        "path": "/articles/08/06_spfa",
+        "order": 6,
+        "subscription": "member"
+      },
+      {
+        "title": "08-7. Floyd-Warshall 演算法",
+        "path": "/articles/08/07_floyd_warshall",
+        "order": 7,
+        "subscription": "free"
+      },
+      {
+        "title": "08-8. Tarjan 演算法",
+        "path": "/articles/08/08_tarjan",
+        "order": 8,
+        "subscription": "member"
+      },
+      {
+        "title": "08-9. 最小生成樹 - Kruskal & Prim",
+        "path": "/articles/08/09_kruskal_prim",
+        "order": 9,
+        "subscription": "free"
+      },
+      {
+        "title": "08-10. 最大流演算法 (進階)",
+        "path": "/articles/08/10_max_flow",
+        "order": 10,
+        "subscription": "member"
+      },
+      {
+        "title": "08-11. 二分圖最大匹配 (進階)",
+        "path": "/articles/08/11_bipartite_matching",
+        "order": 11,
+        "subscription": "member"
+      },
+      {
+        "title": "08-12. 最短路徑算法比較：四種解法實戰",
+        "path": "/articles/08/12_shortest_path_comparison",
+        "order": 12,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "09. 位元運算 Bit Manipulation",
+    "path": "/articles/09",
+    "order": 9,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "09-0. 位元運算介紹",
+        "path": "/articles/09/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "09-1. Bitwise Operations",
+        "path": "/articles/09/01_bitwise_operations",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "09-2. Advanced Bitwise Operations",
+        "path": "/articles/09/02_advanced_bitwise",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "09-3. Bit Library - STL",
+        "path": "/articles/09/03_bit_library",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "09-4. Bitwise Tricks",
+        "path": "/articles/09/04_bitwise_tricks",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "09-5. Bit DP",
+        "path": "/articles/09/05_bit_dp",
+        "order": 5,
+        "subscription": "free"
+      }
+    ]
+  },
+  {
+    "title": "10. 動態規劃 Dynamic Programming",
+    "path": "/articles/10",
+    "order": 10,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "10-0. 動態規劃介紹",
+        "path": "/articles/10/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "10-1. 1 維 DP",
+        "path": "/articles/10/01_one_dimensional_dp",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "10-2. 區間 DP",
+        "path": "/articles/10/02_interval_dp",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "10-3. 0-1 背包 DP",
+        "path": "/articles/10/03_knapsack_01",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "10-4. 完全背包",
+        "path": "/articles/10/04_knapsack_unbounded",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "10-5. 序列 DP",
+        "path": "/articles/10/05_sequence_dp",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "10-6. Grid/Matrix DP",
+        "path": "/articles/10/06_grid_matrix_dp",
+        "order": 6,
+        "subscription": "free"
+      },
+      {
+        "title": "10-7. 狀態壓縮 DP / Bitmask DP",
+        "path": "/articles/10/07_bitmask_dp",
+        "order": 7,
+        "subscription": "free"
+      },
+      {
+        "title": "10-8. Tree DP",
+        "path": "/articles/10/08_tree_dp",
+        "order": 8,
+        "subscription": "free"
+      },
+      {
+        "title": "10-9. State Machine DP",
+        "path": "/articles/10/09_state_machine_dp",
+        "order": 9,
+        "subscription": "free"
+      },
+      {
+        "title": "10-10. DP + Sliding Window",
+        "path": "/articles/10/10_dp_with_sliding_window",
+        "order": 10,
+        "subscription": "free"
+      },
+      {
+        "title": "10-11. DP 優化技巧",
+        "path": "/articles/10/11_dp_optimization",
+        "order": 11,
+        "subscription": "free"
+      },
+      {
+        "title": "10-12. 數位 DP / Digit DP",
+        "path": "/articles/10/12_digit_dp",
+        "order": 12,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "11. 進階資料結構 Advanced Data Structures",
+    "path": "/articles/11",
+    "order": 11,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "11-0. 進階資料結構概論",
+        "path": "/articles/11/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "11-1. Prefix Sum & Difference Array",
+        "path": "/articles/11/01_prefix_sum",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "11-2. 2D Prefix Sum",
+        "path": "/articles/11/02_prefix_sum_2d",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "11-3. Heap (Priority Queue)",
+        "path": "/articles/11/03_heap_intro",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "11-4. Union Find (Disjoint Set Union)",
+        "path": "/articles/11/04_union_find",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "11-5. Trie (Prefix Tree)",
+        "path": "/articles/11/05_trie",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "11-6. Fenwick Tree & Segment Tree",
+        "path": "/articles/11/06_fenwick_tree_and_segment_tree",
+        "order": 6,
+        "subscription": "free"
+      },
+      {
+        "title": "11-7. Segment Tree Advanced",
+        "path": "/articles/11/07_segment_tree",
+        "order": 7,
+        "subscription": "member"
+      },
+      {
+        "title": "11-8. Li Chao Segment Tree",
+        "path": "/articles/11/08_li_chao_segment_tree",
+        "order": 8,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "12. 數論 Number Theory",
+    "path": "/articles/12",
+    "order": 12,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "12-0. 數論介紹",
+        "path": "/articles/12/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "12-1. 同餘性質 - Modular Arithmetic",
+        "path": "/articles/12/01_modular_arithmetic",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "12-2. GCD/LCM - 最大公因數與最小公倍數",
+        "path": "/articles/12/02_gcd_lcm",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "12-3. Prime - 質數",
+        "path": "/articles/12/03_prime",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "12-4. 快速冪 - Modular Exponentiation",
+        "path": "/articles/12/04_fast_power",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "12-5. 歐拉函數 - Euler's Phi Function (*)",
+        "path": "/articles/12/05_euler_phi",
+        "order": 5,
+        "subscription": "member"
+      },
+      {
+        "title": "12-6. 擴展歐幾里得 - Extended Euclidean Algorithm (*)",
+        "path": "/articles/12/06_extended_euclidean",
+        "order": 6,
+        "subscription": "member"
+      },
+      {
+        "title": "12-7. 進階主題 - Möbius / Segmented Sieve (*)",
+        "path": "/articles/12/07_advanced_topics",
+        "order": 7,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "13. 貪心法 Greedy Algorithm",
+    "path": "/articles/13",
+    "order": 13,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "13-0. 貪心法介紹",
+        "path": "/articles/13/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "13-1. 區間問題",
+        "path": "/articles/13/01_interval_problems",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "13-2. 序列貪心",
+        "path": "/articles/13/02_sequence_greedy",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "13-3. Heap + 貪心",
+        "path": "/articles/13/03_heap_greedy",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "13-4. A* 算法",
+        "path": "/articles/13/04_astar",
+        "order": 4,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "14. 字串 String Algorithms",
+    "path": "/articles/14",
+    "order": 14,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "14-0. String 介紹",
+        "path": "/articles/14/00_introduction",
+        "order": 0,
+        "subscription": "free"
+      },
+      {
+        "title": "14-1. String Manipulation",
+        "path": "/articles/14/01_string_manipulation",
+        "order": 1,
+        "subscription": "free"
+      },
+      {
+        "title": "14-2. 回文 - Palindrome",
+        "path": "/articles/14/02_palindrome",
+        "order": 2,
+        "subscription": "free"
+      },
+      {
+        "title": "14-3. Suffix Tree, Suffix Array (*)",
+        "path": "/articles/14/03_suffix_tree",
+        "order": 3,
+        "subscription": "free"
+      },
+      {
+        "title": "14-4. Approximate String Matching",
+        "path": "/articles/14/04_edit_distance",
+        "order": 4,
+        "subscription": "free"
+      },
+      {
+        "title": "14-5. KMP - Knuth-Morris-Pratt",
+        "path": "/articles/14/05_kmp",
+        "order": 5,
+        "subscription": "free"
+      },
+      {
+        "title": "14-6. Rabin-Karp (*)",
+        "path": "/articles/14/06_rabin_karp",
+        "order": 6,
+        "subscription": "member"
+      },
+      {
+        "title": "14-7. Boyer-Moore (*)",
+        "path": "/articles/14/07_boyer_moore",
+        "order": 7,
+        "subscription": "member"
+      },
+      {
+        "title": "14-8. Z-function (*)",
+        "path": "/articles/14/08_z_function",
+        "order": 8,
+        "subscription": "member"
+      },
+      {
+        "title": "14-9. Manacher (*)",
+        "path": "/articles/14/09_manacher",
+        "order": 9,
+        "subscription": "member"
+      },
+      {
+        "title": "14-10. String Hashing",
+        "path": "/articles/14/10_string_hashing",
+        "order": 10,
+        "subscription": "member"
+      },
+      {
+        "title": "14-11. AC Automation, Subsequence Automation (*)",
+        "path": "/articles/14/11_ac_automation",
+        "order": 11,
+        "subscription": "member"
+      },
+      {
+        "title": "14-12. String Compression (*)",
+        "path": "/articles/14/12_string_compression",
+        "order": 12,
+        "subscription": "member"
+      }
+    ]
+  },
+  {
+    "title": "15. 其它 Miscellaneous",
+    "path": "/articles/15",
+    "order": 15,
+    "isFolder": true,
+    "children": [
+      {
+        "title": "15-1. LeetCode 78. Subsets - 九種解法詳解與效能分析",
+        "path": "/articles/15/01_subsets",
+        "order": 1,
+        "subscription": "member"
+      }
+    ]
+  }
+]
