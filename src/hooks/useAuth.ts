@@ -18,12 +18,11 @@ export function useAuth() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncError, setSyncError] = useState<string | null>(null);
 
-  // 登入
+  // 登入 - 導向登入頁面讓用戶選擇登入方式
   const login = useCallback(async () => {
     try {
-      // 明確指定回調 URL 為當前應用的根路徑
-      const baseUrl = window.location.origin;
-      await signIn("google", { callbackUrl: baseUrl });
+      // 導向登入頁面，讓用戶選擇 Google 或 GitHub
+      await signIn(undefined, { callbackUrl: window.location.href });
     } catch (error) {
       console.error("Login error:", error);
     }
