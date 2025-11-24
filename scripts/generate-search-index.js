@@ -3,7 +3,8 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const articlesDir = path.join(process.cwd(), 'articles');
-const outputPath = path.join(process.cwd(), 'public', 'search-index.json');
+const searchIndexPath = path.join(process.cwd(), 'public', 'search-index.json');
+const articleTreePath = path.join(process.cwd(), 'public', 'article-tree.json');
 
 /**
  * 生成搜尋索引
@@ -56,7 +57,7 @@ function generateSearchIndex() {
           slug: slug,
           path: `/articles/${folder}/${slug}`,
           excerpt: excerpt,
-          order: data.order || 999,
+          order: data.order ?? 999,
           draft: data.draft || false,
         });
       } catch (error) {
@@ -81,14 +82,107 @@ function generateSearchIndex() {
 
   // 寫入 JSON 檔案
   fs.writeFileSync(
-    outputPath,
+    searchIndexPath,
     JSON.stringify({ articles: searchIndex }, null, 2),
     'utf-8'
   );
 
   console.log(`✅ Search index generated: ${searchIndex.length} articles`);
-  console.log(`📁 Output: ${outputPath}`);
+  console.log(`📁 Output: ${searchIndexPath}`);
+}
+
+/**
+ * 生成文章樹狀結構
+ * 用於 Sidebar 顯示
+ */
+function generateArticleTree() {
+  const tree = [];
+
+  // 讀取 articles 資料夾
+  const folders = fs.readdirSync(articlesDir).filter(item => {
+    const itemPath = path.join(articlesDir, item);
+    return fs.statSync(itemPath).isDirectory() && !item.startsWith('_');
+  }).sort();
+
+  folders.forEach(folder => {
+    const folderPath = path.join(articlesDir, folder);
+    const configPath = path.join(folderPath, 'Config.md');
+
+    // 讀取 Config.md 獲取資料夾標題
+    let folderTitle = folder;
+    let folderOrder = parseInt(folder) || 0;
+
+    if (fs.existsSync(configPath)) {
+      try {
+        const configContent = fs.readFileSync(configPath, 'utf-8');
+        const { data } = matter(configContent);
+        folderTitle = data.title || folder;
+        folderOrder = data.order || folderOrder;
+      } catch (error) {
+        console.error(`Error parsing Config.md in ${folder}:`, error.message);
+      }
+    }
+
+    // 獲取資料夾內的所有文章
+    const files = fs.readdirSync(folderPath).filter(file =>
+      file.endsWith('.md') && !file.startsWith('Config')
+    );
+
+    const children = [];
+
+    files.forEach(file => {
+      const filePath = path.join(folderPath, file);
+      try {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const { data } = matter(fileContent);
+
+        // 跳過草稿
+        if (data.draft) {
+          return;
+        }
+
+        const slug = file.replace('.md', '');
+
+        children.push({
+          title: data.title || slug,
+          path: `/articles/${folder}/${slug}`,
+          order: data.order ?? 999,
+          subscription: data.subscription || 'free',
+        });
+      } catch (error) {
+        console.error(`Error parsing ${file}:`, error.message);
+      }
+    });
+
+    // 按 order 排序子項目
+    children.sort((a, b) => a.order - b.order);
+
+    // 只有當資料夾有非草稿文章時才加入樹狀結構
+    if (children.length > 0) {
+      tree.push({
+        title: folderTitle,
+        path: `/articles/${folder}`,
+        order: folderOrder,
+        isFolder: true,
+        children: children,
+      });
+    }
+  });
+
+  // 按 order 排序
+  tree.sort((a, b) => a.order - b.order);
+
+  // 寫入 JSON 檔案
+  fs.writeFileSync(
+    articleTreePath,
+    JSON.stringify(tree, null, 2),
+    'utf-8'
+  );
+
+  console.log(`✅ Article tree generated: ${tree.length} folders`);
+  console.log(`📁 Output: ${articleTreePath}`);
 }
 
 // 執行生成
 generateSearchIndex();
+generateArticleTree();

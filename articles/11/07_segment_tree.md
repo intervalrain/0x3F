@@ -11,6 +11,7 @@ tags:
 author: Rain Hu
 date: '2025-10-11'
 draft: false
+subscription: member
 ---
 
 # Segment Tree Advanced（線段樹進階）

@@ -11,6 +11,7 @@ tags:
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # 6. 擴展歐幾里得 - Extended Euclidean Algorithm (**)

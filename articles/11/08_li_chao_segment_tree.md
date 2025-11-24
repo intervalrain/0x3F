@@ -11,6 +11,7 @@ tags:
 author: Rain Hu
 date: '2025-10-12'
 draft: false
+subscription: member
 ---
 
 # Li Chao Segment Tree（李超線段樹）

@@ -22,6 +22,7 @@ import {
   ChevronRight,
   ChevronLeft,
   Close as CloseIcon,
+  Lock as LockIcon,
 } from '@mui/icons-material';
 import { Topic } from '../data/topics';
 import { TopicProgress } from '../types';
@@ -147,6 +148,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       // Use path for unique ID, for folders use special prefix
       const nodePath = hasChildren ? `folder-${node.path || index}` : node.path || `item-${index}`;
       const nodeId = `article-${nodePath}`;
+      const needsSubscription = node.subscription && node.subscription !== 'free';
 
       return (
         <TreeItem
@@ -155,7 +157,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           label={
             <Tooltip title={node.title} placement="right" arrow>
               <Box
-                sx={{ display: 'flex', alignItems: 'center', py: 0.5 }}
+                sx={{ display: 'flex', alignItems: 'center', py: 0.5, gap: 0.5 }}
                 onClick={(e) => !hasChildren && handleArticleClick(nodePath, e)}
               >
                 <Typography
@@ -173,6 +175,15 @@ const Sidebar: React.FC<SidebarProps> = ({
                 >
                   {node.title}
                 </Typography>
+                {needsSubscription && (
+                  <LockIcon
+                    sx={{
+                      fontSize: 14,
+                      color: 'text.disabled',
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
               </Box>
             </Tooltip>
           }

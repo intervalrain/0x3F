@@ -9,6 +9,7 @@ tags:
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # 6. Rabin-Karp

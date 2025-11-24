@@ -6,6 +6,7 @@ tags: ['LRU', 'LFU', 'Cache', 'Hash Map', 'Doubly Linked List', '緩存', '哈�
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # LRU/LFU Cache

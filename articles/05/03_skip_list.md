@@ -6,6 +6,7 @@ tags: ['Skip List', 'Data Structure', '跳躍串列', '資料結構', 'Probabili
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # Skip List (跳表)

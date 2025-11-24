@@ -12,6 +12,7 @@ tags:
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # 最大流演算法 (Maximum Flow)

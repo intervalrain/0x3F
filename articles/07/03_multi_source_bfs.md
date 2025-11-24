@@ -6,6 +6,7 @@ tags: ['Multi-source BFS', 'State Space', 'Distance', 'Shortest Bridge', '多源
 author: Rain Hu
 date: '2025-10-30'
 draft: false
+subscription: member
 ---
 
 # Multi-source BFS, 狀態空間 BFS
