@@ -14,14 +14,16 @@ import { ArticleMetadata, ArticleNavigation } from '@/lib/articles';
 import ArticleNavigationComponent from './ArticleNavigation';
 import TableOfContents from './TableOfContents';
 import CopyButton from './CopyButton';
+import ArticleComments from './ArticleComments';
 
 interface ArticleContentProps {
   metadata: ArticleMetadata;
   content: string;
   navigation?: ArticleNavigation;
+  slug?: string;
 }
 
-const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navigation }) => {
+const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navigation, slug }) => {
   // Helper function to strip markdown formatting from text
   const stripMarkdown = (text: string): string => {
     return text
@@ -369,6 +371,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ metadata, content, navi
 
       {/* Article Navigation */}
       {navigation && <ArticleNavigationComponent navigation={navigation} />}
+
+      {/* Comments Section */}
+      <ArticleComments
+        articleSlug={slug || ''}
+        articleTitle={metadata.title}
+      />
     </div>
   );
 };

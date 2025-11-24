@@ -62,6 +62,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       metadata={article.metadata}
       content={article.content}
       navigation={navigation}
+      slug={`${folder}/${slug}`}
     />
   );
 }
